@@ -1,0 +1,496 @@
+<head>
+<title>Splitting and joining words</title>
+</head>
+
+<body>
+<a name="top">
+<h3>Splitting and joining words</h3>
+
+<ul>
+<li><a href="split-join.html#split">Items that are split</a>
+<li><a href="split-join.html#unitary">Items treated as unitary</a>
+<li><a href="split-join.html#as_written">Items treated as written</a>
+<li><a href="split-join.html#differences">Differences among the corpora</a>
+<liPossessive clitic (see <a href="pos-nom.html#dollar_tag">Dollar tag</a>,
+   <a href="syn-phrase.html#np_mod_poss">Genitive/possessive modifiers of N</a>)
+</ul>
+
+<p>
+<hr>
+
+<p>
+Certain items in later English are fusions of earlier multi-word
+phrases.  Given the length of time covered by the diachronic corpora and
+because word division in early texts is not always well represented,
+these items are difficult to treat in a consistent way across time.  We
+attempt to adhere to the following principles and strategies.
+
+<p>
+<ul>
+<p>
+<li>Certain forms are always <a href="split-join.html#split">split</a>
+due to the requirements of the annotation.
+
+<p>
+<li>Items that fused before Middle English are treated as 
+<a href="split-join.html#unitary">unitary</a>.
+
+<p>
+<li>Items that are not completely fused by Middle English are generally
+treated <a href="split-join.html#as_written">as written</a>.  That is,
+the components receive separate POS tags when spelled apart.  When
+spelled together, they receive a complex POS tag to reflect their
+phrasal origin.
+
+<p>
+<li>A small number of cases are
+treated <a href="split-join.html#differences">differently in the later
+corpora than in the PPCME2</a> because certain expressions undergo
+reanalysis and in order to facilitate the lemmatization of the later
+corpora.
+</ul>
+
+<a name="split">
+<h4>Items that are split</h4>
+
+<p> When an orthographic word in the original text belongs to different
+sentence-level or phrasal constituents, the word is always split.  The
+location of the split is marked by a trailing "@" on the first component
+and a leading "@" on the second component.
+
+<ul>
+<li> FOR + TO
+
+<blockquote> <pre>
+(FOR for-@) (TO @to)
+(FOR for@) (TO @te)
+</pre> </blockquote>
+
+<li> Modal + BE
+
+<blockquote> <pre>
+(MD shal@) (BE @be)
+(MD wol@) (BE @bee)
+(MD wyl@) (BE @be)
+</pre> </blockquote>
+
+<li> Modal + negation
+
+<blockquote> <pre>
+(MD can@) (NEG @not)
+(MD ca@) (NEG @nt)
+(MD ca@) (NEG @n't)
+(MD wo@) (NEG @n't)
+</pre> </blockquote>
+
+<a name="prithee">
+<a name="quotha">
+<li> Modal or verb + pronoun
+
+<blockquote> <pre>
+(MD maist@) (PRO @tow)
+(VBP keth@) (PRO @a)		&larr; spelling variant of QUOTHA (= QUOTH HE)
+(VBP (Pre@) (PRO @the)
+(VBP (Pri@) (PRO @thee)
+(VBP quoth@) (PRO @a)
+</pre> </blockquote>
+
+<li> Negation + modal or verb (in Middle English)
+
+<blockquote> <pre>
+(NEG n@) (BEP @is)		&larr; NE + IS
+(NEG n@) (BED @aes)		&larr; NE + WAS
+(NEG n@) (HVP abbeo+d)		&larr; NE + HAVETH
+(NEG n@) (MD @ulle)		&larr; NE + WILL
+(NEG n@) (MD @alde)		&larr; NE + WOULD
+(NEG n@) (VBD @uste)		&larr; NE + WUSTE
+</pre> </blockquote>
+
+<li> Preposition + multiword complement
+
+<blockquote> <pre>
+(PP (P o'@)
+    (NP (PRO$ @my) (N life)))
+</pre> </blockquote>
+
+<li> Pronoun + modal or verb
+
+<blockquote> <pre>
+(PRO i@) (MD @challe)		&larr; dialect form of I SHALL 
+(PRO it@) (BEP @s)
+(PRO it@) (BEP @'s)
+(PRO me@) (VBP thinckes)
+(PRO me@) (VBP thynketh)
+(EX ther@) (BEP @s)
+(PRO they@) (BEP @'l)
+(PRO 'T@) (BEP @is)
+(PRO t'@) (BEP @is)
+(PRO t@) (MDP @will)
+</pre> </blockquote>
+
+</ul>
+
+<a name="unitary">
+<h4>Items treated as unitary</h4>
+
+<p> These items are generally spelled in the original texts as a single
+orthographic word.  When spelled as several words, they are joined by
+underscores in the annotated version.
+
+<ul>
+<a name="unitary_adj">
+<li>Unitary adjectives
+
+<blockquote> <pre>
+(ADJ all_mightie)
+(ADJ a_lone)
+(ADJ back_ward)				&larr; analogously: other adjectives ending in -WARD
+(ADJ fore_sayd)
+(ADJ glad_ful)
+(ADJ inner_most)			&larr; analogously: other adjectives ending in <a href="pos-adj-adv.html#superlative">-MOST</a>
+(ADJ well_come)
+</pre> </blockquote>
+
+This category includes apparent compounds with 'false participles'
+(parasynthetic compounds in the terminology used by the OED).
+
+<blockquote> <pre>
+(ADJ feather_footed)
+(ADJ ill_natured)
+(ADJ mild_hearted)
+(ADJ two_toothed)
+</pre> </blockquote>
+
+<a name="apon">
+<a name="unto">
+<a name="unitary_adv_and_prep">
+<li>Unitary adverbs and prepositions
+
+<blockquote>
+<pre>
+apon (but not <a href="split-join.html#upon">upon</a>)
+unto (but not <a href="split-join.html#into">into</a>)
+
+adverbs ending in <a href="pos-adj-adv.html#superlative">-MOST</a> and -WARD
+
+a+det, about, above, abroad, afore, again, against, almost, already, although(inwith), altogether,
+always, alwhatamong, amore, anon, aright, asswa, away
+before, behind, beneath, beside(s), betime(s), between, betwixt, beyond, bimong,
+eftsoon, evermore,
+for+ti, fornigh, forthright,
+forto, fromward(tofore), furthermore, furtherover,
+henceforward,
+intil, inwith,
+la(n)hure,
+maybe, mayfortune, mayhap, moreover,
+na+gtuor+tan, natforthi, ne+taget, nethelatter & variants, nevermore & variants, nevertheless & variants,
+nonetheless & variants, notwithstanding,
+onward, outake(n), overal, overmete,
+peradventure, percase, perchance, perhaps,
+thenceforth, there(to)against, throughout, tilinto, tilto, toeke(n), tofore(hand), togains,
+together, toward, towhether,
+umbestunde, underhand (also <a href="split-join.html#unitary_adj">unitary adjective</a>), upright (also <a href="split-join.html#unitary_adj">unitary adjective</a>), 
+whatforthi, withal, within, without(forth),
++te+get, +tewhether, +tohhswa+tehh
+</pre> </blockquote>
+
+<a name="unitary_nouns">
+<li>Unitary nouns
+
+<blockquote> <pre>
+Degree OVER + N: (ADVR+N over_fondness), (ADVR+N over_Hastinesse)
+
+(N a_do)			&larr; A = northern infinitival marker
+<a href="words.html#farewell">farewell</a>
+<a href="words.html#inside">inside</a>
+<a href="words.html#outside">outside</a>
+(N to_do)
+(N to_morrow)
+(N$ to_Morrows)
+(N yester_day)
+(N$ yester_day's)
+(N yester_night)
+(NPR Wadenes_day)
+(N well_come)
+</pre> </blockquote>
+
+<p>
+<a name="unitary_verbs">
+<li>Unitary verbs
+
+<p>
+<ul>
+
+<li>Verbs with separable/inseparable prefixes.
+
+Because it is not reliably possible, we do not distinguish between
+separable and inseparable prefixes when they precede the verb.  All
+verbal prefixes are treated as part of the verb.  By contrast, separable
+prefixes that follow the verb are tagged 
+<a href="pos-misc.html#adverbial_particles">RP</a>.
+
+<blockquote>
+<pre>
+(VB with_say)
+(VBD by_shone)
+(VBD to_brake)
+</pre>
+</blockquote>
+
+<li>Verbs with A (overwhelmingly in Middle English)
+
+In most of these verbs, A is originally a prefix (adding "intensity")
+
+<blockquote>
+<pre>
+(VBP a_kel+t)
+(VBD a_resunede)
+(VBD a_seide)
+(VBP a_turne+t)
+</pre>
+</blockquote>
+
+<li>Verbs with the perfective prefix GE-, I-, Y-, etc. (only in Middle English)
+
+<blockquote>
+<pre>
+(VB i_heren)
+(VAN ycleped)
+(VBP +ge_bette)
+</pre>
+</blockquote>
+
+</ul>
+
+</ul>
+
+<a name="as_written">
+<h4>Items treated as written</h4>
+
+<ul>
+<a name="as_written_a">
+<li> A- words (A < IN, ON) (including the <nobr>A HUNTING</nobr> construction)
+<blockquote> <pre>
+(PP (P a)				(PP (P+ADV+WARD abackward))
+    (ADVP (ADV+WARD backward)))
+
+<a href="words.html#aboard">ABOARD</a>
+
+(PP (P a)				(PP (P+RP adown))
+    (ADVP (RP down))
+
+(PP (P a)				(PP (P+N ahunting))
+    (NP (N hunting)))
+
+(PP (P a)				(PP (P+N alive))
+    (NP (N live)))
+
+<a href="words.html#amid">AMID</a>
+
+(PP (P a)				(PP (P+N asleep))
+    (NP (N sleep)))
+
+(PP (P a)				(PP (P+ADJ asunder))
+    (ADJP (ADJ sunder)))
+
+(PP (P a)				(PP (P+NUM atwo))
+    (NP (NUM two)))
+
+analogously: ABED, ADAY, AFIRE, AFOOT, AFRESH, AMORROW, ANIGHT, APACE, APIECE, ASIDE, A+TRE
+</pre> </blockquote>
+
+<a name="degree_over">
+<li>Compounds with degree OVER + ADJ, ADV, Q (but not N)
+
+<blockquote> <pre>
+(ADJP (ADVR over) (ADJ ripe))		(ADJP (ADVR+ADJ overripe))
+
+(QP (ADVR over) (Q muche))		(QP (ADVR+Q over-much))
+</pre> </blockquote>
+
+<a name="r-pronoun">
+<li>Compounds with THERE- and WHERE-
+
+<blockquote> <pre>
+(PP (ADVP (ADV there))			(PP (ADV+P therewith)))
+    (P with))
+
+(WPP (WADV where))			(WPP (WADV+P whereby))
+     (P by))
+</pre> </blockquote> 
+
+<a name="as_written_b">
+<li>Other
+
+<blockquote> <pre> 
+(NP (D an) (OTHER othyr) (N man)	(NP (D+OTHER another) (N man)
+
+(PP (P at)				(PP (P+ADV atonce))
+    (ADVP (ADV once)))
+
+(PP (P be)				(PP (P+N <a href="words.html#because">bycaus</a>)
+    (NP (N <a href="words.html#because">cause</a>)                           (CP-ADV ...))
+        (CP-THT ...)))
+
+(PP (P before)				(PP (P+N beforehand))		&larr; analogously: AFOREHAND, BEHINDHAND
+    (NP (N hand)))
+
+(NP-TMP (ADV before) (N time)))		(NP-TMP (ADV+N beforetime))	&larr; analogously: BEFORETIMES
+
+(NP (ADJ English) (N man))		(NP (ADJ+N Englishman))		&larr; analogously: DUTCHMAN, FRENCHMAN, GENTLEMAN, NOBLEMAN
+
+<a href="words.html#forasmuch">FORASMUCH</a>					   			&larr; analogously: INASMUCH
+
+(PP (P for)				(PP (P+ADV forever))
+    (ADVP (ADV ever)))
+
+(PP (P for)				(PP (P+N forsooth))		&larr; analogously: INSOOTH
+    (NP (N sooth)))
+
+(PP (P for) (D thi)			(PP (P+D <a href="syn-phrase.html#preposition_plus_demonstrative_plus_clause">forthi</a>)
+    (CP-ADV ...))			    (CP-ADV ...))
+
+(PP (P for) (WADV whi)			(PP (P+WADV <a href="syn-phrase.html#forwhi_plus_clause">forwhi</a>)		&larr; when used as subordinator
+    (CP-ADV ...))			    (CP-ADV ...))
+
+(PP (P in)				(PP (P+N indeed))
+    (NP (N deed)))
+
+(PP (P in)				(PP (P+N instead))
+    (NP (N stead)))
+
+(PP (RP in)				(PP (P <a name="into">into</a>)			&larr; unlike unitary <a href="split-join.html#unto">unto</a>
+    (P to)                                  (NP ...))
+    (NP ...))
+
+(PP (P o')				(PP (P+N o'clock))
+    (NP (N clock)))
+
+(PP (RP up)				(PP (P <a name="upon">up-on</a>)			&larr; unlike unitary <a href="split-join.html#apon">apon</a>
+    (P on)                                  (NP ...))
+    (NP ...))
+</pre> </blockquote>
+</ul>
+
+<a name="differences">
+<h4>Differences among the corpora</h4>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<th align=left>Item
+<th align=left>PPCME2
+<th align=left>Later corpora
+
+<a name="afternoon">
+<tr>
+<td align=left valign=top>AFTERNOON
+<td valign=top>Phrasal
+<pre>
+(PP (P after)
+    (NP (N noon)))
+</pre>
+<td valign=top>Unitary N
+<pre>
+(NP (D the) (N after_noon))
+</pre>
+
+<a name="albeit">
+<tr>
+<td align=left valign=top>ALL BE IT, ALBEIT
+<br> (see <a href="differences.html#albeit">ALBEIT in concessive clauses</a>)
+<td valign=top>Split
+<pre>
+(Q all) (BEP be) (PRO it)
+</pre>
+<td valign=top>Unitary ADV or P
+<pre>
+(ADV/P albeit), (ADV/P al_be_it)
+</pre>
+
+<a name="det-plus-adj-etc">
+<a name="thilke">
+<tr>
+<td valign=top>Determiner + adjective, noun, etc.
+<td valign=top>Treated as written
+<pre>
+(NP (D+ADJ th'aforesayde) (N matter))
+(NP (D+ADJ +tilke) (N temple))
+(NP (D+N th'emperour))
+(NP (D+N thestate))
+</pre>
+<td valign=top>Split
+<pre>
+(NP (D th'@) (ADJ @aforesayde) (N matter))
+(NP (D th@) (ADJ @ilke) (N temple))
+(NP (D th'@) (N @emperour))
+(NP (D th@) (N @estate))
+</pre>
+
+<a name="howbeit">
+<tr>
+<td align=left valign=top>HOW BE IT, HOWBEIT
+<br> (see <a href="differences.html#howbeit">HOWBEIT in concessive clauses</a>)
+<td valign=top>Split
+<pre>
+(WADV how) (BEP be) (PRO it)
+</pre>
+<td valign=top>Unitary ADV or P
+<pre>
+(ADV/P howbeit), (ADV/P how_be_it)
+</pre>
+
+<a name="numbers">
+<tr>
+<td align=left valign=top>Number words
+<td valign=top>Treated as written
+<pre>
+(ADJP (ONE one) (CONJ and) (ADJ fiftieth))
+(NUMP (D a) (NUM hundred) (CONJ and) (NUM fifty))
+(NUMP (NUM fifty) (NUM three))
+(NUMP (NUM fifty-three))
+</pre>
+<td valign=top>Unitary ADJ (ordinal) or NUM (cardinal)
+<pre>
+(ADJP (ADJ one_and_fiftieth))
+(NUMP (NUM a_hundred_and_fifty))
+(NUMP (NUM fifty_three))
+(NUMP (NUM fifty-three))
+</pre>
+
+<a name="prep-plus-one-word-complement">
+<tr>
+<td align=left valign=top>Preposition + one-word complement
+<td valign=top>Treated as written
+<pre>
+(PP (P+PRO on't))
+(PP (P+N ibedde)) 
+(PP (P+N iwit))
+</pre>
+
+<td valign=top>Split
+<pre>
+(PP (P on@)
+    (NP (PRO @'t)))
+</pre>
+</blockquote>
+
+<a name="todayy">
+<a name="tonight">
+<tr>
+<td align=left valign=top>TODAY, TONIGHT
+<td valign=top>Phrasal
+<pre>
+(PP (P to)
+    (NP (N day)))
+(PP (P to)
+    (NP (N night)))
+</pre>
+<td valign=top>Unitary N
+<pre>
+(N to_day), (N$ to_day's)
+
+(N to_night), (N$ to_night's)
+</pre>
+
+</table>

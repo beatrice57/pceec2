@@ -1,0 +1,420 @@
+<head>
+<title>The Parsed Corpus of Early English Correspondence 2: Metadata</title>
+
+<body>
+
+<h2>The Parsed Corpus of Early English Correspondence 2</h2>
+
+<a name="metadata">
+<h3>Metadata</h3>
+
+<ul>
+<li><a href="#metadata_contents">Contents of the metadata node</a>
+<li><a href="#metadata_searching">Searching the metadata</a>
+</ul>
+
+In addition to the parse, each token in the PCEEC2 contains searchable
+sociolinguistic information. This information is collectively referred
+to as 'metadata' and is dominated by a token-initial node labelled
+METADATA.
+
+<blockquote><pre>
+( (METADATA (AUTHOR NICHOLAS_BACON_II:MALE:BROTHER:1543:26)
+            (RECIPIENT NATHANIEL_BACON_I:MALE:BROTHER:1546?:23?)
+            (LETTER BACON_001:E1:1569:AUTOGRAPH:FAMILY_NUCLEAR))
+  (IP-MAT (CONJ nor)
+          (NP-1 (D the) (N commyssion)
+                (PP (P for)
+                    (NP (D the) (N pease))))
+          (NP-SBJ (PRO I))
+          (ADVP-TMP (ADV never))
+          (VBD harde)
+          (PP (P of)
+              (NP *ICH*-1))
+          (. .)) (ID BACON,I,7.001.5))
+</pre></blockquote>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>The information in the METADATA nodes is copied or derived from
+    information compiled by Helsinki and included at the head of each
+    letter as a <a href="file_format.html#parameter_coding">set of
+    parameters</a>.  The Helsinki information is sometimes incorrect,
+    and in such cases, corrections have been made to the associated
+    METADATA nodes only.  The resulting discrepancies should not lead
+    to difficulties, however, since users will generally only search
+    the METADATA nodes.
+</table>
+
+<a name="metadata_contents">
+<h3>Contents of the metadata node</h3>
+
+The METADATA node contains three nodes: AUTHOR, RECIPIENT, and
+LETTER. Each of these nodes contains relevant information separated
+into fields by colons.
+
+<ul>
+<li><a href="#author_recipient">Author and recipient information</a>
+<li><a href="#letter">Letter information</a>
+</ul>
+
+<a name="author_recipient">
+<h3>Author and recipient information</h3>
+
+The following information is given for the author and recipient: 
+
+<blockquote>
+<table cellpadding=2>
+<tr>
+<th width="80px" align=left>Field 1
+<td align=left><a href="#name">name</a>
+<tr>
+<th align=left>Field 2
+<td align=left><a href="#gender">gender</a>
+<tr>
+<th align=left>Field 3
+<td align=left><a href="#relationship">relationship (if any, if known)</a>
+<tr>
+<th align=left>Field 4
+<td align=left><a href="#date_of_birth">date of birth</a>
+<tr>
+<th align=left>Field 5
+<td align=left><a href="#age">age (at time of writing)</a>
+</table>
+</blockquote>
+
+<a name="name">
+<h4>Name (AUTHOR/RECIPIENT field 1)</h4>
+
+<ul>
+<li><a href="#women">Women</a>
+<li><a href="#royalty">Royalty</a>
+<li><a href="#unknown">Unknown recipient/name unknown</a>
+</ul>
+
+Each author/recipient in the corpus is given a unique
+name. Father/son, mother/daughter pairs are generally distinguished by
+SR/JR (e.g. EDWARD_CONWAY_SR, EDWARD_CONWAY_JR). More than two members
+of the same (extended) family with the same name are distinguished by
+Roman numerals I, II, III, etc. (e.g., WILLIAM_PASTON_I,
+WILLIAM_PASTON_II, WILLIAM_PASTON_III, WILLIAM_PASTON_IV, etc.). Roman
+numerals always start at I, except in the case of kings, who are
+indicated in the usual way (e.g. HENRY_TUDOR_VIII). Women with the
+same name are distinguished by their maiden name rather than by SR/JR
+or numbers.  In other words, ANNE_BACON is a different individual from
+ANNE_BACON[N.COOKE] and ANNE_BACON[N.GRESHAM]. Unrelated writers with
+the same name are distinguished by Arabic numbers (JOHN_WILLIAMS_1,
+JOHN_WILLIAMS_2).
+
+<p>
+For most correspondents, both a first and last name are known, but
+occasionally only one name is known. When only the last name is known,
+a title is included when supplied (e.g., MRS_NECTON, COLONEL_STRODE).
+If no title is supplied, the person is referred to by the single name
+only (e.g., WADEHILL).  Individuals known only by first name are
+generally (early or foreign) royalty, or certain religious figures
+(abbots, in particular).  These are given either a number (EDWARD_IV),
+a title (PRINCE MAURICE), or an epithet (JOHN_OF_NORTON,
+JOHN_OF_TEWKESBURY, JOHN_OF_LANCASTER). The latter distinguishes three
+John's: the abbot of Norton, the abbot of Tewkesbury, and the duke of
+Bedford.
+
+<a name="women">
+<h4>Women</h4>
+
+Women are generally referred to by the name they were using at the
+time of writing. If they are married and their maiden name is known,
+it is included in square brackets prefaced by N. for <i>née</i>
+(e.g. MARY_PEYTON[N.ASTON]). In general, the inclusion of a maiden
+name indicates a married state at the time of writing, but its absence
+carries no information, since not all maiden names are known.
+
+<p>
+Women who wrote letters under more than one name are given both names
+separated by a slash (DOROTHY_OSBORNE/TEMPLE). In some cases, the two
+names are the woman's maiden and married name
+(DOROTHY_OSBORNE/TEMPLE), but they may also be two married names. In
+this case, if the maiden name is known, it is also included, if known
+(e.g., ELIZABETH_POYNINGS/BROWNE[N.PASTON]). The difference between
+DOROTHY_OSBORNE/TEMPLE and MARY_PEYTON[N.ASTON] is that Dorothy wrote
+both as Dorothy Osborne and as Dorothy Temple, whereas Mary wrote only
+as Mary Peyton (i.e. when married). Her maiden name is included only
+for information purposes. From the information given in the name
+(DOROTHY_OSBORNE/TEMPLE) alone, it is not possible to tell whether one
+of these names is a maiden name and one a married name or both married
+names (although from other information we know that Osborne is her
+maiden name and Temple her married name). For
+ELIZABETH_POYNINGS/BROWNE[N.PASTON], on the other hand, who wrote both
+as Elizabeth Poynings and Elizabeth Browne, we know from the name
+alone (because of the inclusion of the maiden name) that both of these
+are married names.
+
+<a name="royalty">
+<h4>Royalty</h4>
+
+Pre-Tudor kings are referred to by first name and number only
+(e.g. RICHARD_III, EDWARD_IV). Other members of the royal family are
+referred to by common epithets (RICHARD_OF_YORK,
+HUMPHREY_OF_LANCASTER). Tudor and Stuart kings and family are named
+Tudor or Stuart along with their number (e.g. HENRY_TUDOR_VIII,
+JAMES_STUART_I/VI). Queens are referred to in the same way as other
+women, with the exception of Mary Tudor, Queen of England (referred to
+as MARY_TUDOR_I), who has the same name as Mary Tudor, Queen of France
+(referred to as simply MARY_TUDOR).
+
+<a name="unknown">
+<h4>Unknown recipient/name unknown</h4>
+
+In a small number of cases, nothing is known about the recipient of a
+letter. In these cases the recipient is listed as
+UNKNOWN_RECIPIENT. In line with our policy of uniquely identifying
+every individual, each unknown recipient is given a separate arabic
+number (e.g., UNKNOWN_RECIPIENT_1, UNKNOWN_RECIPIENT_2, etc.).
+
+<p>
+When something about the identity of the recipient is known (usually
+by some distinguishing epithet given by the editor, or the content of
+the letter) e.g., 'sheriff of Norfolk', but the name is not, the
+recipient is listed as NAME_UNKNOWN (or NAMES_UNKNOWN for groups such
+as the 'commissioners for recusancy'). As with unknown recipients,
+each unnamed individual/group is given a different number. The same
+unnamed individual or group as author or recipient of multiple letters
+is given the same number.
+
+<p>
+The reason for distinguishing these two types
+is that for the latter, but not the
+former, <a href="aif-2022.html#api">additional personal
+information</a> (API) is included in
+the <a href="aif-2022.html">associated information file</a>
+(AIF). Note that the PRIVY COUNCIL is treated as an individual, i.e.,
+a name, and not classified as an unnamed group.
+
+<a name="gender">
+<h4>Gender (AUTHOR/RECIPIENT field 2)</h4>
+
+The gender of all correspondents is identified as either MALE or
+FEMALE. <a href="#unknown">Unknown recipients</a>, who always occur in
+official/professional, rather than personal/family contexts, are
+safely assumed to be MALE.
+
+<a name="relationship">
+<h4>Relationship (AUTHOR/RECIPIENT field 3)</h4>
+
+This field is an expanded version of the
+Helsinki <a href="file_format.html#recipient_type">'recipient type
+code'</a> (see also <a href="#recip_type">Recipient classification</a>
+below). Specific nuclear family relationships are given in all cases
+(DAUGHTER, SON, MOTHER, FATHER, etc.). Specific extended family
+relationships (SISTER-IN-LAW, AUNT, etc.) are also given when
+known. If the exact relationship is not known (usually because it is
+either distant, complicated, or both), the cover term KIN is used. The
+final two possible entries for this field are FAMILY_SERVANT, which
+simply reproduces the Helsinki 'recipient type' code FS, and FRIEND
+(Helsinki code TC). Any relationship that does not fall into one of
+the above categories, is left empty (indicated by an underscore in the
+field).
+
+<a name="date_of_birth">
+<h4>Date of birth (AUTHOR/RECIPIENT field 4)</h4>
+
+A date of birth (DOB) for authors and recipients is given when
+known. Dates followed by a question mark (1530?) are uncertain. Some
+are baptismal dates. All dates are given in new style (i.e. with the
+year beginning in January). All DOBs, whether accompanied by a ? or
+not, should be assumed to have a margin of error of a few years on
+either side, as sources sometimes differ.
+
+<p>
+Author DOBs are largely supplied by Helsinki.  Recipient DOBs not
+supplied by the edition or Helsinki come from the online DNB.  For
+unknown DOBs, the field is empty (indicated, as usual, by an
+underscore).
+
+<a name="age">
+<h4>Age at time of writing (AUTHOR/RECIPIENT field 5)</h4>
+
+This number is simply calculated by subtracting
+the <a href="#date_of_birth">date of birth</a> (DOB) of the
+author/recipient from the <a href="#date">date of the letter</a>. If
+either the letter date or the DOB of the correspondent is uncertain
+(indicated by a following ?), the age is likewise (e.g., 49?). When
+the DOB is unknown or the date of the letter is given as a decade
+(e.g., 1500S) or entirely unknown, age is not calculated, and the
+field is left empty (indicated, as usual, by an underscore).
+
+<a name="letter">
+<h3>Letter information</h3>
+
+The following information is given for the letter:
+
+<blockquote>
+<table cellpadding=2>
+<tr>
+<th width="80px" align=left>Field 1
+<td align=left><a href="#reference">unique reference</a>
+<tr>
+<th align=left>Field 2
+<td align=left><a href="#period">time period</a>
+<tr>
+<th align=left>Field 3
+<td align=left><a href="#date">date of letter</a>
+<tr>
+<th align=left>Field 4
+<td align=left><a href="#authenticity">authenticity</a>
+<tr>
+<th align=left>Field 5
+<td align=left><a href="#recip_type">recipient classification</a>
+</table>
+</blockquote>
+
+<a name="reference">
+<h4>Unique reference (LETTER field 1)</h4>
+
+Each letter in the corpus is uniquely identified by a combination of
+the filename and letter number (e.g., ARUNDEL_001).
+
+<br>
+<a name="period">
+<h4>Time period (LETTER field 2)</h4>
+
+In order to facilitate comparisons of the PCEEC2 with the PPCME2 and
+the PPCEME, the time period of the letter is identified according to
+the Helsinki Corpus time periods:
+
+<blockquote>
+<table  cellpadding=2>
+<th width="150px" align=center>Time period
+<th align=center>Dates
+<tr>
+<td align=center>M4 
+<td align=left>1420-1500
+<tr>
+<td align=center>E1 
+<td align=left>1500-1569
+<tr>
+<td align=center>E2 
+<td align=left>1570-1639
+<tr>
+<td align=center>E3
+<td align=left>1640-1710
+</table>
+</blockquote>
+
+<a name="date">
+<h4>Date of letter (LETTER field 3)</h4>
+
+This information is taken from the
+Helsinki <a href="file_format.html#text_identifier">'text
+identifier'</a> parameter (Q).  When the year of the letter is known
+it is given precisely. If the date is conjectural it is followed by a
+question mark. When a precise year cannot be suggested the decade is
+given, indicated by S, as follows: 1500S and 1600S indicate the first
+decade of each century, 1510S indicates 1510-1519, etc.  If even the
+decade is uncertain, a question mark follows the decade (e.g.,
+1530S?).
+
+<br>
+<a name="authenticity">
+<h4>Authenticity (LETTER field 4)</h4>
+
+Three values are supplied for the authenticity of the letter. This is
+a simplified version of the
+Helsinki <a href="file_format.html#authenticity">'authenticity
+code'</a> found in the <a href="file_format.html#text_identifier">'text
+identifier'</a> parameter (Q).
+
+<ul>
+<li>AUTOGRAPH
+- Includes all letters written by the author (Helsinki 'authenticity
+codes' A and B)
+<li>COPY
+- Includes both copies of letters and letters written for the author
+by a secretary (code C)
+<li>UNKNOWN
+- Authenticity is unknown (code D)
+</ul>
+
+<a name="recip_type">
+<h4>Recipient classification (LETTER field 5)</h4>
+
+This field contains a more general classification of the information
+in field 3 (<a href="#relationship">Relationship</a>) of the
+AUTHOR/RECIPIENT nodes. The first two values group family
+relationships into nuclear and extended. The last three values simply
+replicate the same information as found in the AUTHOR/RECIPIENT node.
+
+<blockquote>
+FAMILY_NUCLEAR<br>
+FAMILY_OTHER<br>
+FAMILY_SERVANT<br>
+FRIEND<br>
+OTHER
+</blockquote>
+
+The information in this field comes from the
+Helsinki <a href="file_format.html#recipient_type">'recipient type'</a>
+code found in the <a href="file_format.html#text_identifier">'text
+identifier'</a>
+
+<a name="metadata_searching">
+<h3>Searching the metadata</h3>
+
+The metadata in the format discussed here can only be searched by
+CorpusSearch 2 (CS2).  The three nodes included in the METADATA node
+(AUTHOR, RECIPIENT, and LETTER) are searched in the same way as 
+<a href="../CorpusSearch/documentation/coding.html">CODING</a> strings
+are searched. The query below searches column 1 of the CODING string
+for the value x.
+
+<blockquote><pre>
+query: (CODING column 1 x)  <-- note space between 'column' and '1'
+</pre></blockquote>
+
+<p>
+To search one of the METADATA nodes, simply replace "CODING" with the
+name of the node.  The metadata fields continue to be referred to as
+columns.
+
+<blockquote><pre>
+query: (AUTHOR column 2 MALE)
+</pre></blockquote>
+
+The above query finds all the tokens in which the author is male. To
+search for other values as well, simply join search functions with
+AND.  For instance, the following query finds all men writing to women
+in Helsinki period E2.
+
+<blockquote><pre>
+query:     (AUTHOR column 2 MALE)
+       AND (RECIPIENT column 2 FEMALE)
+       AND (LETTER column 2 E2)
+</pre></blockquote>
+
+The next query finds all women writing to women.  Note the use
+of <a href="../CorpusSearch/documentation/query-language.html#prefix-indices">prefix
+indices</a>, which are necessary here, as in any search, in order to
+distinguish distinct nodes sharing the same label.
+
+<blockquote><pre>
+query: (AUTHOR column 2 [1]FEMALE) AND (RECIPIENT column 2 [2]FEMALE)
+</pre></blockquote>
+
+<p>
+To find all women writing to men or men to women, it is safest  to use
+<a href="../CorpusSearch/documentation/coding.html">
+coding queries</a> inst (rather than the deprecated OR function).
+
+<p>
+Metadata can be searched in conjunction with structure.  For instance,
+the following query finds all tokens written by women to men, in which
+vocatives are used.
+
+<blockquote><pre>
+query:     (AUTHOR column 2 FEMALE)
+       AND (RECIPIENT column 2 MALE)
+       AND (IP* iDoms NP-VOC)
+</pre></blockquote>
+

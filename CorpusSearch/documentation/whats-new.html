@@ -1,0 +1,166 @@
+<head>
+<title>What's new in CorpusSearch 2</title>
+</head>
+
+<body>
+
+<h2>What's new in CorpusSearch 2</h2>
+
+<ul>
+<li>New
+    <ul>
+    <li><a href="#functionality">New functionality</a>
+    <li><a href="#search-functions">New search functions</a>
+    <li><a href="#log-ops">New logical operators</a>
+    <li><a href="#node">New boundary nodes</a>
+    <li><a href="#print">New print commands</a>
+    </ul>
+
+<li>Changes
+    <ul>
+    <li><a href="#syntax">Changes to ordinary query syntax</a>
+    <li><a href="#coding">Changes to coding queries</a>
+</ul>
+
+<li><a href="#discontinued">Discontinued functions</a>
+
+</ul>
+
+<p>
+<hr>
+
+<a name="functionality">
+<h3>New functionality</h3>
+
+<ul>
+<li><a href="frames.html">Local frames</a>
+<li><a href="lexicon.html">Lexicon building</a>
+<li><a href="revision.html">Automated corpus revision</a>
+</ul>
+
+<a name="search-functions">
+<h3>New search functions</h3>
+
+<ul>
+<li><a href="search-functions.html#dominates">Dominates</a>
+<li><a href="search-functions.html#iDomsMod">iDomsMod</a>
+<li><a href="search-functions.html#hasSister">hasSister</a>
+<li><a href="search-functions.html#isRoot">isRoot</a>
+<li><a href="search-functions.html#sameIndex">sameIndex</a>
+</ul>
+
+<a name="log-ops">
+<h3>New logical operators</h3>
+
+<ul>
+<li><a href="query-language.html#NOT">NOT</a>
+<li><a href="query-language.html#OR">OR</a>
+</ul>
+
+<a name="node">
+<h3>New boundary nodes</h3>
+
+<ul>
+<li><a href="command-file.html#root">$ROOT</a>
+<li><a href="command-file.html#metaroot">METAROOT</a>
+</ul>
+
+<a name="print">
+<h3>New print commands</h3>
+
+<ul>
+<li><a href="coding.html#print_only">print_only</a>
+<li><a href="command-file.html#reformat">reformat_corpus</a>
+</ul>
+
+<a name="syntax">
+<h3>Changes to ordinary query syntax</h3>
+
+<ul>
+<li>In CorpusSearch 1, consecutive queries had to be appended one at a time:
+
+<blockquote>
+<pre>
+query:  ((((A function B) 
+       AND (C function D)) 
+       AND (E function F)) 
+       AND (G function H))
+</pre>
+</blockquote>
+
+In CorpusSearch 2, queries can be appended with any logical combination
+of parentheses.  The above query is more easily written:
+
+<blockquote>
+<pre>
+query:     (A function B)
+       AND (C function D)
+       AND (E function F)
+       AND (G function H)
+</pre>
+</blockquote>
+
+Old-style queries continue to be interpreted correctly.
+
+<!--
+<p>
+<li>These search functions have new algorithms:
+
+<ul>
+<li><a href="search-functions.html#iPrecedes">iPrecedes</a>
+<li><a href="search-functions.html#precedes">Precedes</a>
+</ul>
+-->
+
+<p>
+<li>Search functions that take an integer argument are now written with a
+space before the argument.  For example, instead of:
+<blockquote>
+<pre>
+query: (CODING column2 q)      &larr;  WRONG !
+</pre>
+</blockquote>
+
+you should now write this:
+<blockquote>
+<pre>
+query: (CODING column 2 q)
+</pre>
+</blockquote>
+
+This change affects the following functions:
+
+<p>
+<ul>
+<li><a href="search-functions.html#column">column</a>
+<li><a href="search-functions.html#domsWords">domsWords</a>, <a href="search-functions.html#domsWordsMoreThan">domsWords></a>, <a href="search-functions.html#domsWordsLessThan">domsWords<</a>
+<li><a href="search-functions.html#iDomsNumber">iDomsNumber</a>
+<li><a href="search-functions.html#iDomsTotal">iDomsTotal</a>, <a href="search-functions.html#iDomsTotalMoreThan">iDomsTotal></a>, <a href="search-functions.html#iDomsTotalLessThan">iDomsTotal<</a>
+</ul>
+
+</ul>
+
+<a name="coding">
+<h3>Changes in coding queries</h3>
+
+<ul>
+<li>Coding is now performed once per boundary node, instead of once per
+sentence token.
+
+<p>
+<li>The command "coding_query:" must now appear before the coding query.
+</ul>
+
+<a name="discontinued">
+<h3>Discontinued functions</a></h3>
+
+<ul>
+<li>iDoms_conj_switch (superseded
+    by <a href="search-functions.html#iDomsMod">iDomsMod</a>)
+<li>anyPrecedes (superseded
+    by <a href="search-functions.html#precedes">precedes</a>)
+<li>print_complement (superseded
+    by <a href="query-language.html#NOT">NOT</a>)
+</ul>
+
+</body>

@@ -1,0 +1,416 @@
+<head>
+<title>Troubleshooting</title>
+</head>
+
+<body>
+
+<h2>Troubleshooting</h2>
+
+<ul>
+<li><a href="#adjacent-pipe-symbols">Adjacent pipe symbols</a>
+<li><a href="query-language.html#regexp-asterisk">Asterisk after square bracket 
+    not behaving as expected</a>
+<li><a href="#confusing-precedence-and-sisterhood">Confusing (immediate) precedence
+    and sisterhood</a>
+<li><a href="#escaped-vs-bare-asterisks">"Escaped" vs. bare asterisks</a>
+<li><a href="#ill-formed-input">Ill-formed input</a>
+    <ul>
+    <li><a href="#redirecting-error-output">Preliminary: Redirecting error output</a>
+    <li><a href="#mismatched-parens">Mismatched parens</a>
+    <li><a href="#missing-wrapper-parens">Missing wrapper parens</a>
+    <li><a href="#other">Other input errors</a>
+    </ul>
+<li><a href="#missing-asterisk">Missing asterisk</a>
+<li><a href="#missing-define">Missing <tt>define</tt></a>
+<li><a href="#missing-prefix-indices">Missing prefix indices</a>
+<li><a href="#missing-same-instance">Missing same-instance</a>
+<li><a href="#redundant-exists">Redundant "exists"</a>
+<li><a href="#stalled-search">Stalled search</a>
+
+</ul>
+
+<p>
+<hr>
+
+This section gives tips on troubleshooting a number of common problems
+and errors that arise when using CorpusSearch.  The reader is assumed to
+have a general familiarity with the rest of the CorpusSearch manual.  In
+some of the example queries, we make reference to definitions from the
+following definition file:
+
+<blockquote>
+<pre>
+finite_verb:  BE[DP]|DO[DP]|HV[DP]|VB[DP]|MD
+non_finite_verb:  *VB|V*N|*HV|H*N|*DO|D*N|*BE|BEN
+non-pronominal_NP: *N*|D*|Q*|ADJ*|CONJ*|*ONE*|*OTHER*|CP*
+</pre>
+</blockquote>
+
+<a name="adjacent-pipe-symbols">
+<h3>Adjacent pipe symbols</h3>
+
+Adjacent pipe symbols (<tt>||</tt>) in a query will crash CorpusSearch.
+The adjacent pipe symbols may be in a definition file called by the
+query, rather than in the query itself.
+
+<a name="confusing-precedence-and-sisterhood">
+<h3>Confusing (immediate) precedence and sisterhood</h3>
+
+As mentioned in the entries
+for <a href="search-functions.html#precedes">precedes</a> and
+<a href="search-functions.html#iPrecedes">iPrecedes</a> on the one hand
+and <a href="search-functions.html#hasSister">hasSister</a> on the
+other, (immediate) precedence does not imply sisterhood, or vice versa.
+See the entries for the commands for examples.  The two relations must
+be specified separately.
+
+<a name="escaped-vs-bare-asterisks">
+<h3>"Escaped" vs. bare asterisks</h3>
+
+In connection with searching for expressions enclosed in asterisks like
+traces and empty categories, it is necessary to carefully distinguish
+between <tt>\*</tt> and <tt>*</tt>.  The first expression (the "escaped"
+asterisk) matches an asterisk character in the input, whereas the second
+expression matches any string (including the null string).
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td>regular expression
+<td>matches input string
+<td>fails to match input string
+<tr>
+<td>*T*
+<td>*T*, *T*-1, T, The, ATE, VAT
+<td>&nbsp;
+<tr>
+<td>\*T\*
+<td>*T*
+<td>*T*-1, T, The, ATE, VAT
+<tr>
+<td>\*T*
+<td rowspan=2>*T*, *T*-1
+<td rowspan=2>T, The, ATE, VAT
+<tr>
+<td>\*T\**
+<!--
+<td>*T*, *T*-1
+<td>T, The, ATE, VAT
+-->
+</table>
+
+<a name="ill-formed-input">
+<h3>Ill-formed input</h3>
+
+<a name="redirecting-error-output">
+<h4>Preliminary: Redirecting error output</h4>
+
+When CorpusSearch encounters ill-formed input, it stops writing to the
+output file and starts writing to standard output instead, which is the
+terminal screen by default.  When debugging, particularly in connection
+with <a href="#mismatched-parens">mismatched parens</a>, it is generally
+necessary to redirect the output to a named error file (say, ERR) by a
+command along the following lines.
+
+<blockquote>
+<pre>
+CS query.q file.psd >& ERR
+</pre>
+</blockquote>
+
+<p>
+If desired, such a command can be backgrounded in the usual way with a
+trailing ampersand.
+
+<blockquote>
+<pre>
+CS query.q file.psd >& ERR &
+</pre>
+</blockquote>
+
+<a name="mismatched-parens">
+<p>
+<h4>Mismatched parens</h4> 
+
+The most seriously ill-formed input involves mismatched parens, which
+generally arise from editing a parsed file with an ordinary text editor
+like emacs rather than with Annotald or a similar program.
+
+<ul>
+<li>When CorpusSearch encounters an unexpected mismatched right paren,
+it crashes, reporting details of the location.  These mismatched paren
+errors are easy to fix.  In the converse case of a missing right paren,
+however, CorpusSearch will unfortunately not break at the next wrapper
+paren.  Rather, it gobbles up the rest of the file.  In the case of a
+large file (as when correcting an entire corpus in a single text file),
+if you are piping to ERR, the ERR file can become humongous to the point
+of filling up your entire disk, leading to quite scary system error
+messages.  If this happens, kill the CS job, /bin/rm the ERR file, and
+locate the mismatched paren as described below.
+
+<p>
+<li>
+In order to find mismatched parens, use the emacs command
+<tt>forward-sexp</tt>, which starts from some left paren and jumps to
+the corresponding right paren.  You can invoke the command on the mode
+line with <tt>M-x forward-sexp</tt>, or you can bind the command to
+something like <tt>C-x C-f</tt> in your .emacs file.  In what follows,
+we assume the latter.
+
+<p>
+<li>You can repeat <tt>forward-sexp</tt> arbitrarily many times by
+prefacing it with <tt>C-u NUM</tt>, where <tt>NUM</tt> is the desired
+number of repetitions.
+
+<blockquote>
+<pre>
+C-u 400 C-x C-f
+</pre>
+</blockquote>
+
+A command like the one just above will either go to completion or result
+in an error message.  If the latter, you know that the mismatched paren
+is somewhere between where you started the command and the expected end.
+
+<p>
+<li>Continued use of <tt>C-x C-f</tt> will allow you to zero in on the
+mismatched parens that are the problem.  Patience is the key.
+
+<p>
+<li>CorpusSearch sometimes erroneously reports mismatched parens in
+connection with certain characters, notably <tt>\"</tt> (double quote).
+<!--To further aggravate matters, <tt>forward-sexp</tt> works
+differently in ordinary emacs and in parser-mode emacs in these cases,
+treating the offending character on a par with an open paren in the one
+case, but not the other.--> A workaround is to replace the offending
+character, at least temporarily, by some innocous character sequence
+like <tt>&lt;double-quote&gt;</tt>.
+</ul>
+
+<p>
+<a name="missing-wrapper-parens">
+<h4>Missing wrapper parens</h4>
+
+Wrapper parens are the unlabelled parens that delimit each token in Penn
+Treebank format, as highlighted in red in (1a).  If the wrapper parens
+are missing, the token looks like (1b), and you will have to add the
+relevant parens.
+
+<blockquote>
+<pre>
+(1) a.  <font color="red">(</font> (IP-MAT ...
+        )<font color="red">)</font>
+
+    b.  (IP-MAT ...
+        )
+</pre>
+</blockquote>
+
+<a name="other">
+<h4>Other ill-formed input sequences</h4>
+
+CorpusSearch helpfully breaks on various other ill-formed input
+sequences like the following:
+
+<blockquote>
+<pre>
+(2) a.  ( (IP-MAT (NP-SBJ (PRO$ My) (N neighbor))
+                  (VBD told)
+                  <font color="red">me</font>					&larr; bare word (missing preterminal over terminal)
+          (. .)))
+
+    b.  ( (IP-MAT (NP-SBJ (PRO$ My) (N neighbor))
+                  (VBD told)
+                  (NP-OB2 (PRO <font color="red">m e</font>))			&larr; terminal contains space
+          (. .)))
+
+    c.  ( (IP-MAT (NP-SBJ <font color="red">(PRO$ My</font>			&larr; preterminal isn't unary-branching
+                                <font color="red">(N neighbor))</font>)
+                    
+                  (VBD told)
+                  (NP-OB2 (PRO me)))
+          (. .))
+</pre>
+</blockquote>
+</ul>
+
+<a name="missing-asterisk">
+<h3>Missing asterisk</h3>
+
+In general, it is wise to be liberal with asterisks and to omit them
+only if you are sure that you <u>don't</u> need them.  For instance,
+<tt>NP-SBJ</tt> as a search term finds only a subset of subjects.  It
+does not match subjects that are resumptive (<tt>NP-SBJ-RSP</tt>),
+coindexed with a clause (<tt>NP-SBJ-1</tt>), or with any other
+additional material after the dash tag.  Using <tt>NP-SBJ*</tt> will
+find all subjects, no matter what might be added on to the end of the
+label.
+
+<p>
+When you want to refer to all the variants of a label except for one or
+two, you have to explicitly list all the desired variants.  For
+instance, if you are interested in all instances of <tt>ADVP*</tt>
+except for <tt>ADVP-DIR</tt>, you must use a disjunction like the
+following:
+
+<blockquote>
+<pre>
+ADVP|ADVP-LOC|ADVP-TMP
+</pre>
+</blockquote>
+
+<p>
+In such cases, best practice is to include the disjunction in a
+<a href="def.html">definition file</a>.
+
+<a name="missing-define">
+<h3>Missing <tt>define</tt></h3>
+
+A common error is to intend to use a definition file, but to omit the
+requisite <tt>define</tt> command in
+the <a href="command-file.html#preamble">preamble</a>.  CorpusSearch
+issues no warning message, but the search will not yield the intended
+output because CorpusSearch interprets the strings intended as
+definitions as literal strings, which generally do not match anything in
+the input.
+
+<a name="missing-prefix-indices">
+<h3>Missing prefix indices</h3>
+
+Probably the most common error is to forget to add prefix indices to
+arguments of a search function.  This is the chief cause of a baffling
+absence of hits.  Here is an example of a query intended to find clauses
+in which both the subject and the object are prounous.
+
+<blockquote>
+<pre>
+query:    (NP-SBJ* iDoms PRO)
+      AND (NP-OB1* iDoms PRO)
+</pre>
+</blockquote>
+
+<p>
+This query can never return any hits, because the two instances of PRO
+are interpreted by default as referring to the same node.  But that
+configuration is not a possible tree structure, as one and the same node
+cannot be simultaneously dominated by the subject and the object.  The
+two instances of PRO must be distinguished with distinct prefix indices:
+
+<blockquote>
+<pre>
+query:    (NP-SBJ* iDoms [1]PRO)
+      AND (NP-OB1* iDoms [2]PRO)
+</pre>
+</blockquote>
+
+<a name="missing-same-instance">
+<h3>Missing same-instance</h3>
+
+Errors due by <a href="#missing-prefix-indices">missing prefix
+indices</a> can be thought of as unintentionally overusing
+same-instance.  Same-instance can also be underused.  Consider the
+following query, intended to retrieve instances of V2 with
+clause-initial adverb phrases.
+
+<blockquote>
+<pre>
+query:    (IP* iDomsFirst ADVP*)
+      AND (finite_verb iPrecedes NP-SBJ*)
+</pre>
+</blockquote>
+
+<p>
+The intended instances will be retrieved, but so will unintended tokens
+like the following, where the finite verb and the subject are not
+clausemates of the adverb phrase, as clearly indicated by the node
+indices in the <a href="understanding-output.html#output">result
+block</a>.
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  1 IP-MAT, 2 ADVP-TMP, 16 BEP, 18 NP-SBJ
+*/
+(0  (1 IP-MAT (2 ADVP-TMP (3 ADV Yesterday))
+	      (5 NP-SBJ (6 PRO they))
+	      (8 VBD asked)
+	      (10 , ,)
+	      (12 " ")
+	      (14 CP-QUE-MAT-SPE (15 IP-SUB-SPE (16 BEP Are)
+						(18 NP-SBJ (19 PRO you))
+						(21 VAG coming)
+						(23 PP (24 P with)
+						       (26 NP (27 PRO us)))))
+	      (29 . ?)
+	      (31 " ")))
+</pre>
+</blockquote>
+
+The reason for this error is that the query fails to impose the
+clausemate condition.  The solution is to "tie" the constituents in the
+second clause of the query to one or more constituents in the first
+clause of the query by exploiting same-instance.  Here is one way of
+doing that:
+
+<blockquote>
+<pre>
+query:    (IP* iDomsFirst ADVP*)
+      AND (IP* iDomsNumber 2 finite_verb)
+      AND (IP* iDomsNumber 3 NP-SBJ*)
+</pre>
+</blockquote>
+
+<p>
+Here is another way:
+
+<blockquote>
+<pre>
+query:    (IP* iDomsFirst ADVP*)
+      AND (ADVP* hasSister finite_verb)
+      AND (finite_verb hasSister NP-SBJ*)
+      AND (ADVP* iPrecedes finite_verb)
+      AND (finite_verb iPrecedes NP-SBJ*)
+</pre>
+</blockquote>
+
+<a name="redundant-exists">
+<h3>Redundant <tt>exists</tt></h3>
+
+<p>
+The following query is not ill-formed, but it is inefficient.
+
+<blockquote>
+<pre>
+query:     (NP-SBJ* exists) 
+       AND (ADJ exists)
+       AND (NP-SBJ* iDoms ADJ)
+</pre>
+</blockquote>
+
+<p>
+The final clause in the query implies the two preceding ones, and the
+same effect can therefore be obtained more simply with:
+
+<blockquote>
+<pre>
+query:     (NP-SBJ* iDoms ADJ)
+</pre>
+</blockquote>
+
+<a name="stalled-search">
+<h3>Stalled search</h3>
+
+Before running a CorpusSearch job in the background, make sure there is
+no .out file corresponding to the query you intend to run.  CorpusSearch
+ordinarily warns you that it is about to overwrite the existing .out
+file and prompts you to allow the search to go forward.  But if you
+background the job, the prompt is backgrounded too and you never get a
+chance to permit the search.  As a result, the command stalls and will
+have to be killed.
+
+<p>
+The above scenario is a common cause of searches that take an
+unexpectedly long time.  (This can be confirmed with Unix/Linux's 
+<tt>jobs</tt> command.)
+
+</body>

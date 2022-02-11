@@ -1,0 +1,106 @@
+<head>
+<title>Preference files</title>
+</head>
+
+<body>
+
+<h2>Preference files</h2>
+
+<ul>
+<li><a href="#what">What do preference files do?</a>
+<li><a href="#content">Content of preference files</a>
+<li><a href="#output">Reference to preference files in output files</a>
+</ul>
+
+<p>
+<hr>
+
+<a name="what">
+<h3>What do preference files do?</h3>
+
+CorpusSearch sets its own default values for certain variables and
+commands (as described in the users guide for the items in question).
+In some cases, you might prefer to use a non-default value, and
+preference files allow you to do that.  In other words, the values you
+specify in a preference file override the CorpusSearch default values.
+In turn, any values you specify in a query file override those in a
+preference file.
+
+<p>
+For instance, CorpusSearch sets the line comment delimiter to "//", your
+preference file might set it to "/!/", and you might run a query file
+that sets it to "/>".  It is the last value that CorpusSearch uses when
+running the query file in question.  When running another query file
+that doesn't explicitly set the line comment delimiter, the value that
+CorpusSearch would use in that case is the one in your preference file.
+
+<p>
+You do not need a preference file to run CorpusSearch.  But if a
+preference file does exist in the same directory as the query file you
+are running, CorpusSearch will automatically read the preference file.
+
+<a name="content">
+<h3>Content of preference files</h3>
+
+The content of preference files consists of various CorpusSearch
+commands along with the values that you wish to associate with them,
+including a default <a href="def.html">definition file</a>.
+
+<blockquote>
+<pre>
+// a preference file for the Korean corpus
+corpus_comment_begin: <
+corpus_comment_end: >
+corpus_line_comment: ;;
+define: korean.def
+node: S
+</pre>
+</blockquote>
+
+<p> Preference files have the extension <b>.prf</b> and must be stored
+in the same directory as the query file.
+
+<a name="output">
+<h3>Reference to preference files in output files</h3>
+
+<p>
+The output from a search that calls a preference file will include a
+line in the preface like the following:
+
+<blockquote>
+<pre>
+preference file:  korean.prf
+</pre>
+</blockquote>
+
+This is what the line would look like in context.
+
+<blockquote>
+<pre>
+/*
+PREFACE:
+CorpusSearch copyright Beth Randall 2000.
+Date:  Mon Feb 26 09:28:55 EST 2001
+
+command file:     search.q
+preference file:  korean.prf
+
+input file:       file001.psd
+output file:      file001.psd.out
+
+query:  ([1]NNC iPrecedes [2]NNC)
+*/
+</pre>
+</blockquote>
+
+If you intended to use a preference file, but you don't see a
+"preference file" line in your output file, check that the following
+requirements are met:
+
+<ul>
+<li>The preference file must be stored in the same directory as the query file.
+<li>The name of the preference file must end in ".prf" (rather than,
+say, "pref").
+</ul>
+
+</body>

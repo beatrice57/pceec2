@@ -1,0 +1,299 @@
+<head>
+<title>Verbs and related categories</title>
+</head>
+
+<a name="top">
+<h3>Verbs and related categories</h3>
+
+<ul>
+<li><a href="pos-verbs.html#tags">List of tags</a>
+<li><a href="pos-verbs.html#aux">Auxiliary and main verb use of BE, DO, and HAVE</a>
+<li>The <nobr>A HUNTING</nobr> construction
+    (see <a href="syn-phrase.html#gerunds">Nominal versus mixed gerunds</a>)
+<li><a href="pos-verbs.html#infinitive_markers">Infinitive markers</a> (FOR, TO)
+<li><a href="pos-verbs.html#modals">Modals</a> (MD)
+	<ul>
+	<li><a href="pos-verbs.html#md_vs_vb">Modal or verb?</a>
+	<li><a href="pos-verbs.html#modals_as_main_verbs">Modals as main verbs</a> (MD0)
+	</ul>
+<li><a href="pos-verbs.html#participles">Participles</a>
+	<ul>
+	<li><a href="pos-verbs.html#adj_vs_vb_participles">Adjectival vs. verbal participles</a>
+	<li><a href="pos-verbs.html#present_participle_for_infinitive">Present participle for infinitive</a>
+	</ul>
+<li><a href="pos-verbs.html#subjunctives">Subjunctives</a>
+<li><a href="words.html">Treatment of individual words</a>
+	<ul>
+	<li><a href="words.html#passing">PASSING</a>
+	<li><a href="words.html#past">PAST</a>
+	<li><a href="words.html#saving">SAVING</a>
+	<li><a href="words.html#touching">TOUCHING</a>
+	</ul>
+</ul>
+
+<a name="tags">
+<h4>List of tags</h4>
+
+<table border cellpadding=5>
+<tr>
+<th>Category
+<th>Infinitive
+<th>Present participle
+<th>Past
+<th>Imperative
+<th>Passive participle
+<th>Perfect participle
+<th>Present
+<tr>
+<td>be
+<td>BE
+<td>BAG
+<td>BED
+<td>BEI
+<td>&mdash;
+<td>BEN
+<td>BEP
+<tr>
+<td>do
+<td>DO
+<td>DAG
+<td>DOD
+<td>DOI
+<td>DAN
+<td>DON
+<td>DOP
+<tr>
+<td>have
+<td>HV
+<td>HAG
+<td>HVD
+<td>HVI
+<td>HAN
+<td>HVN
+<td>HVP
+<tr>
+<td>ordinary verb
+<td>VB
+<td>VAG
+<td>VBD
+<td>VBI
+<td>VAN
+<td>VBN
+<td>VBP
+</table>
+
+<p>
+<b>Notes:</b>
+<ul>
+<li>
+1. The tags for BE, DO, and HAVE are used for both auxiliary and main verb uses.
+<li>
+2. "Past" and "present" include the subjunctive.
+</ul>
+
+<p>
+<table border cellpadding=5
+<tr>
+<th>Category
+<th>Tag
+<tr>
+<td>modal
+<td>MD
+<tr>
+<td>modal, untensed (Middle English)
+<td>MD0
+<tr>
+<td>infinitival FOR
+<td>FOR
+<tr>
+<td>infinitival TO, TIL, AT
+<td>TO
+</table>
+
+<a name="aux">
+<h4>Auxiliary and main verb use of BE, DO, and HAVE</h4>
+
+Forms of the verbs BE, DO, and HAVE are distinguished from all other
+verbs, but the POS tags do not distinguish the auxiliary and main verb
+uses of these verbs.  In the parsed files, auxiliary forms of BE and
+HAVE can be distinguished from main verb forms by the presence of a
+(possibly silent) articiple in the clause (a perfect or passive
+participle for BE, and a perfect participle for HAVE).  Periphrastic DO
+is always accompanied by a (possibly silent) infinitive.
+
+<a name="ambiguous-be-or-have">
+<p>
+<table border cellpadding=5>
+<tr>
+<td valign=center><img src="default.GIF"> <!--default-->
+<td>For ease of retrieval, contracted forms that are ambiguous between BE
+and HAVE (<i>He's come</i>) are tagged by default as BE.
+</table>
+
+<a name="infinitive_markers">
+<h4>Infinitive markers</a> (FOR, TO)</h4>
+
+<p>
+<table border=1 cellpadding=5>
+<tr>
+<td valign=center><img src="default.GIF"> <!-- default -->
+<td valign=center>When ambiguous in infinitival contexts between
+<tt>FOR</tt> and <tt>P</tt>, FOR is tagged <tt>FOR</tt>.
+</table>
+
+<blockquote> <pre>
+it/PRO is/BEP difficult/ADJ for/FOR me/PRO to/TO complete/VB the/D assignment/N
+
+it/PRO is/BEP more/QR convenient/ADJ for/P me/PRO for/FOR you/PRO to/TO
+do/DO the/D work/N
+
+for/P me/PRO it/PRO is/BEP difficult/ADJ to/TO complete/VB the/D assignment/N
+</pre> </blockquote>
+
+<p> TO is used to tag any form of the infinitive marker (TO as well as
+the northern forms AT, TIL).
+
+<blockquote> <pre>
+and/CONJ desyred/VBD to/TO have/HV lyen/VBN by/P her/PRO
+
++te/D riht/ADJ +tidir/ADV at/TO cume/VB +tai/PRO sal/MD haue/HV
+
+Gyf/VBI +tien/PRO$ entent/N til/TO understand/VB +tis/D wrytyng/N
+</pre> </blockquote>
+
+<p> Clitic TO (enclitic on FOR or proclitic on a verb) is split off and
+each component receives its ordinary tag.
+
+<blockquote> <pre>
+and/CONJ fondede/VBD for@/FOR @to/TO slee/VB Iustinianus/NPR
+
+&/CONJ +te/D eadie/ADJ katerine/NPR bigon/VBD for@/FOR @te/TO seggen/VB
+
+t@/TO @aue/HV bounde/VBN them/PRO up/RP in/P barrelles/NS
+
+t@/TO @accept/VB it/PRO as/P his/PRO$ due/N
+</pre> </blockquote>
+
+<a name="modals">
+<h4>Modals</h4>
+
+The following items can count as modals:
+
+<blockquote>
+<table border cellpadding=5>
+<tr>
+<td>
+CAN, <a href="pos-verbs.html#md_vs_vb">DARE</a>, MAY, MOWE, MUST,
+<a href="pos-verbs.html#md_vs_vb">NEED</a>, SHALL, THARF, UTEN, WILL
+</table>
+</blockquote>
+
+<p> Modals are tagged <tt>MD</tt> when there is a reading available in
+which a main verb is elided.  In the absence of such a reading, the
+modal is tagged as a form of <tt>VB</tt>.
+
+<blockquote> <pre>
+therefore/ADV+P ye/PRO may/MD sey/VB what/WPRO ye/PRO woll/MD
+
+therefore/ADV+P aske/VBI what/WPRO ye/PRO woll/VBP els/ADV
+
+'/PUNC I/PRO woll/VBP well/ADV ,/PUNC '/PUNC seyde/VBD Balan/NPR
+'/PUNC that/C ye/PRO so/ADV do/DOP
+</pre> </blockquote>
+
+<a name="md_vs_vb">
+<b>Modal or verb?</b>
+
+DARE and NEED are tagged as modals or verbs depending on their syntactic
+context.  When they take infinitival TO complements or occur with DO
+support, they are tagged as verbs.  Otherwise, they are tagged as modals.
+
+<blockquote> <pre>
+I dared/VBD to say it .			I dared/MD not say it .
+I do not dare/VB (to) say it .		I dare/MD not say it .
+
+They need/VBP to eat now .		They needed/MD not come .
+They do not need/VB to come .		They need/MD not come .
+</pre> </blockquote>
+
+<p>
+<a name="modals_as_main_verbs">
+<b>Modals as main verbs.</b>
+
+Untensed modal verbs, which are attested into Modern English
+(generally CAN, MOWE), are tagged <tt>MD0</tt>.
+
+<blockquote> <pre>
+supposyng/VAG +tat/C he/PRO schuld/MD cun/MD0 best/ADVS rede/VB +te/D booke/N
+
+Dowtyr/N ,/PUNC whan/P +tu/PRO art/BEP in/P Heuyn/NPR ,/PUNC +tu/PRO 
+xalt/MD mown/MD0 askyn/VB what/WPRO +tu/PRO wylt/MD
+
+They/PRO might/MD could/MD0 do/DO that/PRO
+</pre> </blockquote>
+
+<a name="adj_vs_vb_participles">
+<a name="participles">
+<h4>Participles</h4>
+
+<b>Adjectival vs. verbal participles.</b>
+
+Adjectival uses of present and past participles (INTERESTED,
+INTERESTING) are distinguished from verbal uses and tagged
+as <tt>ADJ</tt>.
+
+<p>
+<table border=1 cellpadding=5>
+<tr>
+<td valign=center><img src="default.GIF"> <!--default-->
+<td valign=center>In doubtful cases, participles are tagged as <tt>VAG</tt> or <tt>VAN</tt>.
+</table>
+
+<blockquote> <pre>
+but/CONJ traveillynge/ADJ men/NS are/BEP ofte/ADV wery/ADJ
+
+the/D blessid/ADJ body/N of/P oure/PRO$ Lord/NPR Jesu/NPR Cryst/NPR
+
+Nero/NPR and/CONJ his/PRO$ peple/NS were/BED destroyed/VAN
+
+for/CONJ he/PRO ys/BEP the/D mervaylyste/ADJS knyght/N that/C ys/BEP
+now/ADV lyvynge/VAG
+</pre> </blockquote>
+
+<p> Nominal uses of the present participle are tagged as <tt>N</tt>.
+
+<blockquote> <pre>
+I/PRO was/BED but/FP late/ADJ at/P a/D justynge/N
+
+and/CONJ she/PRO graunted/VBD hem/PRO with/P wepynge/N it/PRO shold/MD
+be/BE done/DAN rychely/ADV
+</pre> </blockquote>
+
+<a name="present_participle_for_infinitive">
+<b>Present participle for infinitive.</b>
+
+In some early texts (notably the Trinity Homilies), a present participle
+form is commonly used for the infinitive.  In such cases the word is
+tagged by function (<tt>VB</tt>) rather than by form.
+
+<blockquote> <pre>
+Alse/P ge/PRO hauen/HVP giwer/PRO$ lichame/N don/DON to/TO hersumiende/VB
+fule/ADJ lustes/NS ;/PUNC and/CONJ unriht/ADJ ,/PUNC alse/ALSO do+d/DOI
+giwer/PRO$ lichame/N he+denfor+d/ADV to/TO hersumiende/VB clennesse/N
+./PUNC and/CONJ rihtwisnesse/N ./PUNC and/CONJ holinesse/N
+</pre> </blockquote>
+
+<a name="subjunctives">
+<h4>Subjunctives</h4>
+
+Subjunctive forms are not distinguished from indicative forms in any tense.
+
+<blockquote> <pre>
+if/P you/PRO be/BEP there/ADV
+
+if/P you/PRO were/BED there/ADV
+
+were/BED you/PRO to/TO come/VB
+
+if/P they/PRO played/VBD with/P you/PRO
+</pre> </blockquote>

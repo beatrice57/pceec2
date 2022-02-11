@@ -1,0 +1,325 @@
+<head>
+<title>Parsed Corpus of Early English Correspondence 2: File format</title>
+</head>
+
+<body>
+<h2>The Parsed Corpus of Early English Correspondence 2</h2>
+
+<a name="file_format">
+<h3>File format</h3></a>
+
+The PCEEC2 includes the
+same <a href="../annotation-2022/intro.html#file_formats">file
+formats</a> as the Penn Parsed Corpora of Historical English. The
+parsed files of the PCEEC2, however, also include information about
+the letters (date, etc.) and correspondents (name, date of birth,
+etc.) in a format not included in the other corpora.
+
+<p>
+This information comes in two forms:
+
+<ul>
+<li><a href="#parameter_coding">Parameter coding</a> 
+- a set of parameters included at the head of each letter (as in the
+Helsinki Corpus)
+<li><a href="metadata.html">METADATA</a> 
+- a special node included in each token, searchable by CorpusSearch
+</ul>
+
+<a name="parameter_coding">
+<h3>Parameter coding</h3></a>
+
+The parameter coding in the PCEEC2 is a modified version of the
+Helsinki Corpus parameters.  These appear in the parsed files as
+follows:
+
+<blockquote><pre>
+( (CODE &lt;B_BACON&gt;))
+( (CODE &lt;Q_BAC_A_1569_FN_N2BACON&gt;))
+( (CODE &lt;L_BACON_001&gt;))
+( (CODE &lt;A_NICHOLAS_BACON_II&gt;))
+( (CODE &lt;A-GENDER_MALE&gt;))
+( (CODE &lt;A-REL_BROTHER&gt;))
+( (CODE &lt;A-DOB_1543&gt;))
+( (CODE &lt;R_NATHANIEL_BACON_I&gt;))
+( (CODE &lt;R-GENDER_MALE&gt;))
+( (CODE &lt;R-REL_BROTHER&gt;))
+( (CODE &lt;R-DOB_1546?&gt;))
+</pre></blockquote>
+
+Each collection is headed with the 'collection name'
+labelled <b>B</b>, which also functions as the file name.
+
+<blockquote><pre>
+&lt;B_BACON&gt;
+</pre></blockquote>
+
+<a name="text_identifier"></a>
+<h3>The text identifier</h3></a>
+
+Each letter is preceded by the 'text identifier', labelled <b>Q</b>.
+
+<blockquote><pre>
+&lt;Q_BAC_A_1569_FN_N2BACON&gt;
+</pre></blockquote>
+
+The text identifier contains five codes separated by underscores:
+
+<ul>
+<li> <a href="#collection">collection code</a>
+<li> <a href="#authenticity">authenticity code</a>
+<li> <a href="#date">date of letter</a>
+<li> <a href="#recipient_type">recipient-type code</a>
+<li> <a href="#writer">writer code</a>
+</ul>
+
+<a name="collection">
+<h4>Collection code</h4></a>
+
+<table>
+<tr>
+<th width="100px" align=left>ALL <td width="100px" align=left> Allen
+<th width="100px" align=left>ARU <td width="100px" align=left> Arundel
+<th width="100px" align=left>BAC <td width="100px" align=left> Bacon
+<th width="100px" align=left>BAR <td width="100px" align=left> Barrington
+<th width="100px" align=left>BAS <td width="100px" align=left> Basire
+
+<tr>
+<th align=left>BEN	<td align=left> Bentham
+<th align=left>BRE	<td align=left> Brereton
+<th align=left>BRO	<td align=left> Browne
+<th align=left>BRY	<td align=left> Bryskett
+<th align=left>CEC	<td align=left> Cecil
+
+<tr>
+<th align=left>CEL	<td align=left> Cely
+<th align=left>CHA	<td align=left> Charles
+<th align=left>CHM	<td align=left> Chamberlain
+<th align=left>CLE	<td align=left> Clerk
+<th align=left>CLI	<td align=left> Clifford
+
+<tr>
+<th align=left>COI	<td align=left> Corie
+<th align=left>CON	<td align=left> Conway
+<th align=left>COR	<td align=left> Cornwallis
+<th align=left>COS	<td align=left> Cosin
+<th align=left>CRO	<td align=left> Cromwell
+
+<tr>
+<th align=left>DER	<td align=left> Derby
+<th align=left>DUP	<td align=left> Duppa
+<th align=left>EDM	<td align=left> Edmondes
+<th align=left>ELY	<td align=left> Elyot
+<th align=left>ESS	<td align=left> Essex
+
+<tr>
+<th align=left>FER	<td align=left> Ferrar
+<th align=left>FFA	<td align=left> Ffarington
+<th align=left>FIT	<td align=left> Fitzherbert
+<th align=left>FLE	<td align=left> Fleming
+<th align=left>FOX	<td align=left> Fox
+
+<tr>
+<th align=left>GAR	<td align=left> Gardiner
+<th align=left>HAD	<td align=left> Haddock
+<th align=left>HAM	<td align=left> Hamilton
+<th align=left>HAR	<td align=left> Harley
+<th align=left>HAS	<td align=left> Hastings
+
+<tr>
+<th align=left>HAT	<td align=left> Hatton
+<th align=left>HAV	<td align=left> Harvey
+<th align=left>HE8	<td align=left> Henry 8
+<th align=left>HEN	<td align=left> Henslowe
+<th align=left>HOL	<td align=left> Holles
+
+<tr>
+<th align=left>HOS	<td align=left> Hoskyns
+<th align=left>HRT	<td align=left> Hart
+<th align=left>HUT	<td align=left> Hutton
+<th align=left>JON	<td align=left> Jones
+<th align=left>JOS	<td align=left> Jonson
+
+<tr>
+<th align=left>KNY	<td align=left> Knyvett
+<th align=left>LEY	<td align=left> Leycester
+<th align=left>LIS	<td align=left> Lisle
+<th align=left>MAR	<td align=left> Marvell
+<th align=left>MAV	<td align=left> Marchall
+
+<tr>
+<th align=left>MIN	<td align=left> Minette
+<th align=left>MOR	<td align=left> More
+<th align=left>OR1	<td align=left> Original 1
+<th align=left>OR2	<td align=left> Original 2
+<th align=left>OR3	<td align=left> Original 3
+
+<tr>
+<th align=left>OSB	<td align=left> Osborne
+<th align=left>OXI	<td align=left> Oxinden
+<th align=left>PAG	<td align=left> Paget
+<th align=left>PAK	<td align=left> Paston K
+<th align=left>PAR	<td align=left> Parkhurst
+
+<tr>
+<th align=left>PAS	<td align=left> Paston
+<th align=left>PEP	<td align=left> Pepys
+<th align=left>PET	<td align=left> Petty
+<th align=left>PLU	<td align=left> Plumpton
+<th align=left>POR	<td align=left> Pory
+
+<tr>
+<th align=left>PRI	<td align=left> Prideaux
+<th align=left>RER	<td align=left> Rerum
+<th align=left>RO1	<td align=left> Royal 1
+<th align=left>RO2	<td align=left> Royal 2
+<th align=left>RUT	<td align=left> Rutland
+
+<tr>
+<th align=left>SHI	<td align=left> Shillingford
+<th align=left>SIG	<td align=left> Signet
+<th align=left>SMY	<td align=left> Smyth
+<th align=left>STC	<td align=left> Stockwell
+<th align=left>STI	<td align=left> Stiffkey
+
+<tr>
+<th align=left>STO	<td align=left> Stonor
+<th align=left>STU	<td align=left> Stuart
+<th align=left>TIX	<td align=left> Tixall
+<th align=left>VER	<td align=left> Verstegan
+<th align=left>WEN	<td align=left> Wentworth
+
+<tr>
+<th align=left>WES	<td align=left> WeSa
+<th align=left>WHA	<td align=left> Wharton
+<th align=left>WIL	<td align=left> Willoughby
+<th align=left>WYA	<td align=left> Wyatt
+</table>
+
+<a name="authenticity">
+<h4>Authenticity code</h4></a>
+
+Authenticity codes have the following values:
+
+<blockquote>
+<table cellpadding=2>
+<tr>
+<th width="30px" align=left>A
+<td align=left>autograph letter
+<tr>
+<th align=left>B
+<td align=left>autograph letter by a person of whom little is known
+<tr>
+<th align=left>C
+<td align=left>copy or secretarial letter
+<tr>
+<th align=left>D
+<td align=left>autograph status unknown
+</table>
+</blockquote>
+
+The authenticity codes are provided by Helsinki, and are mostly based
+on information in the edited volumes, but also in some cases on study
+of the manuscripts.
+
+<a name="date">
+<h4><a href="metadata.html#date">Date of letter</a></h4>
+
+<a name="recipient_type">
+<h4>Recipient type code</h4>
+
+Recipient type codes have the following values:
+
+<blockquote>
+<table cellpadding=2>
+<tr>
+<th width="40px" align=left>FN
+<td align=left>Family Nuclear (parents, children, siblings, spouses)
+<tr>
+<th align=left>FO
+<td align=left>Family Other (grandparents, aunts, uncles, cousins, in-laws etc)
+<tr>
+<th align=left>FS
+<td align=left>Family Servant
+<tr>
+<th align=left>TC
+<td align=left>Other Close (used for close friends)
+<tr>
+<th align=left>T
+<td align=left>Other (all other recipients)
+</table>
+</blockquote>
+
+<a name="writer">
+<h4>Writer code</h4>
+
+No list of writer codes is currently available.  However, this
+information is duplicated by the author/recipient name, since each
+correspondent in the corpus is uniquely identified by
+name. See <a href="metadata.html#name">METADATA: Names</a>.
+
+<a name="letter_number"></a>
+<h3>Letter collection and number</h3></a>
+
+The <b>L</b> code uniquely identifies each letter by collection and
+number.
+
+<blockquote><pre>
+&lt;L_ARUNDEL_001&gt;
+</pre></blockquote>
+
+<a name="author_recip_codes"></a>
+<h3>Author/recipient information</h3>
+
+The remaining codes give information about the author and
+recipient. The contents of these codes are discussed in detail under
+<a href="metadata.html#author_recipient">METADATA: Author and recipient
+information</a>.
+
+<blockquote>
+<table cellpadding=5>
+<tr>
+<th width="120px" align=left>A
+<td width="200px" align=left>Author name
+<td align=left>e.g. &lt;A_THOMAS_MORE&gt;
+<tr>
+<th align=left>A-GENDER
+<td align=left>Author gender
+<td align=left>e.g. &lt;A-GENDER_MALE&gt;
+<tr>
+<th align=left>A-REL
+<td align=left>Author relationship
+<td align=left>e.g. &lt;A-REL_FATHER&gt;
+<tr>
+<th align=left>A-DOB
+<td align=left>Author date of birth
+<td align=left>e.g. &lt;A-DOB_1539&gt;
+<tr>
+<th align=left>R
+<td align=left>Recipient name
+<td align=left>e.g. &lt;R_WILLIAM_CECIL&gt;
+<tr>
+<th align=left>R-GENDER
+<td align=left>Recipient gender
+<td align=left>e.g. &lt;R-GENDER_MALE&gt;
+<tr>
+<th align=left>R-REL
+<td align=left>Recipient relationship
+<td align=left>e.g. &lt;R-REL_---&gt;
+<tr>
+<th align=left>R-DOB
+<td align=left>Recipient date of birth
+<td align=left>e.g. &lt;R-DOB_1520&gt;
+</table>
+</blockquote>
+
+The REL (A-REL, R-REL) category partially reduplicates
+the <a href="#recipient_type">recipient type code</a>, but includes
+only family relationships (nuclear or otherwise), family servants, and
+friends.  For other values, this code is empty
+(&lt;A-REL_---&gt;). See <a href="metadata.html#relationship">METADATA:
+Relationship</a> for details.
+
+
+
+

@@ -1,0 +1,350 @@
+<head>
+<title>Definition files</title>
+</head>
+
+<body>
+
+<h2>Definition files</h2>
+
+<ul>
+<li><a href="#what">What do definition files do?</a>
+<li><a href="#content">Content of definition files</a>
+<li><a href="#calling">Calling definition files in command files</a>
+<li><a href="#output">Reference to definition files in output files</a>
+<li><a href="#recursive">Recursive definitions</a>
+<li><a href="#some-reasons">Some reasons to use definition files</a>
+</ul>
+
+<p>
+<hr>
+
+<a name="what">
+<h3>What do definition files do?</h3>
+
+From a purely technical point of view, definition files are an optional
+convenience for the CorpusSearch user.  But in connection with using
+CorpusSearch in the context of real-life research projects, it is best
+to think of definition files as a resource that should be exploited
+whenever possible.
+
+<p>
+In the course of doing research on, say, the verbal syntax of English
+you might find yourself making reference to finite verbs over and over
+again.  You might start out with a disjunction like this:
+
+<blockquote>
+<pre>
+BE[DP]|DO[DP]|HV[DP]|MD|VB[DP]
+</pre>
+</blockquote>
+
+<p>
+Then you realize that given the complexity of the annotation system
+you're using, you need to include versions of the items above with
+prefixed negative clitics or other material.
+
+<blockquote>
+<pre>
+*+BE[DP]|*+DO[DP]|*+HV[DP]|*+MD|*+VB[DP]
+</pre>
+</blockquote>
+
+<p>
+So now your list of search terms includes both the simple and the
+prefixed variants.
+
+<blockquote>
+<pre>
+BE[DP]|DO[DP]|HV[DP]|MD|VB[DP]|*+BE[DP]|*+DO[DP]|*+HV[DP]|*+MD|*+VB[DP]
+</pre>
+</blockquote>
+
+<a name="question">
+<p>
+The items on the list have to be separated by a single pipe symbol
+("|"))to be interpreted correctly.  Two adjacent pipe symbols will cause
+CorpusSearch to crash, but the inadvertent absence of a pipe symbol is
+more problematic in that CorpusSearch will run, but just not give you
+the correct results.  For instance, the following disjunction will fail
+to find any instances of simple finite BE or finite
+DO.  <a href="#answer">Can you see why?</a>
+
+<blockquote>
+<pre>
+BE[DP]DO[DP]|HV[DP]|MD|VB[DP]|*+BE[DP]|*+DO[DP]|*+HV[DP]|*+MD|*+VB[DP]
+</pre>
+</blockquote>
+
+If you have several queries that are intended to refer to the same
+search term, it can become a job in itself to ensure that those terms
+are defined consistently across all your queries.  Wouldn't it be nice
+if there were a single place to define all your search terms, so that
+when you make revisions, they affect all queries making reference to
+those terms in a uniform way?
+
+<p>
+There is such a place.  It's called a definition file.
+
+<a name="content">
+<h3>Content of definition files</h3>
+
+<p>
+A definition file is simply a file containing the various labels that
+you want to group together, together with a string (the "definition")
+that allows you to make reference to them.  Here's an example:
+
+<blockquote>
+<pre>
+// definitions for Middle English
+
+finite_verb:    BE[DP]|DO[DP]|HV[DP]|MD|VB[DP]|*+BE[DP]|*+DO[DP]|*+HV[DP]|*+MD|*+VB[DP]
+
+nonfinite_verb: BE|DO|HV|MD0|VB|*+BE|*+DO|*+HV|*+MD0|*+VB
+</pre>
+</blockquote>
+
+The definition on the left must be an orthographic word (that is, not contain
+spaces).  It is followed by a colon, and then the list of labels that it abbreviates.
+
+<p>
+Each label must be associated with a unique list.  So the following
+definition file is not good, because the expression "finite_verb" is
+ambiguous:
+
+<blockquote>
+<pre>
+finite_verb:  BE[DP]
+finite_verb:  VB[DP]
+</pre>
+</blockquote>
+
+However, the lists on the right can be associated with more than one
+definition, and this can be useful, as is discussed further in the
+section on <a href="#recursive">Recursive definitions</a>.
+
+<a name="calling">
+<h3>Calling definition files in command files</h3>
+
+Definition files must have the extension <b>.def</b>, and they must be
+stored in the same directory as the command file.
+Unlike <a href="pref.html">preference files</a>, definition files must
+be explicitly included in the command file with a line like the following:
+
+<blockquote>
+<pre>
+define: ppche.def
+</pre>
+</blockquote>
+
+(The reason CorpusSearch treat definition files differently from
+preference files is that it is usual for users to have more than one
+definition file (say, for various languages, as
+discussed <a href="#some-reasons">later on</a>).  By contrast, users'
+preferences tend to be stable and so only one preference file is needed.)
+
+<p>
+An entire query might then read as follows:
+
+<blockquote>
+<pre>
+node: IP*
+
+define: ppche.def
+
+query:  (finite_verb precedes nonfinite_verb)
+</pre>
+</blockquote>
+
+<p>
+The line beginning with "define" instructs CorpusSearch where to find
+the definitions for "finite_verb" and "nonfinite_verb".  Without this
+line, "finite_verb" and "nonfinite_verb" will be read as literal strings
+and not be replaced by their definitions.  Most likely, this would result
+in CorpusSearch reporting no hits for the search (since most parsed
+corpora will not contain instances of the literal strings "finite_verb"
+or "nonfinite_verb").
+
+<p>
+If a particular search reports no hits or suspiciously low numbers of
+hits for a particular search term, this is likely due to:
+<ul>
+<li>a failure to include a "define" line in the query line (as just mentioned)
+<li>a missing pipe symbol between search terms in the definition file
+    (as in the "Can you see why?" example)
+<li>a discrepancy between the expression in your definition file and in
+    your query (for instance, the definition file has "finite_verb" with
+    underscore, but the command file has "finite-verb" with hyphen or
+    "finiteVerb" with camel case)
+</ul>
+
+<a name="output">
+<h3>Reference to definition files in output files</h3>
+
+The output from a search that calls a definition file will include a
+preface along the following lines:
+
+<blockquote>
+<pre>
+/*
+    PREFACE:
+    CorpusSearch copyright Beth Randall 2000.
+    Date:  Thu Apr 13 08:57:07 EDT 2000
+
+    command file:       search.q
+    output file:        search.out
+
+    definition file:  ppche.def
+    node:   IP*
+    query:  (BE[DP]|DO[DP]|HV[DP]|MD|VB[DP]|*+BE[DP]|*+DO[DP]|*+HV[DP]|*+MD|*+VB[DP] precedes BE|DO|HV|MD0|VB|*+BE|*+DO|*+HV|*+MD0|*+VB)
+*/
+</pre>
+</blockquote>
+
+The entry under "definition file" gives the name of the definition file
+that CorpusSearch used when running the query in search.q.  Since you
+might have made changes to the file between running the query and
+reviewing the output of the search, CorpusSearch also reports the actual
+query that it ran.  This can be helpful in troubleshooting.  Here are
+some common reasons for errors:
+
+<ul>
+<li>You've forgotten the "define" line in the command file.  In this
+    case, the preface should not contain an entry for "definition file",
+    and the expression after "query" should contain unexpanded labels.
+<li>You've referenced some irrelevant definition file in the command
+    file.
+<li>There's some discrepancy between the labels that you used in the
+    query file and the ones in the definition file.  For instance, you
+    might have used labels in the query file that don't exist in the
+    definition file, or you've misspelled a label in the query file, or
+    used a hyphen for an underscore (or vice versa), and the like.
+</ul>
+
+<a name="recursive">
+<h3>Recursive definitions</h3>
+
+Definitions may be recursive, allowing complex definitions to be built
+up out of more basic ones.  For instance:
+
+<blockquote>
+<pre>
+finite_verb_1:   BE[DP]|DO[DP]|HV[DP]|MD|VB[DP]
+finite_verb_2:   *+BE[DP]|*+DO[DP]|*+HV[DP]|*+MD|*+VB[DP]
+finite_verb:     $finite_verb_1|$finite_verb_2
+</pre>
+</blockquote>
+
+<p>
+If you can never remember whether you refer to finite verbs in your
+queries as "finite_verb" or "Vfin", you can use recursive definitions to
+render the question irrelevant by including lines like the following
+(best right after the non-recursive, basic definition, as shown here):
+
+<blockquote>
+<pre>
+finite_verb:          $finite_verb_1|$finite_verb_2
+Vfin:                 $finite_verb
+</pre>
+</blockquote>
+
+<a name="some-reasons">
+<h3>Some reasons to use definition files</h3>
+
+As we mentioned at the outset, definition files are an extremely useful
+tool, powerful and flexible at once, and we urge CorpusSearch users to
+use them whenever the search terms in their queries becomes even the
+slightest bit complex.
+
+<p>
+As we mentioned, they offer a powerful assist in enforcing consistency
+across queries of all sorts (whether ordinary, revision, or coding
+queries).  Any revisions that you make to your search terms are made
+only once - in the definition file.
+
+<p>
+Definition files can greatly facilitate comparative searches across
+corpora from various languages or linguistic stages that use different
+annotation labels for the same (or very similar) linguistic concepts.
+For instance, in conducting research on Old English and later stages of
+English using the York corpora of Old English and the Penn Historical
+Corpora, one could set up distinct definition files because of the
+divergent annotation guidelines, but use query files that are identical
+in every respect but than the "define" line.
+
+<blockquote>
+<pre>
+// old-english.def
+
+subj:        NP-NOM*
+dir-obj:     NP-ACC*
+indir-obj:   NP-DTV*
+finite_be:   BE[DP]|BE[DP][IS]|BEPH
+
+<hr>
+// later-english.def
+
+subj:        NP-SBJ*
+dir-obj:     NP-OB1*
+indir-obj:   NP-OB2*
+finite_be:   BE[DP]
+
+<hr>
+// sample-search-old-english.q
+
+node: IP*
+
+define: oe.def
+
+query:     (subj hasSister finite_be)
+       AND (subj iPrecedes finite_be)
+
+<hr>
+// sample-search-later-english.q
+
+same as previous except for the "define" line, which would read "define: later-english.def".
+</pre>
+</blockquote>
+
+<p>
+Definition files can be used as a "poor man's lemmatizer" and "poor
+man's verb classifier" along the following lines.  (The entries are very
+simplified; there are many more spelling variants to be considered in
+historical texts.)
+
+<blockquote>
+<pre>
+give:  [gG][eiy][uv]e
+gave:  [gG]ave
+given: [gG][eiy][uv]en
+send:  [sS]end|[sS]ende
+sent:  [sS]ent|[sS]ente
+GIVE:  $give|$gave|$given
+SEND:  $send|$sent
+double-object-verb: $GIVE|$SEND
+</pre>
+</blockquote>
+
+In conjunction with <a href="revision.html">corpus revision queries</a>,
+these entries could be used to associate lemmas with verb forms.  The
+following revision query gives outputs in the style of IcePAHC.
+
+<blockquote>
+<pre>
+query: (V* iDoms {1}GIVE)
+
+append_label{1}: =give
+</pre>
+</blockquote>
+
+<p>
+<hr>
+
+<a name="answer">
+<p>
+<a href="#question">Answer to question</a>: There's a pipe symbol
+missing after BE[DP].  Unlike in the correct query with the pipe symbol,
+the query with the error instructs CorpusSearch to search for the
+expression "BE[DP]DO[DP]", which expands to BEDDOD, BEPDOD, BEPDOD, and
+BEPDOP.  None of these labels exist in the corpus.
+
+</body>

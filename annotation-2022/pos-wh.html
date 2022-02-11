@@ -1,0 +1,168 @@
+<head>
+<title>Wh- words</title>
+</head>
+
+<a name="top">
+<h3>Wh- words</h3>
+
+<ul>
+<li><a href="pos-wh.html#tags">List of tags</a>
+<li><a href="pos-wh.html#wh_adverb">Wh-adverb</a> (WADV)
+	<ul>
+	<li>R-pronoun WHERE- (as in WHEREFORE, WHEREIN, etc.) (see R-pronoun <a href="words.html#there">THERE</a>)
+	</ul>
+<li><a href="pos-wh.html#wh_determiner">Wh-determiner</a> (WD)
+<li><a href="pos-wh.html#wh_pronoun">Wh-pronoun</a> (WPRO, WPRO$)
+<li><a href="pos-wh.html#wh_marker">Wh-marker in indirect questions</a> (WQ)
+<li><a href="words.html">Treatment of individual words</a>
+	<ul>
+	<li><a href="words.html#if">IF</a>
+	<li><a href="words.html#when">WHEN</a>
+	<li><a href="words.html#where">WHERE</a>
+	<li><a href="words.html#whether">WHETHER</a>
+	</ul>
+</ul>
+
+<a name="tags">
+<h4>List of tags</h4>
+
+<table border cellpadding=5>
+<tr>
+<td valign=top>WADV	<td>wh-adverb
+<tr>
+<td valign=top>WD	<td>wh-determiner
+<tr>
+<td valign=top>WPRO	<td>wh-pronoun
+<tr>
+<td valign=top>WPRO$	<td>wh-pronoun, possessive
+<tr>
+<td valign=top>WQ	<td>WHETHER (and IF when heading indirect questions)
+</table>
+
+<p> Wh- words that are used as interjections are tagged with the
+appropriate tag from the above list (not as <tt>INTJ</tt>).  Their
+function is indicated at the phrasal level;
+see <a href="syn-phrase.html#intjp">Interjection phrase</a>
+(<tt>INTJP</tt>).
+
+<a name="wh_adverb">
+<h4>Wh-adverb (WADV)</h4>
+
+Wh-adverbs (HOW, WHEN, WHENCE, WHERE, WHITHER, WHY) are
+tagged <tt>WADV</tt>.  <a href="words.html#when">WHEN</a> can also be
+tagged <tt>P</tt>.
+
+<blockquote> <pre>
+and/CONJ asked/VBD the/D kynge/N why/WADV he/PRO was/BED seke/ADJ
+
+Where/WADV is/BEP he/PRO ?/PUNC
+
+But/CONJ the/D duke/N of/P Tyntigail/NPR aspyed/VBD hou/WADV the/D
+kyng/N rode/VBD fro/P the/D syege/N of/P Tarabil/NPR
+
++tu/PRO mowe/MD isee/VB whanne/WADV he/PRO come+t/VBP in/RP
+
+Than/ADV he/PRO tolde/VBD hir/PRO$ of/P whens/WADV he/PRO was/BED
+</pre> </blockquote>
+
+<a name="wh_determiner">
+<h4>Wh-determiner (WD)</h4>
+
+WHAT and (THE) WHICH are tagged <tt>WD</tt>
+when not acting as the head of a wh- noun
+phrase, and as <tt>WPRO</tt>
+<a href="pos-wh.html#wh_pronoun">otherwise</a>.
+Note the difference in this regard between
+wh- words and 
+<a href="pos-misc.html#determiners">ordinary
+determiners</a>, which are tagged as
+determiners invariably.
+
+<blockquote> <pre>
+(WNP (WD what) (NS men))
+
+(WNP (WNP (WD which) (N prophet))
+     (CONJP (CONJ and)
+            (NX (N law))))
+
+(WNP (WPRO what)				&larr; note WPRO
+     (ADJP (ADJ else)))
+</pre> </blockquote>
+
+<p> WHAT immediately preceding a
+determiner is tagged as WD, parallel
+to cases with SUCH.
+
+<blockquote> <pre>
+(WNP (WD what) (D a) (N nightmare))
+
+(NP (SUCH such) (D a) (N problem))
+</pre> </blockquote>
+
+<!--
+<p> While convenient, the analysis
+in both cases is probably incorrect,
+given syntactically parallel
+examples like the following.
+
+<blockquote> <pre>
+(NP (ADJP (ADVR so) (ADJ serious))
+    (D a)
+    (N problem))
+
+(WNP (WADJP (WADV how) (ADJ serious))
+     (D a)
+     (N problem))
+</pre> </blockquote>
+-->
+
+<p> For the treatment of WHAT THE DEVIL and similar expressions,
+see <a href="syn-phrase.html#what-the-devil"><tt>INTJP</tt></a>.
+
+<a name="wh_pronoun">
+<h4>Wh-pronoun (WPRO, WPRO$)</h4>
+
+<tt>WPRO</tt> is assigned to WHO, to WHETHER in the meaning WHICH OF
+TWO, and to WHAT and (THE) WHICH when these are acting as the head of a
+wh- noun phrase.  Other cases of WHAT and WHICH are tagged
+<a href="pos-wh.html#wh_determiner"><tt>WD</tt></a>.
+Note the difference in this regard
+between wh- words and 
+<a href="pos-misc.html#determiners">ordinary
+determiners</a>, which are tagged as
+determiners invariably.
+
+<blockquote> <pre>
+what/WPRO +tou/PRO hast/HVP sette/VBN on/P fyre/N +tat/D ha+t/HVP
+i-brene/VBN on/P +te/PRO
+
+he/PRO wolde/MD make/VB hym/PRO here/PRO$ prince/N whom/WPRO +te/D
+Holy/NPR Goost/NPR wolde/MD schewe/VB in/P colveres/N$ liche/N
+
+by/P +te/D whiche/WPRO +tei/PRO fonde+t/VBD to/TO lette/VB holy/ADJ
+men/NS
+
+than/ADV there/EX began/VBD a/D new/ADJ batayle/N whych/WPRO was/BED
+sore/ADJ and/CONJ harde/ADJ
+</pre> </blockquote>
+
+<p> The tag for WHOSE is <tt>WPRO$</tt>.
+
+<blockquote> <pre>
+he/PRO asked/VBD hir/PRO ... whos/WPRO$ was/BED the/D child/N within/P
+her/PRO$ body/N
+
+and/CONJ by/P whoos/WPRO$ commandement/N
+</pre> </blockquote>
+
+<a name="wh_marker">
+<h4>Wh-marker in indirect questions (WQ)</h4>
+
+WHETHER and IF are tagged <tt>WQ</tt> when they introduce indirect
+questions.  The treatment as <tt>WQ</tt> rather than as <tt>C</tt> is
+motivated by the co-occurrence of WHETHER and IF with THAT, at least in
+Middle English.
+
+<blockquote> <pre>
+I asked her if/WQ that/C they are coming.
+</pre> </blockquote>

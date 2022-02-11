@@ -1,0 +1,792 @@
+<head>
+<title>Overview of the query language</title>
+</head>
+
+<body>
+
+<h2>Overview of the query language</h2>
+
+<ul>
+<li><a href="#basic">Basic components</a>
+<li><a href="#search">Search function calls</a>
+<li><a href="#log-ops">Logical operators</a>
+    <ul>
+    <li><a href="#search-function-operators">Search function operators</a>
+        <ul>
+        <li><a href="#AND">AND</a>
+        <li><a href="#OR">OR</a> <font color="red">(deprecated)</font>
+        <li><a href="#NOT">NOT</a> <font color="red">(deprecated)</font>
+        </ul>
+    <li><a href="#argument-operators">Argument operators</a>
+        <ul>
+        <li><a href="#pipe">Argument "or"</a> ("|", read "pipe")
+<!--
+            <ul>
+            <li><a href="#pipe-list">Argument "or" negates lists</a>
+            </ul>
+-->
+        <li><a href="#bang">Argument "not"</a> ("!", read "bang")
+<!--
+            <ul>
+            <li><a href="#bang-one">One argument "not" per search function</a>
+            <li><a href="#bang-index">Argument "not" before prefix indices</a>
+            </ul>
+-->
+        </ul>
+    </ul>
+<li><a href="#reg-exps">Regular expressions</a>
+        <ul>
+        <li><a href="#regexp-square">Square brackets</a>
+        <li><a href="#regexp-period">Period</a>
+        <li><a href="#regexp-asterisk">Asterisk</a>
+        </ul>
+
+<li><a href="#escaping">Escaping special expressions</a>
+   <ul>
+   <li><a href="#esc-asterisk">Asterisk</a>
+   <li><a href="#esc-period">Period</a>
+   <li><a href="#esc-integer">Integers</a>
+   </ul>
+<li><a href="#same-instance">Same instance</a>
+<li><a href="#prefix-indices">Prefix indices</a>
+</ul>
+
+<p>
+<hr>
+
+<a name="basic">
+<h3>Basic components</h3>
+
+Queries in the CorpusSearch query language are built from the following
+basic components:
+
+<ul>
+<li><a href="search-functions.html">search function calls</a>, which look
+    for basic relationships among nodes, such as "dominates" or "precedes".
+<li><a href="search-functions.html">arguments to search function
+    calls</a>, which describe the nodes involved in the relationships being
+    searched for.
+<li><a href="#log-ops">logical operators</a>, which are used as in basic
+    formal logic.
+</ul>
+
+<a name="search">
+<h3>Search function calls</h3>
+
+The most basic query consists of a
+single <a href="search-functions.html">search function call</a> with
+associated arguments.  For instance, the following query searches for
+nodes labelled NP-PRD ("predicate noun phrase") that immediately
+dominate nodes labelled N ("noun"):
+
+<blockquote>
+<pre>
+(NP-PRD iDominates N)
+</pre>
+</blockquote>
+
+Here is a sentence that matches the query.
+
+<blockquote>
+<pre>
+/~*
+For he 's a jolly good fellow.
+*~/
+
+/*
+    1 IP-MAT: 9 NP-SBJ, 16 N
+*/
+
+(0 (1 IP-MAT (2 CONJ For)
+             (4 NP-SBJ (5 PRO he))
+             (7 BEP 's)
+             (9 NP-PRD (10 D a) (12 ADJ jolly) (14 ADJ good) (16 N fellow)))
+             (18 . .))
+</pre>
+</blockquote>
+
+Search function calls can be combined using <a href="#log-ops">logical
+operators</a>.  CorpusSearch's search functions are described in detail
+in <a href="search-functions.html">their own chapter</a>.
+
+<a name="log-ops">
+<h3>Logical operators</h3>
+
+<p>
+CorpusSearch provides two types of logical operators:
+<ul>
+<li><a href="#search-function-operators">Search function
+    operators</a> combine search functions.
+<li><a href="#argument-operators">Argument operators</a> act
+    on the arguments to search functions.
+</ul>
+
+<a name="search-function-operators">
+<h3>Search function operators</h3>
+
+<ul>
+<li><a href="#AND">AND</a>
+<li><a href="#OR">OR</a> <font color="red">(deprecated)</font>
+<li><a href="#NOT">NOT</a> <font color="red">(deprecated)</font>
+</ul>
+
+<a name="AND">
+<h3>AND</h3>
+
+AND returns trees in which both conjuncts hold within a single boundary
+node.  For instance, this query:
+
+<blockquote>
+<pre>
+node: IP*
+
+query:     (NP-TMP* iDoms ADV*)
+       AND (TO iPrecedes VB)
+</pre>
+</blockquote>
+
+yields this output:
+
+<blockquote>
+<pre>
+/*
+4 IP-INF-SBJ:  5 NP-TMP, 6 ADV+NS, 8 TO, 10 VB
+*/
+
+(0 (1 IP-MAT (2 CONJ but)
+             (4 IP-INF-SBJ (5 NP-TMP (6 ADV+NS oftymes))
+                           (8 TO to)
+                           (10 VB rede)
+                           (12 NP-OB1 (13 PRO it)))
+             (15 MD shal)
+             (17 VB cause)
+             (19 NP-OB1 (20 PRO it))
+             (22 IP-INF (23 ADVP (24 ADV wel))
+                        (26 TO to)
+                        (28 BE be)
+                        (29 VAN vnderstande))
+          (31 E_S /))
+   (33 ID CMREYNAR,6.10))
+</pre>
+</blockquote>
+
+<a name="OR">
+<h3>OR</h3>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>OR is not yet fully tested and is likely to yield unexpected
+results.  Its functionality can normally be achieved with argument "or".
+When argument "or" is not sufficient, <a href="coding.html">coding
+queries</a> will achieve the desired effect.</b>
+</table>
+
+<p>
+OR encodes inclusive disjunction. "(FOO) OR (BAR)" returns all subtrees
+rooted in an instance of the query's selected node boundary with either
+the property "FOO" or the property "BAR" or <b>both</b>. "FOO" and "BAR"
+may consist of single search functions or may themselves be built up out
+of conjunctions, disjunctions and negations of simple search functions.
+
+<a name="NOT">
+<h3>NOT</h3>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>NOT is not yet fully tested.  It does not yet work correctly
+in any but the simplest cases and should be avoided except for testing
+purposes.  Its functionality can be achieved
+with <a href="coding.html">coding queries</a>, notably via the ELSE
+function.
+</table>
+
+<p>
+NOT returns trees rooted in the node boundary that do not contain the
+described structure.  It differs from <a href="#bang">argument "not"</a>
+in that none of the arguments need to appear in the domain defined by
+the boundary node.
+
+<p>
+For instance, 
+
+<blockquote>
+<pre>
+NOT(NP* iPrecedes VB*)
+</pre>
+</blockquote>
+
+returns trees that do not contain the structure "(NP* iPrecedes
+VB*)", including those that contain neither NP* nor VB*.
+
+<p>
+By contrast,
+
+<blockquote>
+<pre>
+(NP* iPrecedes !VB*)
+</pre>
+</blockquote>
+
+returns trees that contain an NP* which does not iPrecede VB*.
+
+<a name="argument-operators">
+<h3>Argument operators</h3>
+
+<ul>
+<li><a href="#pipe">Argument "or"</a> ("|", read "pipe")
+    <ul>
+    <li><a href="#pipe-list">Argument "or" negates lists</a>
+    </ul>
+<li><a href="#bang">Argument "not"</a> ("!", read "bang")
+    <ul>
+    <li><a href="#bang-one">One argument "not" per search function</a>
+    <li><a href="#bang-index">Argument "not" before prefix indices</a>
+    </ul>
+</ul>
+
+<a name="pipe">
+<h3>Argument "or"</h3>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>Two consecutive pipes ("| |") will abort any search.  The pipes may
+    be in the command file, or in a file called by the command file,
+    such as a <a href="def.html">definition file</a>
+    or <a href="pref.html">preference file</a>.
+</table>
+
+Any number of arguments to a search function may be linked together into
+a list using "|" (argument "or" or "pipe").  For instance,
+
+<blockquote>
+<pre>
+(BE*|DO*|HV*|MD|VB* iPrecedes NP-SBJ*)
+</pre>
+</blockquote>
+
+means "BE* or DO* or HV* or MD or VB* immediately precedes NP-SBJ*",  
+and will find sentences like this:
+
+<blockquote>
+<pre>
+/~*
++Tan was pompe & pryde cast down
+(CMKEMPE,2.12)
+*~/
+
+/*
+1 IP-MAT: 5 BED was, 7 NP-SBJ
+*/
+
+(0 (1 IP-MAT (2 ADVP-TMP (3 ADV +Tan))
+             (5 BED was)
+             (7 NP-SBJ (8 N pompe) (10 CONJ &) (12 N pryde))
+             (14 VAN cast)
+             (16 RP down))
+   (18 ID CMKEMPE,2.12))
+</pre>
+</blockquote>
+
+<a name="pipe-list">
+<h4>Argument "or" negates lists</h4>
+
+"!" cannot be used to negate members of a list constructed with "|", and
+queries of the following form:
+
+<blockquote>
+<pre>
+(BE*|!HV* iPrecedes NP-SBJ*)
+</pre>
+</blockquote>
+
+will abort.  Instead, "!" must precede the list, and it is interpreted
+as negating the entire list (not just the first member).  So the
+following query:
+
+<blockquote>
+<pre>
+(!BE*|DO*|HV*|MD|VB* iPrecedes NP-SBJ*)
+</pre>
+</blockquote>
+
+means "none of the list 'BE* or DO* or HV* or MD or *VB*' iPrecedes NP-SBJ*",
+and it finds sentences like this:
+
+<blockquote>
+<pre> 
+/~*
+& sche wold not consentyn in no wey,
+(CMKEMPE,3.34)
+*~/
+
+/*
+1 IP-MAT: 2 CONJ &, 4 NP-SBJ
+*/
+
+(0 (1 IP-MAT (2 CONJ &)
+             (4 NP-SBJ (5 PRO sche))
+             (7 MD wold)
+             (9 NEG not)
+             (11 VB consentyn)
+             (13 PP (14 P in)
+                    (16 NP (17 Q no) (19 N wey)))
+             (21 E_S ,))
+      (22 ID CMKEMPE,3.34))
+</pre>
+</blockquote>
+
+<a name="bang">
+<h3>Argument "not"</h3>
+
+"!" (argument "not" or "bang") negates a single argument to a search
+function.  For instance, suppose you're looking for sentences with
+subjects that do not immediately dominate a pronoun.  The following
+query:
+
+<blockquote>
+<pre>
+(NP-SBJ* iDoms !PRO*)
+</pre>
+</blockquote>
+
+finds the examples in question.
+
+<blockquote>
+<pre>
+/~*
+a runde fot & +ticke bi-come+t an hors wel.
+(CMHORSES,87.17)
+*~/
+
+/*
+1 IP-MAT: 2 NP-SBJ, 15 ADJ +ticke
+*/
+
+(0 (1 IP-MAT (2 NP-SBJ (3 D a)
+                       (5 ADJP (6 ADJ runde)
+                               (8 CONJP *ICH*-1))
+                       (10 N fot)
+                       (12 CONJP-1 (13 CONJ &))
+                                   (15 ADJ +ticke))
+             (17 VBP bi-come+t)
+             (19 NP-OB1 (20 D an) (22 N hors))
+             (24 ADVP (25 ADV wel))
+             (27 E_S .))
+      (29 ID CMHORSES,87.17))
+</pre>
+</blockquote>
+
+<a name="bang-one">
+<h4>One argument "not" per search function</h4>
+
+CorpusSearch does not allow you to negate both arguments to a single
+search function.  So queries of the following form will abort:
+
+<blockquote>
+<pre>
+(!NP-SBJ* iPrecedes !VBD)
+</pre>
+</blockquote>
+
+<p>
+Queries of the following form are fine.  It's true that the entire query
+contains more than one "!" operator, but each individual search function
+(iDoms, iPrecedes) contains only one.
+
+<blockquote>
+<pre>
+    (NP-SBJ* iDoms !PRO*)
+AND (NP-SBJ* iPrecedes !VBD)
+</pre>
+</blockquote>
+
+<a name="bang-index">
+<h4>Argument "not" before prefix indices</h4>
+
+If you need to use both "!" and <a href="#prefix-indices">prefix
+indices</a>, "!"  goes before the indices.  This makes sense because the
+prefix index tells CorpusSearch which node is meant, and then "!" tells
+CorpusSearch to exclude that node from the output.
+
+<p>
+For instance, suppose you're looking for sentences with a subject that
+precedes the object, and where neither the subject nor the object is a
+pronoun.  The following query:
+
+<blockquote>
+<pre>
+    (NP-SBJ* precedes NP-OB1*)
+AND (NP-SBJ* iDoms ![1]PRO*)
+AND (NP-OB1* iDoms ![2]PRO*)
+</pre>
+</blockquote>
+
+will find sentences like this one:
+
+<blockquote>
+<pre>
+/~*
+& +tat schal be a good hors.
+(CMHORSES,85.9)
+*~/
+
+/*
+1 IP-MAT: 4 NP-SBJ, 11 NP-OB1, 5 D +tat, 16 N hors
+*/
+
+(0 (1 IP-MAT (2 CONJ &)
+             (4 NP-SBJ (5 D +tat))
+             (7 MD schal)
+             (9 BE be)
+             (11 NP-OB1 (12 D a) (14 ADJ good) (16 N hors))
+             (18 E_S .))
+   (20 ID CMHORSES,85.9))
+</pre>
+</blockquote>
+
+<a name="reg-exps">
+<h3>Regular expressions</h3>
+
+CorpusSearch allows the use of basic regular expression syntax in the
+arguments to functions, but does not support full regular expression
+syntax.  (This is because of weaknesses in Java, the language
+CorpusSearch is written in.)
+
+<a name="regexp-square">
+<h4>Square brackets</h4> 
+
+The use of square brackets discussed in what follows is distinct from
+their use in connection with <a href="#prefix-indices">prefix
+indices</a>.  As the name implies, prefix indices precede node labels.
+The square brackets discussed here occur as part of the node labels
+themselves.
+
+<p>
+Expressions enclosed in square brackets specify alternatives.  For
+instance, "[xyz]" stands for a single character that is either an "x", a
+"y", or a "z". (Alternatively, one could express the search as "x|y|z".
+Similarly, "BED|BEP" and "BE[DP]" amount to the same.)
+
+<p>
+Ranges such as "[A-Z]", "[a-z]", and "[0-9]" must be expressed as
+complete lists of alternatives (for instance, "[0123456789]").  In other
+words, CorpusSearch doesn't provide the full range of regular
+expressions as you get with UNIX commands.
+
+<a name="regexp-period">
+<h4>Period</h4>
+
+The wildcard character "." (period) matches any letter or digit.
+
+<a name="regexp-asterisk">
+<h4>Asterisk</h4>  
+
+The wildcard character "*" (asterisk) matches any string, including the
+null string.  "*" may be used anywhere in the string specifying the
+function argument - beginning, middle or end.  For instance, "CP*"
+matches any label beginning with the letters "CP" ("CP", "CP-ADV",
+"CP-QUE-SPE", etc.).  "*-SPE" matches any label ending in "-SPE", and
+*hersum* matches any string containing the substring "hersum"
+("hersumnesse", "unhersumnesse", etc.).
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>"NP*" matches all types of noun phrases ("NP-SBJ", "NP-OB1", etc.),
+but also "NPR" and its variants.  The latter matches are not usually
+intended.  To avoid this problem, either add a hyphen ("NP-*") or
+introduce appropriate definitions in a <a href="def.html">definition
+file</a>.
+</table>
+
+<p>
+As mentioned above, regular expression support in Java is not perfect.
+In particular, after square brackets, ".*" and "*" behave erratically.  
+
+<blockquote>
+<pre>
+gi[uv]*            &larr; matches "giv", but not "give", "given" (the asterisk is unexpectedly inert)
+
+gi[uv].*           &larr; matches "give", "given", but not "giv" (the asterisk unexpectedly disallows zero instances of the wildcard period)
+</pre>
+</blockquote>
+
+In general, ".*" after square bracket gives the desired result, but
+refuses to match zero instances of the wildcard character ".", contrary
+to expectation.  If those matches are important, searches need to
+include disjunctions along the following lines (here, the first disjunct
+doesn't contain an asterisk, since including it is both unnecessary and
+confusing):
+
+<blockquote>
+<pre>
+gi[uv]|gi[uv].*    &larr; matches "giv", "give", "given"
+</pre>
+</blockquote>
+
+<a name="escaping">
+<a name="esc-asterisk">
+<h3>Escaping special expressions</h3>
+
+<h4>Asterisk</h4> 
+
+As just discussed, "*" is ordinarily interpreted as a wildcard
+character.  In searches for "*" as a literal character in the text, the
+wildcard interpretation needs to be turned off or "escaped".  The
+standard way of doing this is by prefixing the asterisk with a backslash
+("\").  For instance, the following query with unescaped asterisks:
+
+<blockquote>
+<pre>
+(NP* dominates *con*)
+</pre>
+</blockquote>
+
+will find noun phrases that dominate the word "contradiction" or
+"unconstitutional" or "Rubicon".  If the search is to be restricted to
+noun phrases with subjects elided under conjunction ("*con*"), where the
+asterisks are part of the text, the asterisks need to be escaped:
+
+<blockquote>
+<pre>
+(NP* dominates \*con\*)
+</pre>
+</blockquote>
+
+It is also possible to enclose literal asterisks in square brackets
+("[*]") to escape the operator interpretation.
+
+<p>
+Escaped and unescaped asterisks can be - and very often are - combined
+in a single search.  For instance, here are two alternative ways to
+search for traces of the form "*T*-1", "*T*-2", etc.  The two queries
+are not completely equivalent.  The first form finds only traces with
+indices, whereas the second form would also find "*T*" (i.e., traces
+that are incorrectly missing an index).
+
+<blockquote>
+<pre>
+(NP* dominates \*T\*-*)
+
+(NP* dominates \*T*)
+</pre>
+</blockquote>
+
+Empty categories in general (which always begin with an asterisk in the
+PPCHE) can be searched for with "\**".
+
+<a name="esc-period">
+<h4>Period</h4>
+
+Given what was just said about asterisks, one would expect to be able
+conduct literal searches for period by prefixing it with a backslash
+<nobr>("\.")</nobr> or enclosing it in square
+brackets <nobr>("[.]").</nobr>  Neither of these alternatives give the
+desired result, however.
+
+<p> The workaround is to replace the period character in the corpus by
+some suitable sequence such as "PERIOD" or more safely (to safeguard
+against the replacement expression itself occurring in the corpus), by
+"P-E-R-I-O-D" or "D-O-T".
+
+<a name="esc-integer">
+<h4>Integers</h4>
+
+Integer arguments are expected for some search functions, but not
+allowed for others.  For instance, "exists" doesn't take an integer
+argument, and so the following query crashes.
+
+<blockquote>
+<pre>
+query: (1929 exists)           &larr;  CRASH !
+</pre>
+</blockquote>
+
+To find tokens containing "1929", the integer needs to be escaped with
+with a backslash ("\") in the query.
+
+<blockquote>
+<pre>
+query: (\1929 exists)
+</pre>
+</blockquote>
+
+<a name="same-instance">
+<h3>Same instance</h3>
+
+If a CorpusSearch query contains (exactly) the same label more than
+once, CorpusSearch assumes by default that each occurrence of the label
+refers to the same node in the tree, and we say that CorpusSearch
+enforces <b>"same instance".</b>  Thus, the following query:
+
+<blockquote>
+<pre>
+    (ADVP precedes HV*|MD|VB*)
+AND (HV*|MD|VB* precedes NP-SBJ*)
+</pre>
+</blockquote>
+
+matches tokens with an adverb preceding a modal, and that same modal
+preceding a subject.
+
+<p>
+"Same instance" is triggered by strings that are identical character by
+character.  Strings that are not character-by-character identical do not
+trigger "same instance", even if the strings are logically equivalent.
+For instance, the following query:
+
+<blockquote>
+<pre>
+    (ADVP precedes HV*|MD|VB*)          &larr; HV* &lt; MD
+AND (MD|HV*|VB* precedes NP-SBJ*)       &larr; MD &lt; HV*
+</pre>
+</blockquote>
+
+matches tokens with an adverb preceding a modal in one clause and a form
+of HAVE preceding a subject in some other clause.  (It also matches the
+tokens returned by the first query.)  The reason that "same instance"
+isn't enforced in the second query is that "HV*" and "MD" appear in
+different orders in the two clauses of the query.
+
+<p>
+When search expressions become complex, it rapidly becomes difficult to
+tell whether they are character-by-character identical and whether they
+will trigger "same instance" or not.  This is one of the many reasons
+that it is good practice to use <a href="def.html">definition files</a>.
+
+<a name="prefix-indices">
+<h3>Prefix indices</h3>
+
+Certain queries require <u>not</u> triggering "same instance".  For
+instance, if you are searching for two sister noun phrases, the
+following query:
+
+<blockquote>
+<pre>
+NP hasSister NP
+</pre>
+</blockquote>
+
+will not give the desired result.  In fact, it will not generate any
+hits at all because "hasSister" is not defined as a reflexive relation
+(in other words, a node isn't its own sister).
+
+<p>
+When it is necessary to avoid "same instance" interpretations, the
+intended reference of arguments needs to be explicitly specified with
+<b>prefix indices</b>, as in the following query:
+
+<blockquote>
+<pre>
+([1]NP* hasSister [2]NP*)
+</pre>
+</blockquote>
+
+Prefix indices are enclosed by square brackets ("[", "]").  Arguments
+with the same index must refer to the same node (in other words, they
+explicitly trigger "same instance").  Arguments with distinct indices
+must refer to distinct nodes.
+
+<p>
+As with "same instance", labels that are intended to refer to distinct
+nodes in the tree must be character-by-character identical (except for
+the prefix index).
+
+<p>
+Here is a slightly more complex example of a query with prefix indices:
+
+<blockquote>
+<pre>
+    ([1]NP* hasSister [2]NP*) 
+AND ([1]NP* iDoms [3]PRO)
+AND ([2]NP* iDoms [4]PRO)
+</pre>
+</blockquote>
+
+This query finds sentences with two sister NPs, each of which
+immediately dominates (its own) PRO.
+
+<blockquote>
+<pre>
+/~*
+And +tere it lykede him to suffre many repreuynges and scornes for vs
+(CMMANDEV,1.4)
+*~/
+
+/*
+1 IP-MAT: 7 NP-SBJ-1, 12 NP-OB2, 8 PRO it, 13 PRO him
+*/
+
+(0 (1 IP-MAT (2 CONJ And)
+             (4 ADVP-LOC (5 ADV +tere))
+             (7 NP-SBJ-1 (8 PRO it))
+             (10 VBD lykede)
+             (12 NP-OB2 (13 PRO him))
+             (15 IP-INF-1 (16 TO to)
+                          (18 VB suffre)
+                          (20 NP-OB1 (21 Q many)
+                                     (23 NS repreuynges)
+                                     (25 CONJP (26 CONJ and)
+                                               (28 NX (29 NS scornes))))
+                          (31 PP (32 P for)
+                                 (34 NP (35 PRO vs)))))
+      (36 ID CMMANDEV,1.4))
+</pre>
+</blockquote>
+
+If the prefix indices on the two instances of PRO were omitted, the
+search would generate no hits, since it would be requiring one and the
+same PRO node to be the child of the two distinct NP nodes.
+
+Here's a final example:
+
+<blockquote>
+<pre>
+query: (IP-SMC iDoms [1]NP*) AND ([1]NP* iDoms [3]\**)
+   AND (IP-SMC iDoms [2]NP*) AND ([2]NP* iDoms [4]\**)
+</pre>
+</blockquote>
+
+This query searches for an IP-SMC node which immediately dominates two
+distinct NP* nodes, each immediately dominating (its own) trace.  The
+two mentions of "IP-SMC" must refer to the same node in the tree
+(because "same instance" is enforced by default).  But "[1]NP*" and
+"[2]NP*" must refer to different nodes (because of the distinct prefix
+indices), and the same for the traces "[3]\**" and "[4]\**".
+
+<p>
+The above query finds sentences like this one:
+<blockquote>
+<pre>
+/~*
++After +t+am L+acedemonie gecuron him to ladteowe, Ircclidis w+as haten,
+(OR4,1.53.30.12)
+*~/
+
+/*
+23 IP-SMC: 34 NP-NOM, 34 NP-NOM, 35 *-2
+23 IP-SMC: 36 NP-NOM-PRD, 36 NP-NOM-PRD, 37 *ICH*-1
+*/
+
+(0 (1 CODE <T06610000900,1.53.30>)
+   ...
+   (23 IP-MAT-PRN (24 NP-NOM-2 *pro*)
+                  (26 NP-NOM-1 (27 NPR^N Ircclidis))
+                  (29 BEDI w+as)
+                  (31 VBN haten)
+                  (33 IP-SMC (34 NP-NOM *-2)
+                             (36 NP-NOM-PRD *ICH*-1)))
+                  (38 . ,))
+  (40 ID OR4,1.53.30.12))
+</pre>
+</blockquote>
+
+</body>
+

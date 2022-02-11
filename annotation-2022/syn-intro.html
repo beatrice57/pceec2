@@ -1,0 +1,1158 @@
+<head>
+<title>Introduction to syntactic annotation</title>
+</head>
+
+<a name="top">
+<h3>Introduction to syntactic annotation </h3>
+
+<ul>
+<li><a href="syn-intro.html#general_principles">General principles</a>
+	<ul>
+	<li><a href="syn-intro.html#dash_tags">"Dash" tags</a>
+	<li><a href="syn-intro.html#structural_principles">Structural principles</a>
+	</ul>
+<li><a href="syn-intro.html#internal_structure_of_phrases">Internal structure of phrases</a>
+<li><a href="syn-intro.html#internal_structure_of_clauses">Internal structure of clauses</a>
+	<ul>
+	<li><a href="syn-intro.html#ordinary_ips">Ordinary IPs</a>
+	<li><a href="syn-intro.html#imperatives">Imperatives</a>
+	<li><a href="syn-intro.html#non_wh_cps">Non-wh CPs</a>
+	<li><a href="syn-intro.html#wh_cps">Wh- CPs</a>
+	<li><a href="syn-intro.html#v_to_c">Verb fronting to C</a>
+	</ul>
+        <li><a href="syn-intro.html#sentence_tokenization">Division into sentence tokens</a>
+</ul>
+
+<hr>
+
+<p> The parsing scheme for the Penn Parsed Corpora of historical English
+(PPCHE), which is also used by
+the <a href="http:/www-users.york.ac.uk/~lang22/PCEEC-manual/index.html">Parsed
+Corpus of Early English Correspondence</a> (PCEEC), uses a limited tree
+representation in the form of labelled parentheses.  All open
+parentheses have an associated label, either a phrase label (<tt>NP,
+ADJP,</tt> etc.) or a word label (<tt>N, ADJ,</tt> etc.), representing
+nodes in a tree.  We use the terms 'word label' and 'POS
+(part-of-speech) label' interchangeably.  Every word is associated with
+a word label, but phrasal labels are not included in every case in which
+a fully labelled tree would require them.  Intermediate projections in
+the sense of X' theory (N', ADJ', etc.) are not generally included in
+our representations.  By comparison to trees in current syntactic
+theory, the trees in our corpora are therefore quite flat, and they are
+not required to be binary-branching.
+
+<p> The partial representation of phrase structure just described is not
+intended to make a theoretical statement, but was adopted for practical
+reasons.  Certain phrases are generally omitted in the annotation scheme
+because their boundaries are too difficult to define.  The prime example
+is VP.  The problematic character of VP is particularly obvious in early
+Middle English, where the order of the verb and its complements is in
+flux (at least on the surface).  But even in Present-Day English, the
+attachment site of verbal adjuncts is systematically ambiguous between
+low attachment to VP and high attachment at the clause level.  Other
+categories, such as DP, were omitted because the cost of including them
+outweighs their usefulness.  Intermediate projections are omitted for
+both reasons.  In no case should the lack of any particular phrase label
+be taken to imply that earlier forms of English failed to include the
+corresponding syntactic category.  The trees in the corpora are simply
+underspecified.
+
+<p> The examples in this section of the manual are constructed in Modern
+English so as to be maximally accessible.  The remainder of the manual
+contains examples from the corpora.  The examples are mostly from late
+Middle English and Early Modern English; examples from early Middle
+English are included where they are necessary to make a linguistic point.
+
+<a name="general_principles">
+<h4>General principles</h4>
+
+As just mentioned, the structures in our corpora generally include
+neither a VP nor intermediate projections like I'.  As a result, IP
+immediately dominates all verbs (to be understood in a broad sense,
+including modals and auxiliaries) and sentence-level constituents.  A
+typical parse structure is the following:
+
+<!-- ok
+<center>
+<img src="ppcme-tree1.GIF" HEIGHT=160 WIDTH=450>
+</center>
+-->
+
+<blockquote> <pre>
+(IP-MAT (NP-SBJ (NPR Mary))
+        (HVP has)
+        (BEN been)
+        (VAG meaning)
+        (IP-INF (TO to)
+                (VB go))
+        (PP (P for)
+            (NP (D a) (N week)))))
+</pre> </blockquote>
+
+<a name="dash_tags">
+<h4>Dash tags (or extended tags)</h4>
+
+<ul>
+
+<li> <b>Dash tags indicate syntactic subcategory or function.</b> In
+general, basic labels indicate a constituent's category (NP, PP, ADJP,
+etc.).  Additional labels (so-called dash tags or extended tags), which
+are separated from the category label by a hyphen, indicate subcategory
+or function:
+
+<p>
+<ul>
+<li><tt>NP-SBJ</tt> (subject NP)
+<li><tt>ADJP-SPR</tt> (secondary predicate ADJP)
+<li><tt>PP-PRN</tt> (parenthetical PP)
+</ul>
+
+<p> Not all phrases are labelled with a dash tag, and more than one such
+tag is possible (<tt>IP-INF-PRP</tt> = purpose infinitive,
+<tt>NP-SBJ-RSP</tt> = resumptive subject NP, etc.).
+
+<p> <li> <b>All clause labels carry a dash tag.</b> See
+<a href="syn-intro.html#internal_structure_of_clauses">Internal structure of
+clauses</a> for further basic information and
+<a href="syn-sub.html">Types of subordinate clauses</a> for detailed
+discussion.
+
+<p> <li> <b>All sentence-level NPs carry a dash tag.</b> Bare NPs are
+either complements of a nonverbal head (e.g., a preposition), or part 
+of a <a href="syn-conj.html">conjunction structure</a>.
+
+<blockquote> <pre>
+(IP-MAT (NP-TMP (N Yesterday))				&larr; temporal NP
+        (NP-SBJ (NPR Mary))				&larr; subject
+        (VBD told)
+        (NP-OB2 (NPR Jane))				&larr; second object
+        (CP-THT (C that)
+                (IP-SUB (NP-SBJ (PRO she))
+                        (VBD studied)
+                        (NP-MSR (QP (ADVR too) (Q much)))	&larr; measure NP
+                        (PP (P during)
+                           (NP (D the) (N+N weekend))))))	&larr; no dash tag
+</pre> </blockquote>
+
+<p> <li> <b>ADVPs are marked for function as directional
+(<tt>ADVP-DIR</tt>), locative (<tt>ADVP-LOC</tt>), or temporal
+(<tt>ADVP-TMP</tt>)</b>; other functions are unmarked.
+
+<blockquote> <pre>
+(IP-MAT (NP-SBJ (NPR Mary))
+        (ADVP (ADV happily))
+        (VBD put)
+        (NP-OB1 (D the) (N book))
+        (ADVP-LOC (ADV there))
+        (ADVP-TMP (ADV+WARD afterward)))
+</pre> </blockquote>
+
+<p> <li> <b>PPs are not marked for function,</b> except for
+parenthetical PPs (<tt>PP-PRN</tt>).
+
+<blockquote> <pre>
+(IP-MAT (NP-SBJ (NPR Mary))
+        (VBD put)
+        (NP-OB1 (D the) (N book))
+        (PP (P on)
+            (NP (D the) (N table)))
+        (PP (P on)
+            (NP (NPR Saturday))))
+</pre> </blockquote>
+</ul>
+
+<a name="structural_principles">
+<h4>Structural principles</h4>
+
+<ul>
+<li>
+
+<b>Sentence-level constituents bear phrasal labels.</b>
+
+<p> <b><font color="red">Exception:</font></b> IP can immediately dominate
+the following word-level constituents:
+
+<p>
+<ul>
+<li>verbal material (auxiliaries, modals, verbs, participles)
+<li>sentential conjunctions (<tt>CONJ</tt> and some cases of
+    <tt>ALSO, ELSE</tt>)
+<li>single-word interjections (<tt>INTJ</tt>)
+<li>sentential negation (<tt>NEG</tt>)
+<li>floated quantifiers (<tt>Q</tt>)
+<li>adverbial particles (<tt>RP</tt>)
+</ul>
+
+<p> <li> <b> In general, no intermediate projections.</b> Intermediate
+projections (N', ADJ', etc.) are represented only in certain
+<a href="syn-conj.html#shared_pre_modifiers">conjunction structures</a>.
+The absence of intermediate projections has several consequences.
+
+<p>
+<ul>
+
+<li>Within phrasal constituents, the phrasal node generally immediately
+dominates the head.
+
+<blockquote> <pre>
+(NP (D the) (N girl))
+
+(PP (P in)
+    (NP (D the) (N spring)))
+
+(ADJP (ADV very) (ADJ big))
+</pre> </blockquote>
+
+<p> <li> Specifiers are not distinguished from pre-head modifiers.
+
+<p> <li> Adjuncts are never distinguished from complements in
+structural terms.  They may be distinguished by the presence of
+dash tags.
+
+</ul>
+
+<p> <li> Single words that are not sentence-level constituents do not
+project phrasal nodes if the phrasal node would share the same category
+as the head.
+
+<blockquote> <pre>
+(NP (D a) (ADJ big) (N cat))		&larr; single-word case
+
+(NP (D a)
+    (ADJP (ADV very) (ADJ big)) 	&larr; multi-word case
+    (N cat))
+</pre> </blockquote>
+
+<a name="postmodifiers">
+<p> <b><font color="red">Exception:</font></b> Post-head modifiers project
+structure beyond the word level, even when they consist of a single
+word.  Like pre-head modifiers, they are represented as sisters to the
+head.
+
+<blockquote> <pre>
+(NP (ADJ various) (ADJ black) (NS cats)))
+
+(NP (ADJ black) (NS cats)
+    (ADJP (ADJ galore)))
+
+(NP (D a) (ADJ forsaken) (N castle))
+
+(NP (D an) (N castle)
+    (ADJP (ADJ forsaken))
+</pre> </blockquote>
+
+<a name="high_attachment">
+<p> <li> <b>Default high attachment.</b> In cases where the attachment
+level of constituents is ambiguous or difficult to determine, the
+default is to attach as high as possible (as it is in the Penn Treebank).
+
+<blockquote> <pre>
+(IP-MAT (NP-SBJ (NPR Mary))
+        (VBD saw)
+        (NP-OB1 (D the) (N man))
+        (PP (P with)					&larr; high by default
+            (NP (D the) (N telescope))))
+
+(NP (D the)
+    (N story)
+    (CP-REL (WNP-1 0)
+            (C that)
+            (IP-SUB (NP-OB1 *T*-1)
+                    (NP-SBJ (PRO they))
+                    (VBP tell)))
+    (PP (P about)					&larr; high by default
+        (NP (PRO the)
+            (N king))))
+(NP (D the)
+    (N story)
+    (RRC (BAG being)
+         (VAN told))
+    (PP (P about)					&larr; high by default
+        (NP (PRO the)
+            (N king))))
+</pre> </blockquote>
+</ul>
+
+<a name="internal_structure_of_phrases">
+<h4>Internal structure of phrases</h4>
+
+The internal structure of all nonclausal phrases is fundamentally similar.
+
+<p>
+<ul>
+<li>Heads project a phrasal node.
+
+<p> <b><font color="red">Exception 1:</font></b> Certain heads, such as
+determiners (<tt>D</tt>), modals (<tt>MD</tt>), or particles
+(<tt>RP</tt>), never project a phrase.  Verbs generally do not project a
+VP, but see <a href="syn-const.html#vp">Verb phrase</a> for exceptions.
+
+<p> <b><font color="red">Exception 2:</font></b> Single-word pre-head
+modifiers do not project a phrasal node if the phrasal node would share
+the same category as the head.
+
+<!-- ok
+<center>
+<img src="ppcme-tree2.GIF" HEIGHT=135 WIDTH=450>
+<img src="ppcme-tree3.GIF" WIDTH=450 HEIGHT=185>
+<img src="ppcme-tree4.GIF" WIDTH=550 HEIGHT=250>
+</center>
+-->
+
+<pre>
+(NP (D the) (NS girls)
+    (PP (P on)
+        (NP (D the) (N beach))))
+
+(NP (Q many) (ADJ happy) (NS girls)	&larr; two single-word pre-head modifiers
+    (PP (P on)
+        (NP (D the) (ADJ overcrowded) (N beach))))
+
+(NP (ADJP (ADJ happy) (CONJ and) (ADJ excited))		&larr; multi-word pre-head modifier
+    (NS girls))
+
+(NP (Q many)				&larr; single-word pre-head modifier
+    (ADJP (ADV very) (ADJ happy))	&larr; multi-word pre-head modifier
+    (NS girls)
+    (PP (P on)
+        (NP (D the) (ADJ overcrowded) (N beach))))
+
+(NP (QP (ADV very) (Q many))		&larr; multi-word pre-head modifier
+    (ADJP (ADV very) (ADJ happy)) 	&larr; multi-word pre-head modifier
+    (NS girls)
+    (PP (P on)				&larr; post-head modifier
+        (NP (D the) (N beach)
+            (PP (P with)
+                (NP (D the) (ADJ big) (NS dunes))))))
+
+(ADJP (ADV very) (ADJ happy))	&larr; single-word pre-head modifier
+
+(PP (ADV especially)		&larr; single-word pre-head modifier
+    (P on)
+    (NP (NPRS Saturdays)))
+
+(PP (ADV right)			&larr; single-word pre-head modifier
+    (P up)
+    (NP (D the) (N street)))
+
+(ADVP (ADV very) (ADV slowly))	&larr; single-word pre-head modifier
+</pre>
+
+<p>
+<li> In general, the head of a phrase is overt and matches the category
+of the phrase, but in certain cases, there is no matching head.
+Sometimes, this is simply an artefact of our annotation scheme and due
+to the fact that some words receive a more specific label than others.
+For instance, pronouns are labelled <tt>PRO,</tt> not <tt>D</tt> or
+<tt>N</tt>.  In other instances, the absence of an overt head reflects
+the possibility of some deletion process.
+
+<p> The most common types of categorial mismatches between heads and
+phrases are the following:
+
+<p>
+<ul>
+
+<li> nominal elements not labelled <tt>N</tt>, <tt>NS</tt>, etc.
+
+<blockquote>
+D, EX, MAN, ONES, OTHERS, PRO, ?PRO$
+</blockquote>
+
+<p>
+<li> adjectival elements not labelled <tt>ADJ</tt>, <tt>ADJR</tt>, etc.
+
+<blockquote>
+?ONE, ?OTHER, SUCH, ?Q (QR, QS) 
+</blockquote>
+
+</ul>
+
+<p> As indicated by the question marks in the above lists, it is not
+always clear whether a particular word modifies an elided head or is
+itself the head of the phrase.  It is mainly for this reason that we do
+not attempt to make a systematic distinction between the two cases.
+
+<p>
+The most common elision case is of NPs containing only a determiner and
+an adjective (or sometimes only an adjective).
+
+<blockquote> <pre>
+(IP-MAT (IP-MAT-1 (NP-SBJ (NPR Mary))
+                  (VBD gave)
+                  (NP-OB2 (NPR Jane))
+                  (NP-OB1 (D a) (ADJ red) (N ribbon)))
+        (CONJP (CONJ and)
+               (IP-MAT=1 (NP-OB2 (NPR Lucy))
+                         (NP-OB1 (D a) (ADJ blue)))))   &larr; elided head noun
+</pre> </blockquote>
+
+</ul>
+
+<a name="internal_structure_of_clauses">
+<h4>Internal structure of clauses</h4>
+
+Clauses are labelled either <tt>CP</tt> or <tt>IP</tt>.  CPs contain
+either a complementizer or a wh- position (or both).  IPs contain
+neither.  All IPs and CPs carry dash tags indicating their subtype.
+See <a href="labels.html#ip-types">Types of IP</a>
+and <a href="labels.html#cp-types">Types of CP</a></a> for details.
+
+<a name="ordinary_ips">
+<h4>Ordinary IPs</h4>
+
+All IPs except <a href="syn-intro.html#imperatives">subjectless
+imperatives</a> and <a href="syn-sub.html#infinitives">subjectless
+infinitives</a> have a subject in our annotation scheme.  If the subject
+is not overt, an <a href="syn-empty.html#empty_subjects">empty
+subject</a> is added.  Clauses generally do not contain VP (but see
+<a href="syn-const.html#vp">Verb phrase</a>).  As a rule, daughters of IP
+are phrasal (but see
+<a href="syn-intro.html#internal_structure_of_phrases">Internal structure of
+phrases</a> for exceptions).
+
+<blockquote> <pre>
+(IP-MAT (CONJ But)			&larr; sentential conjunction
+	(INTJ alas)			&larr; single-word interjection
+	(, ,)
+        (NP-SBJ (PRO we))
+	(MD will)			&larr; modal
+	(NEG not)			&larr; negation
+	(Q all)				&larr; floated quantifier
+        (VB end)			&larr; verb
+        (RP up))			&larr; particle
+	(PP (P with)
+            (NP (PRO$ our) (N favorite)))
+        (. .))
+
+( (IP-MAT-SPE (' ')
+              (INTJ Yes)		        &larr; single-word interjection
+              (, ,)
+              (' ')
+              (IP-MAT-PRN (NP-SBJ (PRO he))
+                          (VBD seyde))	        &larr; verb
+              (, ,)
+              (' ')
+              (NP-SBJ (PRO I))
+              (MD shall)			&larr; modal
+              (VB promyse)			&larr; verb
+              (NP-OB2 (PRO you))
+              (IP-INF (TO to)			&larr; auxiliary
+                      (VB fullfylle)		&larr; verb
+                      (NP-OB1 (PRO$ youre) (N desyre)))
+              (. .)
+              (' '))
+  (ID CMMALORY,667.4880))
+
+( (IP-MAT-SPE (CONJ for)				&larr; conjunction
+              (NP-SBJ (PRO he)
+                      (CP-REL (WNP-1 0)
+                              (C that)
+                              (IP-SUB (NP-SBJ *T*-1)
+                                      (MD shall)	&larr; modal
+                                      (VB pulle)	&larr; verb
+                                      (NP-OB1 (PRO hit))
+                                      (RP oute))))	&larr; particle
+              (MD shall)				&larr; modal
+              (DO do)					&larr; verb
+              (NP-OB1 (PRO hit))
+              (PP (P with)
+                  (NP (Q litill) (N myght)))
+              (. .)
+              (' '))
+  (ID CMMALORY,46.1512))
+
+( (IP-MAT-SPE (CONJ and)				&larr; conjunction
+              (ADVP (ADV ellis))
+              (NP-SBJ (PRO I))
+              (MD wolde)				&larr; modal
+              (HV have)					&larr; auxiliary
+              (BEN bene)				&larr; verb
+              (ADJP-PRD (ADJ lothe)
+                        (PP (P as)
+                            (NP (Q ony) (N knyght)
+                                (CP-REL (WNP-1 0)
+                                        (C that)
+                                        (IP-SUB (NP-SBJ *T*-1)
+                                                (VBP lyvith)))))
+                        (IP-INF (FOR for) (TO to)		&larr; auxiliary material
+                                (VB sle)
+                                (NP-OB1 (D a) (N lady))))
+              (. .)
+              (' '))
+  (ID CMMALORY,51.1701))
+</pre> </blockquote>
+
+<a name="imperatives">
+<h4>Imperatives (IP-IMP)</h4>
+
+Imperatives are labelled <tt>IP-IMP</tt>.  Only overt subjects are
+included in the annotation.
+
+<pre>
+( (IP-IMP-SPE (CONJ but)
+              (VBI saye)
+              (CP-THT (C 0)
+                      (IP-SUB (NP-SBJ (PRO ye))
+                              (BEP are)
+                              (ADJP-PRD (ADJ diseased))))
+              (. ,))
+  (ID CMMALORY,4.83))
+
+( (IP-IMP (CONJ for)
+          (VBI witte)
+          (NP-SBJ (PRO ye))		&larr; overt subject
+          (ADVP (ADV wele))
+          (CP-THT (C +tat)
+                  (IP-SUB (NP-SBJ (NPR god))
+                          (MD may)
+                          (VB se)
+                          (NP-OB1 (CONJ ba+te) (N iuil) (CONJ and) (N gude))))
+          (. ;))
+  (ID CMBENRUL,12.418))
+</pre>
+
+<a name="non_wh_cps">
+<h4>Non-wh CPs</h4>
+
+THAT clauses (<tt>CP-THT</tt>), degree complements (<tt>CP-DEG</tt>),
+and certain adverbial clauses (<tt>CP-ADV</tt>) have the following basic
+structure:
+
+<pre>
+(CP (C THAT/0)
+    (IP ...))
+</pre>
+
+<p> The complementizer position is always included; when not filled by
+an overt complementizer, it contains <tt>0</tt> (zero).
+
+<pre>
+(NODE (PP (P so)
+          (CP-ADV (C that)
+                  (IP-SUB (NP-MSR (NP (NUM thre) (NS dayes))
+                                  (CONJP (CONJ and)
+                                         (NP (NUM thre) (NS nyghtes))))
+                          (NP-SBJ (PRO he))
+                          (BED was)
+                          (ADJP-PRD (ADJ specheles)))))
+      (ID CMMALORY,6.172))
+
+(NODE (PP (P til)
+          (CP-ADV (C that)
+                  (IP-SUB (NP-SBJ (PRO ye))
+                          (VBP see)
+                          (CP-THT (C 0)				&larr; empty complementizer
+                                  (IP-SUB (NP-SBJ (PRO ye))
+                                          (VBP go)
+                                          (PP (P unto)
+                                              (NP (D the) (ADJR wers))))))))
+      (ID CMMALORY,13.393))
+
+(NODE (PP (P whan)
+          (CP-ADV (C 0)
+                  (IP-SUB (NP-SBJ (NP (D the) (N duke))
+                                  (CONJP (CONJ and)
+                                         (NP (PRO$ his) (N wyf))))
+                          (BED were)
+                          (VBN comyn)
+                          (PP (P unto)
+                              (NP (D the) (N kynge))))))
+      (ID CMMALORY,2.11))
+
+(NODE (IP-SUB (NP-SBJ (PRO we))
+              (VBP departe)
+              (PP (P from)
+                  (ADVP (ADV hens)))
+              (ADVP (ADV sodenly))
+              (, ,)
+              (CP-ADV (C that)
+                      (IP-SUB (NP-SBJ (PRO we))
+                              (MD maye)
+                              (VB ryde)
+                              (NP-MSR (Q all) (N nyghte))
+                              (PP (P unto)
+                                  (NP (PRO$ oure) (ADJ owne) (N castell))))))
+      (ID CMMALORY,2.18))
+
+(NODE (IP-SUB (NP-SBJ (PRO he))
+              (VBD understood)
+              (CP-THT (C that)
+                      (IP-SUB (NP-SBJ (NPR syre) (NPR Ector))
+                              (BED was)
+                              (NEG not)
+                              (NP-PRD (PRO$ his) (N fader)))))
+      (ID CMMALORY,9.271))
+
+(NODE (ADVP (ADVR so)
+            (ADV harde)
+            (CP-DEG (C that)
+                    (IP-SUB (NP-SBJ (N horse) (CONJ and) (N man))
+                            (VBD felle)
+                            (PP (P to)
+                                (NP (D the) (N erthe))))))
+      (ID CMMALORY,17.538))
+
+(NODE (ADVP (ADVR so)
+            (ADV merveillously)
+            (CP-DEG (C that)
+                    (IP-SUB (NP-PRD (N doubte))
+                            (NP-SBJ-1 (PRO it))
+                            (BED was)
+                            (IP-INF-1 (TO to)
+                                      (VB here)
+                                      (PP (P of)
+                                          (NP (D that) (N bataille))))
+                            (PP (P for)
+                                (NP (D the) (ADJ grete) (N blood) (N shedynge))))))
+      (ID CMMALORY,68.2325))
+</pre>
+
+<a name="wh_cps">
+<h4>Wh- CPs</h4>
+
+A number of clause types, listed below, contain both a wh- position and
+a complementizer position.  This is to allow for the case in which both
+positions are filled.  Empty wh- positions and empty complementizers are
+both indicated by <tt>0</tt> (zero).  The wh- operator is coindexed to a
+trace of the same category.  See <a href="syn-empty.html#wh-traces">Wh-
+traces</a> for details, particularly <a href="syn-empty.html#position_of_traces">The position of traces</a>.
+
+<p>
+<ul>
+<li>certain adverbial clauses (<tt>CP-ADV</tt>)
+<li>clause-adjoined relatives (<tt>CP-CAR</tt>)
+<li>IT clefts (<tt>CP-CLF</tt>)
+<li>comparative clauses (<tt>CP-CMP</tt>)
+<li>exclamatives (<tt>CP-EXL</tt>)
+<li>free relatives (<tt>CP-FRL</tt>)
+<li>indirect questions (<tt>CP-QUE-SUB</tt>)
+<li>relative clauses (<tt>CP-REL</tt>)
+<li>TOUGH movement complements (<tt>CP-TMC</tt>)
+</ul>
+
+<p>
+<ul>
+<li><b>Both wh- and complementizer position filled</b>
+
+<pre>
+( (CP-QUE-SUB (WADVP-1 (WADV how))
+              (C that)
+              (IP-SUB (ADVP *T*-1)
+                      (NP-SBJ (NPR sir) (NPR Gawayne))
+                      (MD shall)
+                      (VB revenge)
+                      (NP-OB1 (NP-POS (PRO$ his) (N$ fadirs)
+                                      (NP-PRN *ICH*-2))
+                              (N deth)
+                              (CODE &ltem&gt;)
+                              (NP-PRN-2 (NPR kynge) (NPR Lot))
+                              (CODE &lt$$em&gt;)
+                      (PP (P on)
+                          (NP (NPR kynge) (NPR Pellynore)))))
+  (ID CMMALORY,61.2043))
+
+( (CP-REL (WNP-1 (WPRO whyche))
+          (C that)
+          (IP-SUB (NP-OB1 *T*-1)
+                  (NP-SBJ (PRO thou))
+                  (MD wolte)
+                  (HV have)
+                  (PP (P to)
+                      (NP (PRO$ thy) (N peramour)))))
+  (ID CMMALORY,184.2551))
+
+( (CP-FRL (WNP-1 (WPRO Who))
+          (C +tat)
+          (IP-SUB (NP-SBJ *T*-1)
+                  (MD may)
+                  (VB take)
+                  (NP-OB1 (D +tys) (N vertu))))
+  (ID CMAELR3,26.10))
+
+( (CP-ADV (WQ Whether)
+          (C that)
+          (IP-SUB (NP-SBJ (PRO I))
+                  (VBP (VBP lyve) (CONJ other) (VBP dye))))
+  (ID CMMALORY,203.3290))
+
+( (CP-FRL (WNP-1 (WD what) (N seruise))
+          (C +tat)
+          (IP-SUB (NP-OB1 *T*-1)
+                  (NP-SBJ (PRO +tu))
+                  (VBP canst)))
+  (ID CMAELR3,40.417))
+
+(NODE (CP-QUE-SUB (WPP-5 (P with)
+                         (WNP (WD which) (N degre)
+                              (PP (P of)
+                                  (NP (D the) (N zodiak)))))
+                  (C that)
+                  (IP-SUB (PP *T*-5)
+                          (NP-SBJ (D the) (N mone))
+                          (VBP arisith)
+                          (PP (P in)
+                              (NP (Q any) (N latitude)))))
+      (ID CMASTRO,663.C2.34))
+</pre>
+
+<p>
+<li><b>Only wh- position filled</b>
+
+<pre>
+(NODE (NP (D a) (ADJ new) (N batayle)
+          (CP-REL (WNP-1 (WPRO whych))
+                  (C 0)
+                  (IP-SUB (NP-SBJ *T*-1)
+                          (BED was)
+                          (ADJP-PRD (ADJ sore) (CONJ and) (ADJ harde)))))
+      (ID CMMALORY,26.832))
+
+(NODE (NP-ADV (CP-FRL (WNP-1 (WPRO what) (ADV euere))
+                      (C 0)
+                      (IP-SUB (NP-PRD *T*-1)
+                              (NP-SBJ (PRO heo))
+                              (BEP be))))
+      (ID CMAELR3,26.4))
+
+(NODE (NP (D the) (N castel)
+          (PP (P of)
+              (NP (NPR Terrabyl)))
+          (, ,)
+          (CP-REL (WNP-1 (D the) (WPRO whiche))
+                  (C 0)
+                  (IP-SUB (NP-SBJ *T*-1)
+                          (HVD had)
+                          (NP-OB1 (Q many) (NS yssues)
+                                  (CONJP (CONJ and)
+                                         (NX (NS posternes)))
+                                  (RP oute)))))
+      (ID CMMALORY,3.36))
+
+(NODE (NP-OB1 (Q alle) (D the) (N cause)
+              (CP-QUE-SUB-PRN (WADVP-1 (WADV how))
+                              (C 0)
+                              (IP-SUB (ADVP *T*-1)
+                                      (NP-SBJ (PRO it))
+                                      (BED was)
+                                      (PP (P by)
+                                          (NP (NPR$ Merlyns) (N counceil))))))
+      (ID CMMALORY,5.134))
+
+(NODE (NP (CP-FRL (WNP-1 (WD what) (ADJ poure) (N man))
+                  (C 0)
+                  (IP-SUB (NP-OB1 *T*-1)
+                          (NP-SBJ (PRO ye))
+                          (VBP mete)
+                          (PP (P at)
+                              (NP (D the) (N posterne) (N yate)
+                                  (PP (P of)
+                                      (NP (D the)
+                                          (N castel))))))))
+      (ID CMMALORY,6.149))
+</pre>
+
+<p>
+<li><b>Only complementizer position filled</b>
+
+<pre>
+(NODE (NP (D the) (ADJS byggest) (N castell)
+          (CP-REL (WNP-1 0)
+                  (C that)
+                  (IP-SUB (NP-OB1 *T*-1)
+                          (NP-SBJ (PRO he))
+                          (HVP hath))))
+      (ID CMMALORY,2.32))
+
+(NODE (NP-OB1 (D the) (NPR holy) (NPR lond)
+              (CP-REL (WNP-1 0)
+                      (C +tat)
+                      (IP-SUB (NP-SBJ (NS men))
+                              (VBP callen)
+                              (IP-SMC (NP-SBJ *T*-1)
+                                      (NP-PRD (D the) (N lond)
+                                              (PP (PP (P of)
+                                                      (NP (N promyssioun)))
+                                                  (CONJP (CONJ or)
+                                                         (PP (P of)
+                                                             (NP (N beheste))))))))))(ID CMMANDEV,1.2))
+
+(NODE (NP-MSR (D the) (ADJ+N meanwhyle)
+              (CP-REL (WADVP-1 0)
+                      (C that)
+                      (IP-SUB (ADVP-TMP *T*-1)
+                              (NP-SBJ (D thys) (N knyght))
+                              (BED was)
+                              (VAG makynge)
+                              (IP-SMC (NP-SBJ (PRO hym))
+                                      (ADJP-PRD (ADJ redy)
+                                                (IP-INF (TO to)
+                                                        (VB departe)))))))
+      (ID CMMALORY,48.1589))
+
+(NODE (NP-SBJ (D Thys) (N swerde)
+              (CP-REL (WNP-1 0)
+                      (C that)
+                      (IP-SUB (NP-SBJ (PRO I))
+                              (BEP am)
+                              (VAN gurte)
+                              (PP (P withall)
+                                  (NP *T*-1)))))
+      (ID CMMALORY,45.1496))
+</pre>
+
+<p>
+<li><b>Neither wh- nor complementizer position filled</b>
+
+<pre>
+(NODE (NP-OB1 (D the) (N despite)
+              (CP-REL (WNP-3 0)
+                      (C 0)
+                      (IP-SUB (NP-OB1 *T*-3)
+                              (NP-SBJ (PRO ye))
+                              (DOD dud)
+                              (NP-TMP (D thys) (N day))
+                              (PP (PP (P unto)
+                                      (NP (NPR kynge) (NPR Arthure)))
+                                  (CONJP (CONJ and)
+                                         (PP (P to)
+                                             (NP (PRO$ his) (N courte))))))))
+      (ID CMMALORY,51.1696))
+
+(NODE (NP (Q al)
+          (CP-REL (WNP-1 0)
+                  (C 0)
+                  (IP-SUB (NP-OB1 *T*-1)
+                          (NP-SBJ (PRO +tu))
+                          (VBD suffredest))))
+      (ID CMAELR3,53.854))
+
+(NODE (NP (D the) (N feith)
+          (CP-REL (WNP-2 0)
+                  (C 0)
+                  (IP-SUB (NP-OB1 *T*-2)
+                          (NP-SBJ (PRO she))
+                          (VBD ought)
+                          (PP (P to)
+                              (NP (PRO hym))))))
+      (ID CMMALORY,5.121))
+
+(NODE (NP (D +te) (N blys)
+          (CP-REL (WNP-1 0)
+                  (C 0)
+                  (IP-SUB (NP-SBJ (PRO he))
+                          (VBD boght)
+                          (NP-OB1 (PRO vs))
+                          (PP (P to)
+                              (NP *T*-1)))))
+      (ID CMMIRK,5.112))
+</pre>
+
+</ul>
+
+<a name="v_to_c">
+<h4>Verb fronting to C</h4>
+
+Subject-verb inversion in <a href="syn-sub.html#v1_conditionals">V1
+conditionals</a>, <a href="syn-sub.html#questions">questions</a>, and
+<a href="syn-sub.html#exclamatives">exclamatives</a> is not explicitly
+represented as verb movement to C in our annotation scheme.  The
+inverted verb remains a daughter of IP.  However, clauses with inversion
+differ structurally from ones without inversion in not containing a C
+position.
+
+<pre>
+(PP (P if)
+    (CP-ADV (C 0)			&larr; C, no inversion
+            (IP-SUB (NP-SBJ (PRO I))
+                    (HVD had)
+                    (VBN known))))
+
+(CP-ADV (IP-SUB (HVD had)		&larr; inversion, no C
+	        (NP-SBJ (PRO I))
+                (VBN known)))
+
+(IP-MAT (NP-SBJ (PRO))
+        (DOP do)
+        (NEG not)
+        (VB know)
+        (CP-QUE-SUB (WADVP-1 (WADV when))
+                    (C 0)			&larr; C, no inversion
+                    (IP-SUB (ADVP-TMP *T*-1)
+                            (NP-SBJ (PRO they))
+                            (MD will)
+                            (VB come))))
+
+(CP-QUE-MAT (WADVP-1 (WADV when))		&larr; inversion, no C
+            (IP-SUB (ADVP-TMP *T*-1)
+	            (MD will)
+	            (NP-SBJ (PRO they))
+                    (VB come)))
+</pre>
+
+<a name="sentence_tokenization">
+<a name="sent_tok_conj">
+<h4>Division into sentence tokens</h4>
+
+<ul>
+<li><a href="syn-intro.html#sent_tok_conj">Conjunction</a>
+<li><a href="syn-intro.html#sent_tok_other">Other cases</a>
+<li>See also <a href="syn-conj.html#pseudo-imperatives">Pseudo-imperatives</a>
+<li>See also <a href="pos-punc.html">Punctuation</a>
+</ul>
+
+<h4>Conjunction</h4>
+
+The conventions for the division of the text into sentence tokens in
+connection with conjunction are discussed in more detail in
+<a href="syn-conj.html#clausal_conjunction">Clausal
+conjunction</a>.  What follows is a list of illustrative examples.
+Blank lines indicate a break between sentence tokens.
+
+<p> <b>No token break with conjoined simple verbs</b>
+
+<p>
+<blockquote>
+The simplest case: conjoined intransitive verbs
+
+<blockquote>
+<pre>
+He came , saw , and conquered .
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD (VBD came) (, ,) (VBD saw) (, ,) (CONJ and) (VBD conquered))
+          (. .)))
+</pre>
+</blockquote>
+
+Same treatment for conjoined verbs that share all arguments
+
+<blockquote>
+<pre>
+He spotted , approached , and greeted the Queen .
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD (VBD spotted) (, ,) (VBD approached) (, ,) (CONJ and) (VBD greeted))
+          (NP-OB1 (D the) (N Queen))
+          (. .)))
+</pre>
+</blockquote>
+</blockquote>
+
+<p> <b>Ordinary VP conjunction triggers token break</b>
+
+<blockquote>
+<pre>
+He sang ,
+
+and danced the polka .
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD sang)
+          (. ,)))
+
+( (IP-MAT (CONJ and)
+          (NP-SBJ *con*)
+          (VBD danced)
+          (NP-OB1 (D the) (N polka))
+          (. .)))
+</pre>
+</blockquote>
+
+<p> <b>Tricky case: Proper treatment depends on meaning</b>
+
+<blockquote>
+<pre>
+He came , and left fifty years later .	        &larr; one token if the two events occur in the same year
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD (VBD came) (, ,) (CONJ and) (VBD left))
+          (ADVP-TMP (NP-MSR (NUM 50) (NS years))
+                    (ADVR later))
+          (. .)))
+
+He came ,
+
+and left fifty years later .			&larr; two tokens if the two events are separated by 50 years
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD came)
+          (. ,)))
+
+( (IP-MAT (CONJ and)
+          (NP-SBJ *con*)
+          (VBD left)
+          (ADVP-TMP (NP-MSR (NUM 50) (NS years))
+                    (ADVR later))
+          (. .)))
+</pre>
+</blockquote>
+
+<p> <b>No token break with first
+<a href="syn-conj.html#conjoined_direct_speech">direct speech</a>
+clause</b>
+
+<blockquote>
+<pre>
+He said , " I conquered . "
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD said)
+          (PUNC ,)
+          (PUNC ")		        &larr; default high attachment (contrary to sense)
+          (IP-MAT-SPE (NP-SBJ (PRO I))
+                      (VBD conquered))
+          (PUNC ")  			&larr; default high attachment (contrary to sense)
+          (PUNC .)))
+</pre>
+</blockquote>
+
+<p> <b>Further
+<a href="syn-conj.html#conjoined_direct_speech">direct speech</a>
+clauses become separate tokens</b>
+
+<blockquote>
+<pre>
+He said , " I came ,
+
+I saw ,
+
+I conquered . "
+
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD said)
+          (PUNC ,)
+          (PUNC ")			&larr; default high attachment (contrary to sense)
+          (IP-MAT-SPE (NP-SBJ (PRO I))
+                      (VBD came))
+          (PUNC ,)))
+
+( (IP-MAT-SPE (NP-SBJ (PRO I))
+              (VBD saw)
+              (PUNC ,)))
+
+( (IP-MAT-SPE (NP-SBJ (PRO I))
+              (VBD conquered)
+              (PUNC .)
+              (PUNC ")))
+</pre>
+</blockquote>
+
+<p> <b><a href="syn-sub.html#clause_adjoined_relatives">Clause-adjoined
+relatives</a> (generally no token break, regardless of capitalization)</b>
+
+<blockquote>
+<pre>
+She baked brownies , whereupon joy reigned unconfined .
+
+She baked brownies , Whereupon joy reigned unconfined .
+</pre>
+</blockquote>
+
+<p> <b>Ordinary combination of direct speech and clause-adjoined relative
+(no token break)</b>
+
+<blockquote>
+<pre>
+She said , " I will bake brownies , " Whereupon joy reigned unconfined .
+</pre>
+</blockquote>
+
+<p> <b>Separate direct speech token forces clause-adjoined relative to become separate token</b>
+
+<blockquote>
+<pre>
+She said , " I will fix the errors .
+
+and I will do so now . "
+
+Whereupon joy reigned unconfined .
+</pre>
+</blockquote>
+
+<a name="sent_tok_other">
+<h4>Other cases</h4>
+
+<p> <b>Chapter and section headings</b>
+
+<blockquote>
+<pre>
+Section 102 ,
+
+Soldering tips					&larr; separate token
+</pre>
+</blockquote>
+
+<p> <b>CODE material</b>
+
+<p> Where possible, material tagged with CODE (notably headings, page
+numbers, and editorial material) counts as a separate token.
+
+<p> However, font change indications belong with their associated
+material; they are never separate tokens.
+
+<blockquote>
+<pre>
+<text>/CODE
+
+<heading>/CODE
+
+Chapter 22
+
+<$$heading>/CODE
+
+Here is a sentence.
+
+<P_234>/CODE				&larr; separate token
+
+And here is another one.
+
+But lo,
+<P_235>/CODE				&larr; part of surrounding token
+the preceding page number is not a
+separate token !
+</pre>
+</blockquote>
+
+<a name="tok_diaries_letters">
+<p> <b>Diaries and letters</b>
+
+<p> In diaries and letters, the place and date of writing each count as
+separate tokens.
+
+<blockquote>
+<pre>
+( (NP-LOC (NPR London)))
+
+( (NP-TMP (NPR June) (ADJ 21st) (NUM 1706)))
+
+( (CP-QUE-MAT (NP-VOC (ADJS Dearest) (NPR Delilah))
+              (, ,)
+              (WADVP-1 (WADV How))
+              (IP-SUB (ADVP *T*-1)
+	  	      (BEP are)
+                      (NP-SBJ (PRO you)))
+              (? .)))
+</pre>
+</blockquote>
+
+<a name="tok_intj_voc">
+<p> <b>Interjections and vocatives</b>
+
+<p> Where possible, <a href="syn-phrase.html#intjp">interjections</a>
+and <a href="syn-const.html#vocatives">vocatives</a> are treated as part
+of a preceding or following sentence token.
+
+<a name="tok_plays">
+<p> <b>Plays</b>
+
+<p> The indication of the character speaking lines and the next line
+spoken by the character count as a single token.
+
+<blockquote>
+<pre>
+Falstaff .			&larr; period does not trigger token break
+It is I .
+</pre>
+</blockquote>
+

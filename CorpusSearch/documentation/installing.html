@@ -1,0 +1,260 @@
+<head>
+<title>Installing CorpusSearch</title>
+</head>
+
+<body>
+
+<h2>Installing and running CorpusSearch</h2>
+
+<ul>
+<li><a href="#prelim">Preliminaries</a>
+<li><a href="#install">Installing CorpusSearch</a>
+<li><a href="#run">Running CorpusSearch</a>
+</ul>
+
+<p>
+<hr>
+
+<p>
+
+<a name="prelim">
+<h3>Preliminaries</h3>
+
+<ul>
+<li>Changes introduced with Mac OS 10.15 (Catalina) cause certain Java
+    applications to fail, but as of March 2020, CorpusSearch appears 
+    to run under Catalina.
+
+<p>
+<li>If you are using Windows, we recommend downloading a copy of the Java
+    Virtual Machine (version 1.4 or later) from the Sun java site
+    (<a href="http://www.java.com/">http://www.java.com/</a>) rather
+    than running Microsoft's Java.
+    <p>
+    Here's how to check which virtual machine you are running under
+    Windows XP.
+    <ul> 
+    <li>Search for the Command Prompt by clicking on the "Run" icon on the Start menu.
+    <li>Enter "cmd" in the dialog box that comes up.
+    <li>Enter "C:\Documents and Settings\username>java -version" in the Command Prompt
+        dialog box that comes up.
+    </ul>
+
+<p>
+<li>In order to run CorpusSearch, you will need to be familiar with
+    how <b>paths</b> work in your operating system.  This is especially
+    important if you are running CorpusSearch on a multi-user machine.
+    The relevant syntax differs somewhat across operating systems,
+    though the concepts are the same.  The documentation for your
+    operating system will contain a complete discussion.
+
+<p>
+<li>If you are using a Unix-derived system, including Linux and
+    Mac <nobr>OS X,</nobr> you should also learn something
+    about <b>shells.</b>  The instructions below assume that you are
+    using the T shell (tcsh), but you may find yourself in a Bourne
+    shell (bash) environment.  Catalina installs the z shell by default.
+    The basic installation is the same across shells, but the syntax of
+    path specification and other matters is a bit different for each.
+    Please should consult local documentation for details.
+
+</ul>
+
+<a name="install">
+<h3>Installing CorpusSearch</h3>
+
+<ul>
+<li>Download the latest version of CorpusSearch
+    from <a href="http://corpussearch.sourceforge.net/">http://corpussearch.sourceforge.net/</a>,
+    or use the version that comes with the LDC release of the Penn
+    Parsed Corpora of Historical English.  In what follows, we assume
+    that this is version CS_2.003.04.jar.
+
+<p>
+<li>Move the .jar file to a convenient location - for example, the
+    "Applications" folder under Mac OS X or the "Program Files" folder
+    under Windows.
+
+<p>
+<li>Unix/Linux users (including Mac OS X):
+
+   <ul>
+   <p>
+   <li>Open a window that allows you run commands - the Terminal program
+       under Mac OS X or an xterm window under Unix or Linux.
+  
+   <p>
+   <li>Assuming that you have moved "CS_2.003.04.jar" to the "Applications"
+       folder, enter the following line at the prompt in the terminal
+       window.
+
+   <blockquote>
+   <pre>
+   java -classpath /Applications/CS_2.003.04.jar csearch/CorpusSearch
+   </pre>
+   </blockquote>
+
+   If you have moved the .jar file to some other location than /Applications,
+   edit the path accordingly.
+
+   <p>
+   Please be aware that if your operating system displays paths to you
+   in a language other than English, it almost certainly still uses the
+   English pathnames underlyingly.  So a path that <u>appears</u> to you
+   as "/Applicazioni" or "/Utenti/beatrice/Scrivania" will likely need to
+   be specified by the English "/Applications" or "/Users/beatrice/Desktop".
+
+   <p>
+   <li>
+   CorpusSearch should now prompt you for input.  If not, check the path
+   to the .jar file.  Once you're prompted for input, follow the instructions
+   to quit the search.  All you are doing at this point is checking that the 
+   path to the program is set up correctly.
+
+   <p>
+   <li>
+   For convenience, you can add an alias for the above java command
+   to your shell initialization file (.cshrc, .bashrc, .zshrc).  The
+   following line will create such an alias in a .cshrc file:
+
+   <blockquote>
+   <pre>
+   alias CS 'java -classpath /Applications/CS_2.003.04.jar csearch/CorpusSearch'
+   </pre>
+   </blockquote>
+
+   Now you can invoke CorpusSearch with just "CS".
+
+   <p>
+   Again, if your operating system displays pathnames in a language other than 
+   English, the alias in your shell initialization file almost certainly needs 
+   to be specified in terms of the English directories.
+   </ul>
+
+<p>
+<li>Windows users:
+
+   <ul>
+   <p>
+   <li>Launch the Command Prompt via Start -> Run and enter "cmd" in the box
+       ("command" under Windows 98).
+   <p>
+   <li>Enter the following command into the Command Prompt dialog box:
+<blockquote>
+<pre>
+cd C:\
+</pre>
+</blockquote>
+   <p>
+   <li>Enter the following line at the resulting "C:\>" prompt:
+
+<blockquote>
+<pre>
+java -classpath "C:\Program Files\CS.jar" csearch/CorpusSearch
+</pre>
+</blockquote>
+
+     <p>
+     Be sure to include the quotation marks in the first argument after
+     "-classpath".  Also note the different direction of the slashes in
+     the first and the second argument (backward and forward, respectively).
+     </ul>
+
+</ul>
+
+<a name="run">
+<h3>Running CorpusSearch</h3>
+
+CorpusSearch is run from a terminal window (or cmd box) as described
+above.  It needs two arguments to run: a command file and one or more
+source files.  Assuming the alias "CS" defined in the previous section,
+the following command runs the query "foo.q" on the source file
+"bar.psd".
+
+<blockquote>
+<pre>
+CS foo.q bar.psd
+</pre>
+</blockquote>
+
+The above command assumes that the command and source files are in the
+same directory as the one from which you're invoking CorpusSearch.  If
+that is not the case, you need to specify full paths to the files in
+question.
+
+<blockquote>
+<pre>
+CS /path/to/query/file/foo.q path/to/input/file/bar.psd
+
+CS ../queries/foo.q ../../corpus/bar.psd
+</pre>
+</blockquote>
+
+Using standard command line conventions, more than one file can be
+searched in a single run.
+
+<blockquote>
+<pre>
+CS foo.q a*.psd *z.psd /some/other/directory/*.psd
+</pre>
+</blockquote>
+
+CorpusSearch can also be invoked without arguments.  It then prompts the
+user to enter the names of the command file and of the source file(s).
+
+<a name="out-switch">
+<p>
+The search results are written to a file with the same basename as the
+query file, but with the extension <b>.out</b> ("foo.out" in the case at
+hand).
+
+<p>
+The basename of the output file (but not the extension) can be changed
+using an "-out" switch.  Not "-o", but "-out".
+
+<blockquote>
+<pre>
+CS foo.q bar.psd -out foo-on-bar.out
+
+CS foo.q *.psd -out all.out
+</pre>
+</blockquote>
+
+<p>
+If CorpusSearch reports a run-time error because the underlying corpus
+is corrupted (for instance, becasue of parentheses failing to match up),
+the source of the error can be gleaned from output that is directed by
+default to the terminal screen.  A command like the following redirects
+this output to a file, which can be examined to find the source of the
+error.  ERR is a standard name for the output in question, but the name
+of the error file is up to the user.
+
+<blockquote>
+<pre>
+CS foo.q bar.psd >& ERR
+</pre>
+</blockquote>
+
+<p>
+Depending on the complexity of a query and the size of the input,
+searches can take from a few seconds to a few hours.  To run a search in
+the background under Unix/Linux, add "&" at the end of your command:
+
+<blockquote>
+<pre>
+CS foo.q bar.psd &
+
+CS foo.q bar.psd >& ERR &
+</pre>
+</blockquote>
+
+<p>
+Before running a job in the background, make sure there is no .out file
+corresponding to the query you intend to run.
+See <a href="troubleshooting.html#stalled-search">Stalled search</a>.
+
+<p>
+For more details concerning the input files to CorpusSearch and its
+output, see the body of the manual.
+
+</body>

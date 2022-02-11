@@ -1,0 +1,199 @@
+<head>
+<title>Lexicon creation</title>
+</head>
+
+<body>
+
+<h2>Lexicon creation</h2>
+
+<ul>
+<li><a href="#what">What is a lexicon?</a>
+<li>Lexicon commands
+   <ul>
+   <li><a href="#make_lexicon">make_lexicon</a>
+   <li><a href="#pos_labels">pos_labels</a>
+   <li><a href="#text_labels">text_labels</a>
+   </ul>
+<li><a href="#sample-output">Sample output</a>
+</ul>
+
+<p>
+<hr>
+
+<a name="what">
+<h3>What is a lexicon?</h3>
+
+A lexicon is a list of the words occurring in a file or corpus.
+Following each word is the total number of times the word is found,
+followed by the part-of-speech labels associated with the word and the
+number of times the word is found with each part of speech.
+
+<p>
+For instance, the line:
+
+<blockquote>
+<pre>
+a-boute 11: [9 P] [1 RP] [1 ADV]
+</pre>
+</blockquote>
+
+means that the word "a-boute" was found a total of 11 times, 9 times
+with the part of speech label "P", 1 time with the part of speech label
+"RP", and 1 time with the part of speech label "ADV".
+
+<p>
+CorpusSearch determines word identity by spelling.  Spellings that vary
+only by capitalization or by the presence of the initial "$" that
+indicates editorial emendations in the PPCHE are listed on the same line.
+
+<blockquote>
+<pre>
+zoroaster Zoroaster ZOROASTER 57: [57 NPR]
+
+is Is IS $is 10689: [10689 BEP]
+</pre>
+</blockquote>
+
+Otherwise, CorpusSearch performs no spelling normalization or
+morphological analysis.
+
+<blockquote>
+<pre>
+a-bak 1: [1 P+ADV]
+a-bakke 1: [1 P+ADV]
+
+zacari 1: [1 NPR]
+zacharie 1: [1 NPR]
+</pre>
+</blockquote>
+
+<a name="make_lexicon">
+<h3>make_lexicon</h3>
+
+This is the basic command that causes a lexicon to be built.  A query
+file containing only the following command generates a lexicon including
+every word in the input file(s).
+
+<blockquote>
+<pre>
+make_lexicon: t
+</pre>
+</blockquote>
+
+Like any other command file, a lexicon query must end in <b>.q</b> and
+writes output to an <b>.out</b> file.  But lexicon queries do not
+contain a boundary node.
+
+<a name="pos_labels">
+<h3>pos_labels</h3>
+
+The lexicon can be restricted to words with certain part-of-speech tags.
+For instance, the following query creates a list of all words labelled
+as verbs or modals:
+
+<blockquote>
+<pre>
+make_lexicon: t
+
+pos_labels: MD*|V*
+</pre>
+</blockquote>
+
+<a name="text_labels">
+<h3>text_labels</a></h3>
+
+The lexicon can be restricted to certain words in the text.  For
+instance, the following query finds all words beginning with "th" or
+"+t":
+
+<blockquote>
+<pre>
+make_lexicon: t
+
+text_labels: [tT]h*|+[tT]*
+</pre>
+</blockquote>
+
+<p>
+A single query can contain both pos_labels and text_labels.  For
+instance, the following query lists all verbs ending in "[eiy]th" or "[eiy]+t":
+
+<blockquote>
+<pre>
+make_lexicon: t
+
+pos_labels: V*
+
+text_labels: *[eiy]th|*[eiy]+t
+</pre>
+</blockquote>
+
+<a name="sample-output">
+<h3>Sample output</h3>
+
+Here is sample output that results from running "make_lexicon" on the
+PPCME2.  For reasons of space, much of the actual output is omitted.
+
+<blockquote>
+<pre>
+/*
+PREFACE:
+CorpusSearch copyright Beth Randall 2000.
+Date:  Tue Sep 21 09:55:12 EDT 2004
+
+command file:     lex.q
+output file:      lex.out
+
+Lexicon:
+*/
+
+/*  ~A~  */
+a A $a 3713: [3421 D] [10 FW] [104 HV] [15 VAN21] [24 ADV21] [25 P21] [8 VBD21]
+[15 P] [1 RP21] [1 N21] [4 CONJ] [5 VB21] [6 N] [4 ADJ21] [68 INTJ] [1 VBN21] [1 NUM21]
+a+gen 15: [9 ADV] [6 P]
+a+gennyst 1: [1 P]
+a+gens 4: [4 P]
+a+genst 2: [2 P]
+a+geyne 10: [10 ADV]
+a-+gen 63: [52 ADV] [11 P]
+a-+gens 12: [12 P]
+a-bak 1: [1 P+ADV]
+a-bakke 1: [1 P+ADV]
+a-baschyd 2: [2 VAN]
+a-basshed 1: [1 VAN]
+a-basshyd 1: [1 VAN]
+a-beyn 1: [1 VB]
+a-bod 1: [1 VBD]
+a-bode 5: [5 VBD]
+a-bood 4: [4 VBD]
+a-boode 1: [1 VBD]
+a-bouen 1: [1 P]
+a-boute 11: [9 P] [1 RP] [1 ADV]
+.
+.
+.
+.
+.
+.
+.
+/*  ~Z~  */
+zacari 1: [1 NPR]
+zacharie 1: [1 NPR]
+zaram 1: [1 NPR]
+zebede 1: [1 NPR]
+zelator 1: [1 N]
+zelatoris 1: [1 NS]
+zele 6: [6 N]
+zelose 2: [2 ADJ]
+zelously 1: [1 ADV]
+zeno 1: [1 NPR]
+zenocrates 1: [1 NPR]
+zenon 1: [1 NPR]
+zepherine 1: [1 NPR]
+zorobabel Zorobabel 3: [3 NPR]
+zorobabell Zorobabell 4: [4 NPR]
+zozime 1: [1 NPR]
+</pre>
+</blockquote>
+
+</body>

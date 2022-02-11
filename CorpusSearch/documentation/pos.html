@@ -1,0 +1,308 @@
+<head>
+<title>Using CorpusSearch with POS-tagged corpora</title>
+</head>
+
+<body>
+
+<h2>Using CorpusSearch with POS-tagged corpora</h2>
+
+<ul>
+<li><a href="#formatting-conventions">Formatting conventions for POS-tagged corpora</a>
+    <ul>
+    <li><a href="#template">Template file</a>
+    </ul>
+<li><a href="#search-functions">Search functions</a>
+    <ul>
+    <li><a href="#exists">exists</a>
+    <li><a href="#iDominates">iDominates</a>
+    <li><a href="#iPrecedes">iPrecedes</a>
+    <li><a href="#neighborhood">neighborhood</a>
+    <li><a href="#precedes">precedes</a>
+    </ul>
+</ul>
+
+<p>
+<hr>
+
+<a name="formatting-conventions">
+<h3>Formatting conventions for POS-tagged corpora</h3>
+
+CorpusSearch can search files that are tagged for part of speech but not
+further parsed for syntactic structure.  In this section, the special
+formatting conventions for POS-tagged files are first discussed and then
+illustrated in a <a href="#template">template file</a>.
+
+<p>
+Because CorpusSearch expects its input to be in Penn Treebank format by
+default, POS-tagged files must be specially flagged.  This is done by
+including a format flag as the first line of the POS-tagged file, as
+illustrated below:
+
+<blockquote>
+<pre>
+#!FORMAT=POS_1
+</pre>
+</blockquote>
+
+This first line may be followed by philological or other header
+information.  The beginning of the text to be searched is indicated by
+the following delimiter:
+
+<blockquote>
+<pre>
+&lt;text>
+</pre>
+</blockquote>
+
+Thereafter, the file must contain word/tag pairs formatted according to
+standard conventions.  Space functions as the delimiter between word/tag
+pairs, so neither words nor tags can themselves contain spaces.  The
+delimiter between a word and its tag is "/" (forward slash).
+
+<p>
+The delimiter between sentences is a blankline.  In addition, every
+sentence must end with a sentence-final punctuation tag.  By default,
+this tag is "." (period).  Alternatively, the sentence-final punctuation
+tag may be "PONFP".  The PONFP alternative must be indicated in the
+file-initial format line by replacing the default "POS_1" format by
+"POS_0".  The "word" associated with the sentence-final punctuation tag
+needn't be a period.  See the <a href="#template">template</a> file for
+examples.
+
+<p>
+Sentence-internal punctuation is also treated as a word/tag pair, but
+the tag must differ from the sentence-final punctuation tag, as
+illustrated in the following examples, which distinguish "," (comma) and
+"." (period) or PON and PONFP.
+
+<blockquote>
+<pre>
+After/P the/D party/N ,/, we/PRO all/Q went/VBD back/ADV ./.
+
+Après/P la/D fête/N ,/PON nous/PRO sommes/BEP tous/Q retornés/VBN ./PONFP
+</pre>
+</blockquote>
+
+<p>
+Finally, the end of the text is indicated by the closing counterpart of the
+opening &lt;text> delimiter:
+
+<blockquote>
+<pre>
+&lt;/text>
+</pre>
+</blockquote>
+
+<a name="template">
+<h3>Template file</h3>
+
+The following template file illustrates the formatting conventions just
+discussed, using the POS_0 alternative.
+
+<blockquote>
+<pre>
+#!FORMAT=POS_0
+
+This file contains the best edition of the "Chanson de Roland",
+with emendations by Christiane Marchello-Nizia as noted.
+
+&lt;text>
+
+word1/tag1 word2/tag2 word3/tag3 .... ./PONFP
+
+word1/tag1 word2/tag2 word3/tag3 .... ?/PONFP
+
+word1/tag1 word2/tag2 word3/tag3 .... ,/PONFP
+
+.
+.
+.
+
+&lt;/text>
+</pre>
+</blockquote>
+
+<a name="search-functions">
+<h3>Search functions</h3>
+
+CorpusSearch treats POS-tagged files as containing sentences parsed with
+a completely flat structure, with every word/tag pair as an immediate
+daughter of the root node.  Query files for POS-tagged corpora are
+therefore essentially the same as for parsed corpora.  In particular:
+
+<ul>
+<li>The node boundary in queries for POS-tagged files is always $ROOT.
+<li>The tag for a word is treated as its mother.  In other words, a
+query like "(N iDoms king)" returns sentences containing the word/tag
+pair "king/N".
+<li>Because of the flat structure of a POS-tagged file, many
+CorpusSearch functions cannot be used.  The table of contents for the
+chapter lists those that are ordinarily appropriate.
+<li>The <a href="#neighborhood">Neighborhood</a> function works only on
+POS-tagged files.
+</ul>
+
+<a name="exists">
+<h3>exists (variant: Exists)</h3>
+
+Exists searches for a POS tag or text anywhere in the sentence.  For
+instance, this query:
+
+<blockquote>
+<pre>
+query: (MD0 exists)
+</pre>
+</blockquote>
+
+finds this sentence:
+
+<blockquote>
+<pre>
+/~*
+I shal not conne wel goo thyder ./. (ID CMREYNAR,14.261)
+*~/
+
+/*
+    4 MD0 conne
+*/
+
+( (PRO I) (MD shal) (NEG not) (MD0 conne) (ADV wel) (VB goo) (ADV thyder)
+  (ID CMREYNAR,14.261) )
+</blockquote>
+</pre>
+
+<a name="iDominates">
+<h3>iDominates (variants: idominates, iDoms, idoms)</h3>
+
+As mentioned above, POS tags immediately dominate the words of the text.
+So this query:
+
+<blockquote>
+<pre>
+query:     (PRO iDominates he)
+       AND (FP iDominates ane)
+</pre>
+</blockquote>
+
+finds this sentence:
+
+<blockquote>
+<pre>
+/~*
+Sythen he ledes +tam by +tar ane,
+(CMROLLEP,118.978)
+*~/
+
+/*
+    2 PRO he, 7 FP ane
+*/
+( (ADV Sythen) (PRO he) (VBP ledes) (PRO +tam) (P by) (PRO$ +tar) (FP ane) (. ,) 
+  (CMROLLEP,118.978) )
+
+/*
+</pre>
+</blockquote>
+
+<a name="iPrecedes">
+<h3>iPrecedes (variants: iprecedes, iPres, ipres)</h3>
+
+<tt>iPrecedes</tt> is true if and only if its first argument immediately
+precedes its second argument in the sentence.  So this query:
+
+<blockquote>
+<pre>
+query:     (as iPrecedes sone) 
+       AND (sone iPrecedes P)
+</pre>
+</blockquote>
+
+finds this sentence:
+
+<blockquote>
+<pre>
+/~*
+and as sone as he myght he toke his horse .
+(CMMALORY,206.3401)
+*~/
+/*
+2 as, 3 sone, 4 P as
+*/
+
+( (CONJ and) (ADVR as) (ADV sone) (P as) (PRO he) (MD myght) (PRO he)
+  (VBD toke) (PRO$ his) (N horse) (. .)
+  (CMMALORY,206.3401) )
+</pre>
+</blockquote>
+
+<a name="neighborhood">
+<h3>neighborhood (variant: Neighborhood)</h3>
+
+The <tt>neighborhood</tt> function is available only for POS-tagged
+files.  It takes three arguments - two words or tags and a number - and
+searches for sentences in which the two words/tags are separated from
+each other by the specified number of words (or fewer). For instance,
+this query:
+
+<blockquote>
+<pre>
+query: (whoreson neighborhood 2 wilt)
+</pre>
+</blockquote>
+
+returns all tokens in the corpus in which the word "whoreson" is
+separated from the word "wilt" by at most two words, as in the following
+sentence:
+
+<blockquote>
+<pre>
+/~*
+why thou whoreson when wilt thou be maried?
+(DELONEY,79.296)
+*~/
+/*
+3 whoreson,  5 wilt
+*/
+
+( (WADV why) (PRO thou) (N whoreson) WADV when) (MD wilt) (PRO thou) (BE be) (VAN maried)  (. ?)
+  (ID DELONEY,79.296) )
+</pre>
+</blockquote>
+
+<a name="precedes">
+<h3>precedes (variants: Precedes, Pres, pres)</h3> 
+
+<tt>precedes</tt> imposes a less strict condition
+than <tt>iPrecedes</tt>.  <tt>x precedes y</tt> means "x comes before y
+in the sentence but not necessarily immediately".
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query: (VB precedes N)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/~*
+thenne have ye cause to make myghty werre upon hym.
+(CMMALORY,2.25)
+*~/
+
+/*
+    6 VB make, 8 N werre
+*/
+
+( (ADV thenne) (HV have) (PRO ye) (N cause) (TO to) (VB make) (ADJ myghty) (N werre) (P upon)
+  (PRO hym) (. .)
+  (ID CMMALORY,2.25))
+</pre>
+</blockquote>
+
+</body>
+

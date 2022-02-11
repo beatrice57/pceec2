@@ -1,0 +1,86 @@
+<head>
+<title>Punctuation</title>
+</head>
+
+<a name="top">
+<h3>Punctuation</h3>
+
+<ul>
+<li><a href="pos-punc.html#tags">List of tags</a>
+<li><a href="pos-punc.html#dashes">Dashes</a>
+<li><a href="pos-punc.html#periods">Periods</a>
+<li><a href="pos-punc.html#quotes">Quotation marks</a>
+</ul>
+
+<p>
+Punctuation is attached as high as possible in the tree without regard
+to where it "belongs" semantically.
+
+<a name="tags">
+<h4>List of tags</h4>
+
+<table border cellpadding=5>
+<tr>
+<td valign=top>PUNC
+<td>all punctuation
+</table>
+
+<a name="dashes">
+<h4>Dashes</h4>
+
+Dashes in the original text are represented by hyphens in the annotated
+corpus.  At token boundaries, they go with the first token if they are
+the only punctuation at the token boundary.
+
+<blockquote> <pre>
+He is finished with the job -/PUNC
+
+or so he says .
+</pre> </blockquote>
+
+Otherwise, they go with the second token.
+
+<blockquote> <pre>
+He is finished with the job ,/PUNC
+
+-/PUNC or so he says .
+</pre> </blockquote>
+
+<a name="periods">
+<h4>Periods</h4>
+
+Periods that are not used as sentential punctuation are not separated
+from the word they belong to.  These include periods indicating
+abbreviation and surrounding numbers and certain words (e.g.,
+<tt>.x., .Mon.</tt>).
+
+<blockquote> <pre>
+ant/CONJ segge+d/VBI In/FW nomine/FW Patris/FW ,/PUNC etc./FW
+,/PUNC CMANCRIW,I.54.128/ID
+
+Ne/NEG mei/MD na/Q .Mon./N cume/VB in/RP to/P godes/NPR$ riche/N
+bote/P he/PRO beo/BEP ifulhted/VAN ./PUNC  CMLAMB1.73.17/ID
+
++Tis/D word/N .credo./NPR Mon/MAN mei/MD understonden/VB ./PUNC on/P
++tro/NUM wise/N ./PUNC CMLAMB1.75.43/ID
+
++Te/D .v./NUM is/BEP dunt/N ./PUNC CMANCRIW,II.150.2043/ID
+</pre> </blockquote>
+
+<a name="quotes">
+<h4>Quotation marks</h4>
+
+<blockquote> <pre>
+'/PUNC Thys/D ys/BEP a/D grete/ADJ mervayle/N ,/PUNC '/PUNC seyde/VBD
+Arthure/NPR ./PUNC CMMALORY,45.29/ID
+
+and/CONJ seyde/VBD ,/PUNC '/PUNC "/PUNC For/P thy/PRO$ love/N I/PRO leffte/VBD
+my/PRO$ contrey/N ,/PUNC CMMALORY,641.3990/ID
+</pre> </blockquote>
+
+In general, quotation marks beginning continuing lines of quoted speech
+have been removed from the text, while those beginning continuing
+paragraphs of quoted speech have been retained.
+
+
+

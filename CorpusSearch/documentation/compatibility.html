@@ -1,0 +1,380 @@
+<head>
+<title>Compatibility requirements for parsed corpora</title>
+</head>
+
+<body>
+
+<h2>Compatibility requirements for parsed corpora</h2>
+
+<ul>
+<li><a href="#complete-parse">Complete parse</a>
+<li>Labels
+    <ul>
+    <li><a href="#single">Labels must be single words</a>
+    <li><a href="#digits">Labels must not begin with digits</a>
+    </ul>
+<li>Brackets
+    <ul>
+    <li><a href="#round">Round parentheses</a>
+    <li><a href="#brackets">No square brackets</a>
+    <li><a href="#wrapper-parens">Wrapper parens</a>
+    </ul>
+<li><a href="#ID">ID nodes</a>
+<li><a href="#example">Example of a transition</a>
+</ul>
+
+<p>
+<hr>
+
+<p>
+In order for CorpusSearch to run on a parsed corpus, the corpus needs to
+satisfy certain formal requirements.
+
+<p>
+<a name="complete-parse">
+<h3>Complete parse</h3>
+
+CorpusSearch expects sentences to be completely parsed.  In particular,
+it expects every terminal node to be uniquely associated with an
+immediately dominating annotation label.  The remainder of the structure
+must also be a well-formed tree structure.
+<!--
+If your sentence is only partially parsed, CorpusSearch won't break, but
+you won't have any way to search the partially parsed areas of text.
+-->
+
+<a name="single">
+<h3>Labels must be single words</h3>
+
+CorpusSearch expects labels to be orthographic words - that is, strings
+without spaces (" ").  If your intended label contains a space,
+CorpusSearch interprets the first string as a label and the next string
+as text.  Any subsequent strings (for instance, the actual word in the
+text) will trigger a run-time error.  For instance, if you try to use
+"PROPER NOUN" as a label, CorpusSearch will interpret "PROPER" as the
+label and "NOUN" as text, and then crash on the next item (the actual
+noun in the text).  On the other hand, "PROPER_NOUN" with an underscore
+instead of space will be properly interpreted as a label and associated
+with the next word in the input.
+
+<a name="digits">
+<h3>Labels must not begin with digits</h3>
+
+Labels must not begin with digits ("0", "1", ..., "9").  (Such digits
+are interpreted as <a href="query-language.html#prefix-indices">prefix
+indices</a> left over from a previous search and ignored).  But labels
+are allowed to <u>end</u> with digits.  So "PP1" is a legal label, even
+though "1PP" is not.
+
+<a name="round">
+<h3>Round parentheses</h3>
+
+CorpusSearch expects the matching brackets indicating syntactic
+structure to be round parentheses ("(", ")").  If your corpus uses other
+sorts of matching brackets to indicate syntactic structure - such as
+curly brackets with ("{", "}"), square brackets ("[", "]") or some other
+system - you will have to convert them to round parentheses.  By the
+same token, if your corpus contains round parentheses as part of the raw
+text (the text being annotated, rather than as part of the annotation
+system), they will need to be replaced by something like "OPEN-PAREN" or
+"LPAREN" or the like for the lefthand variants, and analogously for the
+righthand counterparts.  Of course, the sequences that you choose should
+not occur elsewhere in the corpus.
+
+<a name="brackets">
+<h3>No square brackets</h3>
+
+This item follows from the one immediately preceding, but is repeated
+for clarity.  Square brackets ("[" and "]") are used by CorpusSearch to
+enclose <a href="query-language.html#prefix-indices">prefix indices</a>.
+If your corpus contains square brackets, you will need to convert them
+to something like "<open-square-bracket>" or "<left-square-bracket>" or
+the like for the lefthand variants, and analogously for the righthand
+counterparts.  Of course, the sequences that you choose should not occur
+elsewhere in the corpus.
+
+<a name="wrapper-parens">
+<h3>Wrapper parens</h3>
+
+CorpusSearch expects every sentence to have a "wrapper", that is, a pair
+of unlabeled parentheses surrounding the sentence.  The wrapper is a
+useful place to store items that are associated with the sentence, but
+not with its internal structure - for instance, <a href="#ID">ID</a>
+nodes or sociolinguistic information about the author (the META nodes in
+PCEEC).  In the following example, the wrapper consists of the first and
+last parentheses:
+
+<blockquote>
+<pre>
+( (IP-MAT (ADVP-TMP (ADV Thenne))
+          (NP-SBJ (NPR quene) (NPR Igrayne))
+          (VBD waxid)
+          (ADVP-TMP (ADV dayly))
+          (ADJP (ADJR gretter) (CONJ and) (ADJR gretter))
+          (. .))
+      (ID CMMALORY,5.120))
+</pre>
+</blockquote>
+
+<p>
+If necessary, the wrapper parens can be referenced in queries with the
+expression "$METAROOT".
+
+<a name="ID">
+<h3>ID nodes</h3>
+
+CorpusSearch can function without identification nodes (labelled "ID"),
+but it's useful to include them.  For instance, when CorpusSearch
+searches the output of a previous search, it uses the ID nodes to keep
+statistics for the header, footer and summary blocks.  Here's an example
+of an ID node:
+
+<blockquote>
+<pre>
+(ID CMMALORY,5.120)
+</pre>
+</blockquote>
+
+Here, the CMMALORY identifies the source file, 5 is the page number, and
+120 is the running token number for that file.  In general, an ID node
+should have this form:
+
+<blockquote>
+<pre>
+(ID &lt;source_name>,&lt;free_space>.&lt;running_token_number>)
+</pre>
+</blockquote>
+
+<p>
+CorpusSearch expects the material following the label "ID" to be a
+single orthographic word.  In other words, that material must not
+contain spaces (" ").
+
+<p>
+The information between "source_name" and "running_token_number" is
+actually not referenced by CorpusSearch.  It could be used to store page
+numbers (as in the Penn Historical Corpora), or some other information,
+or not used at all.  The important thing is that the ID string must
+include a comma (which delimits the preceding material as the source
+name) and also a period (which delimits the following material as the
+running token number).
+
+<p>
+CorpusSearch expects to find the ID node just after the sentence, but
+inside the sentence <a href="#wrapper-parens">wrapper</a>.
+
+<a name="example">
+<h3>Example of a transition</h3>
+
+In 1994, Beatrice Santorini of the University of Pennsylvania built a
+corpus of parsed and annotated Yiddish texts.  Like Phase 1 of the
+Middle English corpus, this Yiddish corpus was parsed only to the first
+level of constituents below the clause level.  In those ancient days,
+these structures were retrieved using Perl scripts that matched regular
+expressions.
+
+<p>
+One passage from the corpus tells a joke that begins this way:  
+
+<blockquote>
+<pre> 
+When you tell a story to a peasant, he laughs three times. 
+The first time, he laughs when someone tells him the story.  
+The second time, when it is explained to him.  
+And the third time, when he understands the story.
+</pre>
+</blockquote>
+
+Let's examine one sentence from that passage:
+
+<blockquote>
+<pre>
+The first time, he laughs when someone tells him the story.
+</pre>
+</blockquote>
+
+<p>
+Here it is as it appears in the corpus.  (For this discussion, we don't
+need the definitions of the words and their labels, so they are omitted.
+Most of the labels in this corpus begin with lowercase letters.  This is
+unorthodox, but entirely compatible with CorpusSearch's formal requirements.)
+
+<blockquote>
+<pre>
+( [t dem ershtn mol ]
+  [v0 lakht ] 
+  [s er ] 
+  ,
+  [B [c ven ] [s men ] [v0 dertseylt ] [i im ] [d di mayse ] , B]
+)
+(RO,1)
+</pre>
+</blockquote>
+
+The first problem is the use of square brackets ("[", "]") to represent
+syntactic structure, which CorpusSearch doesn't recognize (or rather,
+would want to interpret as prefix indices).  So the first task is to
+convert the square brackets to round parentheses.  At the same time,
+let's close up the space between the words and the close parens:
+
+<blockquote>
+<pre>
+( (t dem ershtn mol)
+  (v0 lakht)
+  (s er)
+  ,
+  (B (c ven) 
+     (s men)
+     (v0 dertseylt)
+     (i im)
+     (d di mayse)
+     , 
+  B)
+)
+(RO,1)
+</pre>
+</blockquote>
+
+The second problem is that the sentence isn't delimited by wrapper
+parens.  (The outermost parens enclose the sentence, but CorpusSearch
+expects a further pairs of parens.)  The following structure has the
+wrapper parens; we've also added a dummy label to the original highest
+parens.
+
+<blockquote>
+<pre>
+( (IP (t dem ershtn mol)
+      (v0 lakht)
+      (s er)
+      ,
+      (B (c ven) 
+         (s men)
+         (v0 dertseylt)
+        (i im)
+        (d di mayse)
+        , 
+      B))
+  (RO,1))
+</pre>
+</blockquote>
+
+This form of the sentence can be partly searched by CorpusSearch.  For
+instance, this query:
+
+<blockquote>
+<pre>
+node: IP*
+query:  (v0 iPrecedes s)
+</pre>
+</blockquote>
+
+finds the structure (v0 lakht) (s er), as expected.
+
+<p>
+But the sentence is still not completely parsed.  For instance, the
+phrase "dem ershtn mol" ('the first time') has been parsed as one
+object.  So if you run this query:
+
+<blockquote>
+<pre>
+node: IP*
+query:  (ershtn precedes mol) 
+</pre>
+</blockquote>
+
+CorpusSearch (if it runs at all) will not find the sentence.  This is
+because CorpusSearch expects every terminal node in the tree to be
+uniquely associated with an immediately dominating annotation label.
+<!-- Any extra information will be stored as part of the node but it
+will usually not be examined by the search functions.  These extra
+pieces of information (in this case, the strings "ershtn" and "mol")
+behave as useless baggage that is carried along by the sentence vector
+but never opened.
+--> 
+Also, the leading "B" on the parenthesis that marks the end of the
+B-labelled clause is redundant.
+
+<p>
+We therefore remove the leading "B" and give each terminal a tag of its
+own.  In the following structure, we have given the punctuation marks
+linguistically appropriate tags, and we have given the words without
+tags of their own the dummy tag "x", which is enough to keep
+CorpusSearch from complaining.  (Eventually, of course, we might want to
+replace those tags with linguistically appropriate ones, but that is
+independent of whether CorpusSearch will run properly on the corpus and
+give results as expected.  It is worth noting that much fine research
+can be - and has been done - on structures like the one immediately
+following.)
+
+<blockquote>
+<pre>
+( (IP (t (x dem) (x ershtn) (x mol))
+      (v0 lakht)
+      (s er) 
+      (, ,)
+      (B (c ven)
+         (s men) 
+         (v0 dertseylt)
+         (i im) 
+         (d (x di) (x mayse))
+         (. ,)))
+ (RO,1))
+</pre>
+</blockquote>
+
+<p>
+Finally, there is the node (RO,1), which identifies the sentence as part
+of the first story in the Royte Pomerantsen collection.  In connection
+with adding the wrapper parens, we have already correctly included the
+node inside the wrapper parens, but it still needs to be given the
+standard CorpusSearch <a href="#ID">ID node form</a>.  As it stands,
+there is no running token number associated with the sentence.  For
+purposes of illustration, we've manually added the number 2:
+
+<p>
+Now the annotation is fully compatible with CorpusSearch, and the
+following query:
+
+<blockquote>
+<pre>
+node: IP*
+query:  (ershtn precedes mol) 
+</pre>
+</blockquote>
+
+finds the structure as expected: 
+
+<blockquote>
+<pre>
+/~*
+dem ershtn mol lakht er , ven men dertseylt im di mayse ,
+*~/
+
+/*
+    1 t: 3 x ershtn, 4 x mol
+*/
+
+( (IP (t (x dem) (x ershtn) (x mol))
+      (v0 lakht)
+      (s er)
+      (, ,)
+      (B (c ven)
+         (s men)
+         (v0 dertseylt)
+         (i im)
+         (d (x di) (x mayse))
+         (. ,)))
+  (ID RO,1.2))
+</pre>
+</blockquote>
+
+<p>
+Further revisions to this structure - for instance, moving the final
+punctuation up a level (out of the B clause) - would make it compatible
+with standard annotation guidelines.  These and other linguistically
+more interesting revisions can be performed automatically using
+CorpusSearch's <a href="revision.html">corpus revision</a>
+functionality.  But they are not necessary for compatibility with
+CorpusSearch's purely formal requirements.
+
+</body>

@@ -1,0 +1,155 @@
+<head>
+<title>Basic concepts</title>
+</head>
+
+<body>
+
+<h2>Basic concepts</h2>
+
+<ul>
+<li><a href="basic.html#what">What is CorpusSearch?</a>
+<li><a href="basic.html#input">Input to CorpusSearch</a>
+    <ul>
+    <li><a href="basic.html#source">Source file(s)</a>
+    <li><a href="basic.html#command">Command file</a>
+    </ul>
+<li><a href="basic.html#output">Output of CorpusSearch</a>
+    <ul>
+    <li><a href="basic.html#ordinary">Ordinary search output</a>
+    <li><a href="basic.html#coding">Coding output</a>
+    <li><a href="basic.html#revision">Corpus revision output</a>
+    <li><a href="basic.html#frames">Frames output</a>
+    <li><a href="basic.html#lexicon">Lexicon output</a>
+    </ul>
+</ul>
+    
+<p>
+<hr>
+
+<a name="what">
+<h3>What is CorpusSearch?</h3>
+
+The basic purpose of CorpusSearch is to find linguistic structures in a
+corpus of parsed sentences.   It also has several other features, including
+support for:
+
+<ul>
+<li>automatic creation of coding strings for statistical analysis
+<li>automatic corpus revision
+<li>automatic creation of a lexicon for a corpus
+<li>automatic creation of local "frames" for words in a corpus
+</ul>
+
+<a name="input">
+<h3>Input to CorpusSearch</h3>
+
+CorpusSearch needs two pieces of information: 
+
+<ul>
+<li>a corpus of sentences to search - source file(s)
+<li>a specification of what structures to search for - command file
+</ul>
+
+<a name="source">
+<h4>Source file(s)</h4>
+
+A source file is any file of parsed sentences that satisfies
+CorpusSearch's <a href="compatibility.html">compatibility
+requirements</a>.  This could be a file from the Penn Parsed Corpora of
+Historical English or from another parsed corpus, or perhaps a file of
+sentences that the user has cut and pasted together.
+
+<p> CorpusSearch allows output files from previous searches to serve as
+source files for subsequent searches.
+
+<p> Any number of source files can be searched in a single run.
+
+<a name="command">
+<h4>Command file</h4>
+
+The <a href="command-file.html">command file</a> minimally contains
+a <a href="query-language.html">query</a>, which specifies the
+structures being searched for, and a
+<a href="command-file.html#node">boundary node</a>, which specifies the
+syntactic domain within which the search is to take place.  Beyond that,
+the command file can also include further specifications, mainly
+concerning the format of the output.
+
+<a name="output">
+<h3>Output of CorpusSearch</h3>
+
+<a name="ordinary">
+<h4>Ordinary search output</h4>
+
+An ordinary <a href="understanding-output.html">output file</a> contains
+the sentences that match the specifications in the search query, along
+with information pinpointing where the structures were found (this is
+useful in the case of very long sentences).  Statistics are kept
+detailing the number of structures matching the search query ("hits"),
+the number of sentence tokens ("tokens") containing hits, and the total
+number of tokens in the file.  
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>The number of hits may change depending on the definition of
+the <a href="command-file.html#node">boundary node</a>.
+</table>
+
+<a name="coding">
+<h4>Coding output</h4>
+
+CorpusSearch can add <a href="coding.html">coding strings</a> to a
+corpus that are suitable as input to multivariate statistical analysis.
+Each coding string consists of columns associated with various
+properties of interest to the researcher, and the values for the columns
+are generated automatically according to specifications in the coding
+query.
+
+<p>
+For instance, the value in the first column of a coding string might
+encode the syntactic category of a sentence's first constituent.  The
+second and third columns might encode the same information for the
+sentence's second and third constituents, respectively.  The information
+from all three columns could then be used to calculate the frequency of
+basic word order patterns in the corpus ("SVO", "SOV", etc.).  (In
+principle, the same statistics could also be obtained from the output 
+of multiple ordinary search queries, but that process would be much more
+laborious and prone to human error.)
+
+<a name="revision">
+<h4>Corpus revision output</h4>
+
+CorpusSearch can produce a copy of a corpus in which certain structures
+are automatically revised according to user specifications.  This
+feature greatly speeds up corpus construction and facilitates corpus
+curation.  In particular, corpus revision can be used to:
+
+<ul>
+<li>apply global changes in annotation guidelines to an entire corpus
+<li>automatically correct systematic annotation errors, or flag possible
+    errors for human review
+<li>build parsed corpora from POS-tagged corpora from scratch
+    (for instance, in situations where no parsed training data exist)
+</ul>
+
+<a name="frames">
+<h4>Frames output</h4>
+
+CorpusSearch can generate the set of <a href="frames.html">local
+frames</a> for given words.  These frames are defined as the syntactic
+sisters of the part-of-speech label of the word in question.  This might
+be helpful in constructing word classes - for instance, in comparing the
+distribution of double-object verbs (<i>John gave Mary a present</i>)
+and double-complement verbs (<i>John gave a present to Mary</i>).
+
+<a name="lexicon">
+<h4>Lexicon output</h4>
+
+CorpusSearch can generate a <a href="lexicon.html">lexicon</a> for a
+corpus.  The output is a list of every word in the corpus along with the
+number of times it occurs under each part-of-speech label that it can
+have.
+
+</body>

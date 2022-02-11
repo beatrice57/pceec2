@@ -1,0 +1,1111 @@
+<head>
+<title>Search functions</title>
+</head>
+
+<body>
+
+<h2>Search functions</h2>
+
+<ul>
+<li><a href="#general">General considerations</a>
+<li><a href="#functions">Description of functions</a>
+    <ul>
+    <li><a href="#cCommands">cCommands</a> 
+    <li><a href="#column">column</a> 
+    <li><a href="#dominates">dominates</a>
+    <li><a href="#domsWords">domsWords</a>
+    <li><a href="#domsWordsLessThan">domsWords&lt;</a>
+    <li><a href="#domsWordsMoreThan">domsWords&gt;</a>
+    <li><a href="#exists">exists</a>
+    <li><a href="#hasSister">hasSister</a>
+    <li><a href="#hasLabel">hasLabel</a>
+    <li><a href="#iDominates">iDominates</a>
+    <li><a href="#iDomsFirst">iDomsFirst</a>
+    <li><a href="#iDomsLast">iDomsLast</a>
+    <li><a href="#iDomsMod">iDomsMod</a>
+    <li><a href="#iDomsNumber">iDomsNumber</a>                
+    <li><a href="#iDomsOnly">iDomsOnly</a>
+    <li><a href="#iDomsTotal">iDomsTotal</a>
+    <li><a href="#iDomsTotalLessThan">iDomsTotal&lt;</a>
+    <li><a href="#iDomsTotalMoreThan">iDomsTotal&gt;</a>
+    <li><a href="#iDomsViaTrace">iDomsViaTrace</a>
+    <li><a href="#inID">inID</a>
+    <li><a href="#iPrecedes">iPrecedes</a>
+    <li><a href="#isRoot">isRoot</a>
+    <li><a href="#precedes">precedes</a>
+    <li><a href="#sameIndex">sameIndex</a>
+    </ul>
+</ul>
+
+<p>
+<hr>
+
+<a name="general">
+<h3>General considerations</h3>
+
+We commonly refer to the first argument to a search function as "x", and
+the second argument as "y".
+
+<p>
+For convenience and improved readability, CorpusSearch allows
+abbreviations and lower-case/upper-case variations for the names of
+search functions.  Acceptable variants are listed below with each
+function.
+
+<p>
+For functions with integer arguments, there is always a space between
+the function and argument.  This obligatory space is a change from
+earlier versions of CorpusSearch.
+
+<!--
+<p>
+In general, the wild card "*" in CorpusSearch corresponds to the
+standard regular expression ".*".  In other words, it matches a string
+of any number (including zero) of arbitrary characters, not necessarily
+the same as each other. However, after expressions in square brackets
+(and certain other complex contexts), only the standard regular
+expression has the desired effect. If using the one-character wild card
+gives unexpected results, use the standard regexp.
+-->
+
+<a name="functions">
+<h3>Search functions</h3>
+
+In the examples below, the output sentence is generally the same, but it
+matches the example queries for different reasons, as is evident from
+the indices in the <a href="understanding-output.html#output">result
+block</a>.
+
+<a name="cCommands">
+<h4>cCommands (variants: ccommands, CCommands)</h4>
+
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>Note the absence of a hyphen in all variants of the name of this search function.
+</table>
+
+<p>
+<tt>x ccommands y</tt> is true if and only if:
+
+<ul>
+<li>neither x nor y dominates the other, AND
+<li>the first branching node dominating x dominates y.
+</ul>
+
+In the following tree,
+
+<blockquote>
+<pre>
+    A
+   / \
+  B   C
+ / \   \
+D   E   F
+</pre>
+</blockquote>
+
+<b>B</b> c-commands <b>C</b> and <b>F</b>.  Both <b>C</b> and <b>F</b>
+c-command <b>B</b>, <b>D</b> and <b>E</b>. <b>D</b> and <b>E</b>
+c-command only each other.  <b>A</b> c-commands no node because, being
+the root of the tree, it dominates all of the other nodes.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query: (NP-SBJ* ccommands PP*)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  2 NP-SBJ, 13 PP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="column">
+<h4>column (variants:  Column, col, Col)</h4>
+
+<tt>column</tt> searches columns of <a href="coding.html">CODING</a>
+nodes, or any other leaf whose text contains characters separated by
+a colon.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  (CODING-IP-MAT column 4 !x|y|z)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  2 CODING-IP-MAT, 3 a:b:c:d:e
+*/
+(0  (1 IP-MAT (2 CODING-IP-MAT a:b:c:d:e)
+	      (4 NP-SBJ (5 D The) (7 ADJ quick) (9 ADJ brown) (11 N fox))
+	      (13 VBP jumps)
+	      (15 PP (16 P over)
+		     (18 NP (19 D the) (21 ADJ lazy) (23 N dog)))
+	      (25 . .))
+    (27 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="dominates">
+<h4>dominates (variants: Dominates, doms, Doms)</h4>
+
+<tt>x dominates y</tt> means that y is contained in the subtree rooted
+in x, no matter now deeply embedded.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(IP-MAT* dominates ADJ)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  1 IP-MAT, 5 ADJ
+1 IP-MAT:  1 IP-MAT, 7 ADJ
+1 IP-MAT:  1 IP-MAT, 19 ADJ
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<p>
+Text can serve as the second argument of "dominate".  But searches where
+text serves as the first argument of "dominates" are not sensible, since
+text consists of terminal nodes and terminal nodes by definition do not
+dominate a subtree.  CorpusSearch performs such searches without issuing
+a warning, but they return no hits.
+
+<a name="domsWords">
+<h4>domsWords (variants: DomsWords, domswords)</h4>
+
+<tt>domsWords</tt> matches nodes that dominate the specified number of
+words.  For instance, <tt>domsWords 4</tt> means "dominates 4 words".  A
+word is defined as a terminal that is not on the
+<a href="command-file.html#ignore_words">ignore_words</a> list.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+(NP* domsWords 3)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+16 NP:  16 NP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="domsWordsLessThan">
+<h4>domsWords&lt; (variants: DomsWords&lt;, domswords&lt;)</h4>
+
+<tt>domsWords&lt;</tt> (read: domsWordsLessThan) is just
+like <a href="#domsWords">domsWords</a> except that it returns nodes
+that dominate strictly less than the given number of words.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (NP domsWords< 3)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<p>
+The sample sentence doesn't match the query.
+
+<a name="domsWordsMoreThan">
+<h4>domsWords> (variants: DomsWords>, domswords>)</h4>
+
+<tt>domsWords&gt;</tt> (read: domsWordsMoreThan) is just
+like <a href="#domsWords">domsWords</a> except that it returns nodes
+that dominate strictly more than the given number of words.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (NP* domsWords&gt; 3)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+2 NP-SBJ:  2 NP-SBJ
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="exists">
+<h4>exists (variants: Exists)</h4>
+
+<tt>exists</tt> searches for labels or text anywhere within the boundary
+node.  (If the boundary node were NP* in the example query, the search
+would yield no hits.)
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (VBP exists)
+</pre>
+</blockquote> 
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+1 IP-MAT:  11 VBP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="hasLabel">
+<h4>hasLabel (variants: HasLabel, haslabel)</h4>
+
+<tt>x hasLabel y</tt> is true if and only if the label of node x is the
+string y.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(NP* hasLabel NP-SBJ)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+2 NP-SBJ:  2 NP-SBJ
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+This function is useful in connection with coding queries.
+
+<a name="hasSister">
+<h4>hasSister (variants: HasSister, hassister)</h4>
+
+<tt>x hasSister y</tt> is true if and only if x and y have the same
+mother.  The linear order of x and y is irrelevant.
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>A common error is to assume that <tt>x hasSister y</tt> implies that
+    x precedes y.  It does not, as the example output makes clear.  Any
+    precedence relations must be stated separately.
+</table>
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (N hasSister ADJ)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  9 N, 5 ADJ
+1 IP-MAT:  9 N, 7 ADJ
+1 IP-MAT:  21 N, 19 ADJ
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="iDominates">
+<h4>iDominates (variants: idominates, iDoms, idoms)</h4>
+
+<tt>iDominates</tt> means "immediately dominates".  That is, x iDominates y if
+x is the mother of y.
+
+<p>
+Example query: 
+
+<blockquote>
+<pre>
+query:     (IP-MAT* iDominates NP*)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  1 IP-MAT, 2 NP-SBJ
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+If the asterisk were missing after "NP" in the query, the query would
+return no hits, since the only bare NP in the sentence is a daughter of
+PP, not of IP-MAT.  Compare the bare NP query just discussed to the
+example query for <a href="#iDomsMod">iDomsMod</a>.
+
+<a name="iDomsFirst">
+<h4>iDomsFirst (variants: idomsfirst)</h4>
+
+<tt>iDomsFirst</tt> means "immediately dominates as a first child."
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (NP-SBJ iDomsFirst D)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  2 NP-SBJ, 3 D
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+
+<a name="iDomsLast">
+<h4>iDomsLast (variants: idomslast)</h4>
+
+<tt>iDomsLast</tt> means "immediately dominates as a last child."
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (IP-MAT* iDomsLast PP)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  1 IP-MAT, 13 PP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="iDomsMod">
+<h4>iDomsMod (variants: idomsmod)</h4>
+
+<tt>iDomsMod</tt> is true if and only if x dominates y, and any nodes
+intervening on the path from x to y are instances of the label z.
+<tt>iDomsMod</tt> is also satisfied if there are no interveners between
+x and y; that is, if x immediately dominates y.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (IP-MAT* iDomsMod PP NP)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  1 IP-MAT, 16 NP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<p>
+Replacing "NP" in the example query by "NP*" would result in two matches
+- the object of the preposition, as above, and the subject NP.
+
+<p>
+A very common use of this function is in connection with conjunction
+structures, allowing non-first conjuncts to be treated on a par with
+first conjuncts.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (NP-SBJ iDomsMod NP*|CONJ* PRO)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  2 NP-SBJ, 12 PRO
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 NP (4 D The) (6 N king))
+			(8 CONJP (9 CONJ and)
+				 (11 NP (12 PRO I))))
+	      (14 VBD danced)
+	      (16 NP-MSR (17 Q all) (19 N night))
+	      (21 . .))
+    (23 ID SAMPLE,2))
+</pre>
+</blockquote>
+
+<a name="iDomsNumber">
+<h4>iDomsNumber (variants: idomsnumber, iDomsNum, idomsnum)</h4>
+
+<tt>iDomsNumber</tt> means "immediately dominates as the #th child" (in other
+words, x immediately dominates y and y is the #th child of x).
+<tt>iDomsNumber 1</tt> is synonymous with <tt>iDomsFirst</tt>.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (NP iDomsNumber 2 ADJ)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  16 NP, 19 ADJ
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+/*
+</pre>
+</blockquote>
+
+If "NP" in the query were replaced by "NP*", the query would also match
+the subject NP.
+
+<a name="iDomsOnly">
+<h4>iDomsOnly (variants: idomsonly)</h4> 
+
+<tt>iDomsOnly</tt> means "immediately dominates as an only child".  
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(NP* iDomsOnly N)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<p>
+The sample sentence doesn't match the query, since all of the NP nodes
+have more than one child.
+
+<a name="iDomsTotal">
+<h4>iDomsTotal (variants: idomstotal)</h4>
+
+<tt>iDomsTotal</tt> returns structures containing nodes with the specified
+number of daughters.
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>Though traces and "0" are on the
+   default <a href="command-file.html#ignore_words">ignore_words</a>
+   list, they are <u>not</u> on the
+   default <a href="command-file.html#ignore_nodes">ignore_nodes</a>
+   list and need to be added, if necessary,
+   with <a href="command-file.html#add_to_ignore">add_to_ignore</a>.
+</table>
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(NP* iDomsTotal 3)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  16 NP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+/*
+</pre>
+</blockquote>
+
+<p>
+The sample sentence matches the example query because punctuation is
+ignored by default.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(IP-MAT* iDomsTotal 3)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  1 IP-MAT
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="iDomsTotalLessThan">
+<h4>iDomsTotal&lt; (variants: idomstotal&lt;)</h4>
+
+<tt>iDomsTotal&lt;</tt> (read: iDomsTotalLessThan) is
+like <a href="#iDomsTotal">iDomsTotal</a> except that it returns
+structures containing nodes that immediately dominate strictly less than
+the given number of daughters.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(NP* iDomsTotal< 4)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  16 NP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="iDomsTotalMoreThan">
+<h4>iDomsTotal> (variants: idomstotal>)</h4>
+
+<tt>iDomsTotal&gt;</tt> (read: iDomsTotalMoreThan) is
+like <a href="#iDomsTotal">iDomsTotal</a> except that it returns
+structures containing nodes that immediately dominate strictly more than
+the given number of daughters.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(NP* iDomsTotal> 4)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<p>
+The sample sentence doesn't match the query.
+
+<a name="iDomsViaTrace">
+<h4>iDomsViaTrace (variants: idomsviatrace)</h4>
+
+Node x immediately dominates node y via trace t if and only if:
+
+<ul>
+<li>x immediately dominates t,
+<li>t is co-indexed with z, and 
+<li>z immediately dominates y.
+</ul>
+
+<p>
+The syntactic categories and indices of t and z must match.
+CorpusSearch considers any string enclosed in asterisks and followed by
+a shared index as a trace.  (In corpora following the annotation
+guidelines for the Penn Parsed Corpora of Historical English, only "*T*"
+or "*ICH*", followed by an index, count as legal traces.)  The label of
+the trace is specified in the query, using ordinary regular expression
+syntax; see the example query for details.  The node boundary (IP in the
+example below) must include both the trace and the coindexed
+constituent.
+
+<p>
+A typical use of this function is to search for extraposed relative
+clauses.
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>In the example query, "\*ICH*" can be replaced by "\*ICH\**", but
+    not by "\*ICH\*" because the last expression fails to match the
+    trailing index.  Analogously for "\*T*".
+</table>
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query:     (NP iDoms CP-REL*)
+       AND (CP-REL* iDomsViaTrace \*ICH* IP-SUB*)
+       AND (IP-SUB* iDomsMod NP-SBJ* \*T*)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  16 NP, 23 CP-REL, 32 IP-SUB, 34 *T*-2
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBD jumped)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the)
+			    (19 ADJ sleeping)
+			    (21 N dog)
+			    (23 CP-REL *ICH*-1)))
+	      (25 ADVP (26 ADV quickly))
+	      (28 CP-REL-1 (29 WNP-2 (30 WPRO who))
+			   (32 IP-SUB (33 NP-SBJ *T*-2)
+				      (35 VBD woke)
+				      (37 RP up)
+				      (39 PP (40 P with)
+					     (42 NP (43 D a) (45 N start)))))
+	      (47 . .))
+    (49 ID SAMPLE,3))
+</pre>
+</blockquote>
+
+<a name="inID">
+<h4>inID (variants: InID)</h4>
+
+<tt>inID</tt> is true of substrings of the ID node.  This function is
+necessary because the ID node, being outside the parsed sentence,
+cannot serve as an ordinary search-function argument.  For instance,
+<tt>(ID iDoms *)</tt> returns no hits.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  (SAMP* inID)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+0 :  25 ID, 26 SAMPLE,1
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="iPrecedes">
+<h4>iPrecedes (variants: iprecedes, iPres, ipres)</h4>
+
+<tt>iPrecedes</tt> is true if and only if its first argument immediately
+precedes its second argument in the text string spanned by the parse tree.
+
+<p> 
+The algorithm for <tt>x iPrecedes y</tt> runs as follows: 
+
+<ol>
+<li>Find x. 
+<li>If x has an immediately following sister, then that sister and all
+    its leftmost descendants (that is, the first child of the sister,
+    the first child of the first child, and on as far as the tree goes)
+    are candidates for y.
+<li>If x has no immediately following sister, replace x with its mother
+    and apply step (2) recursively.
+</ol>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>A common error is to assume that <tt>x iPrecedes y</tt> implies that
+    x and y are sisters.  It does not, as the example output makes
+    clear.  Any sisterhood relations must be stated separately.
+</table>
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     (N iPrecedes VBP)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  9 N, 11 VBP
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="isRoot">
+<h4>isRoot (variants: IsRoot, isroot)</h4>
+
+<tt>isRoot</tt> searches for the label at the root of the parsed token.
+As with any CorpusSearch query, the query must contain a boundary node,
+but for the purposes of this search function, it is ignored.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+// boundary node must be specified, but is ignored
+node: NP
+
+query: (IP* isRoot)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+0 :  1 IP-MAT
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="precedes">
+<h4>precedes (variants: Precedes, pres, Pres)</h4> 
+
+<tt>x precedes y</tt> means "x comes before y in the string and x does
+not dominate y".  It does not imply sisterhood between x and y, as is
+evident from the example output.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+(VBP precedes N)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+1 IP-MAT:  11 VBP, 21 N
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBP jumps)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the) (19 ADJ lazy) (21 N dog)))
+	      (23 . .))
+    (25 ID SAMPLE,1))
+</pre>
+</blockquote>
+
+<a name="sameIndex">
+<h4>sameIndex (variants: SameIndex, sameindex)</h4> 
+
+<tt>x sameIndex y</tt> finds structures containing constituents that
+share indices.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query:    (NP* sameIndex CP*)
+      AND (NP* iDoms \*exp*) 
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  2 NP-SBJ-1, 3 *exp*, 9 CP-THT-1
+*/
+(0  (1 IP-MAT (2 NP-SBJ-1 *exp*)
+	      (4 NP-OB2 (5 PRO hym))
+	      (7 VBD thought)
+	      (9 CP-THT-1 (10 C 0)
+			  (12 IP-SUB (13 NP-SBJ-2 (14 EX there))
+				     (16 BED was)
+				     (18 VBN com)
+				     (20 PP (21 P into)
+					    (23 NP (24 PRO$ hys) (26 N londe)))
+				     (28 NP-2 (29 NS gryffens) (31 CONJ and) (33 NS serpentes))))
+	      (35 E_S ,))
+    (37 ID CMMALORY,33.1031))
+</pre>
+</blockquote>
+
+<p>
+When searching for antecedents of traces, it is the trace itself (not
+the category dominating it) that is the argument of sameIndex.
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>In the example query, "\*ICH*" can be replaced by "\*ICH\**", but
+    not by "\*ICH\*", as the last expression fails to match the trailing
+    index.
+</table>
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+node: IP-MAT*
+
+query: (CP-REL* sameIndex \*ICH*)
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+/*
+1 IP-MAT:  28 CP-REL-1, 24 *ICH*-1
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 D The) (5 ADJ quick) (7 ADJ brown) (9 N fox))
+	      (11 VBD jumped)
+	      (13 PP (14 P over)
+		     (16 NP (17 D the)
+			    (19 ADJ sleeping)
+			    (21 N dog)
+			    (23 CP-REL *ICH*-1)))
+	      (25 ADVP (26 ADV quickly))
+	      (28 CP-REL-1 (29 WNP-2 (30 WPRO who))
+			   (32 IP-SUB (33 NP-SBJ *T*-2)
+				      (35 VBD woke)
+				      (37 RP up)
+				      (39 PP (40 P with)
+					     (42 NP (43 D a) (45 N start)))))
+	      (47 . .))
+    (49 ID SAMPLE,3))
+</pre>
+</blockquote>

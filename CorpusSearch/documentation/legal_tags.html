@@ -1,0 +1,28 @@
+<head>
+<title>Legal tags</title>
+</head>
+
+<body>
+
+<h2>Legal tags</h2>
+
+<a name="make_legal_tags">
+<h3>make_legal_tags</h3>
+
+This is the basic command that compiles a list of legal tags, divided
+into part-of-speech tags and syntactic tags.  More precisely, the
+division is into preterminals and higher nodes.  Part-of-speech tags can
+therefore appear on the list of syntactic tags if they occur
+recursively, as they do, say, in conjunction contexts.
+
+<blockquote>
+<pre>
+make_lexicon: t
+</pre>
+</blockquote>
+
+Like any other command file, a legal tags query must end in <b>.q</b>
+and writes output to an <b>.out</b> file.  But legal tags queries do not
+contain a boundary node.
+
+</body>

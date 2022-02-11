@@ -1,0 +1,138 @@
+<head>
+<title>Disfluencies</title>
+</head>
+
+<body>
+<a name="top">
+<h3>Disfluencies</h3>
+
+<ul>
+<li><a href="disfluencies.html#break">BREAK</a>
+<li><a href="disfluencies.html#elab">-ELAB</a> (elaboration)
+<li><a href="disfluencies.html#fs">FS</a> (false start)
+<li><a href="disfluencies.html#rep">REP</a> (repetition)
+</ul>
+
+The following labels and dash tags are used to annotate disfluencies
+(Hindle 1983) where necessary.  Disfluences are rare in the PPCHE and
+PCEEC and almost entirely restricted to plays in the PPCMBE2.
+
+<p>
+Hindle, Don.  1983.  Deterministic parsing of syntactic
+non-fluencies. In Proceedings of the 21th Annual Meeting of the
+Association for Computational Linguistics, pp. 123–128.
+
+<a name="break">
+<h4>BREAK</h4>
+
+BREAK indicates that a phrase or sentence breaks off or is
+otherwise left unfinished.
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO They))
+          (MD could@)
+          (NEG @n't)
+          (VB believe)
+          (CP-THAT (C 0)
+	           (IP-SUB (NP-SBJ (PRO we))
+                           (VBD saw)
+                           (NP-OB1 (D a) (BREAK 0))))
+           (PUNC ...)))
+</pre>
+</blockquote>
+
+<a name="elab">
+<h4>-ELAB</h4>
+
+The dash tag -ELAB indicates that a parenthetical constituent (one
+already bearing a -PRN dash tag) elaborates on its host.  Exact copies
+of a constituent are annotated
+as <a href="disfluencies.html#rep">repetitions</a> (REP).
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO It))
+  	  (BEP is)
+	  (NP-PRD (D a) (N trifle)
+	  	  (NP-PRN-ELAB (D a) (ADJ mere) (N trifle)))
+	  (PUNC .)))
+</pre>
+</blockquote>
+
+<a name="fs">
+<h4>FS</h4>
+
+FS indicates a false start.  It is the default annotation for
+disfluencies.
+
+<blockquote>
+<pre>
+( (IP-MAT (FS (PRO They) (PRO they) (PRO they))              &larr; like this
+          (NP-SBJ (PRO they))
+          (ADVP (ADV really))
+          (VBD meant)
+          (NP-OB1 (PRO it))
+          (PUNC ?)))
+
+( (IP-MAT (NP-SBJ (PRO They))
+          (REP (PRO they) (PRO they) (PRO they))             &larr; not like this
+          (ADVP (ADV really))
+          (VBD meant)
+          (NP-OB1 (PRO it))
+          (PUNC ?)))
+</pre>
+</blockquote>
+
+<p> Within a false start, internal structure may be indicated as far as 
+feasible, but breaks are not specially indicated.
+
+<blockquote>
+<pre>
+( (IP-MAT (FS (IP-MAT (NP-SBJ (PRO I))
+                      (DOD did@)
+		      (NEG @n't)
+		      (VB know)))
+          (PUNC -)
+          (FS (IP-MAT (NP-SBJ (CP-FRL (WNP-1 (WPRO what))
+	                              (C 0)
+			              (IP-SUB (NP-SBJ (PRO I))
+			                      (VBP mean)
+				              (IP-INF (NP-OB1 *T*-1)
+				  	              (TO to)
+					              (VB say)))))
+                      (BEP is)))
+          (NP-SBJ (PRO I))
+          (BEP am)
+          (ADJP-PRD (ADV very) (ADJ sorry)
+	            (IP-INF (TO to)
+                            (VB hear)
+                            (PP (P of)
+			        (NP (PRO$ your) (N loss)))))
+          (PUNC .)))
+</pre>
+</blockquote>
+
+<a name="rep">
+<h4>REP</h4>
+
+REP (in contrast to the dash tag -ELAB) is a full-fledged tag indicating
+the exact repetition of a constituent, chiefly for rhetorical reasons.
+
+<p>
+In case of ambiguity between REP and FS, FS is the default, as
+illustrated <a href="disfluencies.html#fs">earlier</a>.
+
+<p>
+Near repetitions are annotated as <a href="disfluencies.html#elab">elaborations</a> (ELAB).
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO It))
+  	  (BEP is)
+	  (NP-PRD (D a) (N trifle)
+	  	  (REP (NP (D a) (N trifle))))
+	  (PUNC .)))
+</pre>
+</blockquote>
+

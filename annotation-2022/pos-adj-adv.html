@@ -1,0 +1,207 @@
+<head>
+<title>Adjectives and adverbs</title>
+</head>
+
+<a name="top">
+<h3>Adjectives and adverbs</h3>
+
+<ul>
+<li><a href="pos-adj-adv.html#tags">List of tags</a>
+<li><a href="pos-adj-adv.html#comparative">Comparative adjectives and adverbs</a>
+	<ul>
+	<li><a href="pos-adj-adv.html#pos-vs-comp">Apparent comparatives</a>
+	<li>(N)EVER THE ADJR/ADVR (see <a href="words.html#ever">EVER</a>)
+
+	</ul>
+<li><a href="pos-adj-adv.html#superlative">Superlative adjectives and adverbs</a>
+        <ul>
+	<li><a href="pos-adj-adv.html#pos-vs-sup">Apparent superlatives</a>
+	</ul>
+<li><a href="syn-phrase.html#np_heads_empty">Adjectives as apparent heads of NP</a> (THE POOR, THE RICH)
+
+<li><a href="pos-adj-adv.html#colors">Colors</a>
+<li><a href="pos-nom.html#compass_points">Compass point adjectives</a> (EASTERN, NORTHERN, SOUTHERN, WESTERN)
+<li><a href="pos-adj-adv.html#ordinal_numbers">Ordinal numbers</a>
+<li><a href="words.html">Treatment of individual words</a>
+	<ul>
+	<li><a href="words.html#alswa">ALSWA</a>
+	<li>ANE (see <a href="words.html#one">ONE</a>)
+	<li><a href="words.html#as_degree">AS, SO (degree)</a>
+	<li><a href="words.html#as_well_as">AS WELL AS</a>
+	<li><a href="words.html#asswa">ASSWA</a>
+	<li><a href="words.html#ward">DOWNWARD</a>
+	<li><a href="words.html#enough">ENOUGH</a>
+	<li><a href="words.html#even">EVEN</a>
+	<li><a href="words.html#ever">EVER</a>
+	<li><a href="words.html#far">FAR</a>
+	<li><a href="words.html#fast">FAST</a>
+	<li><a href="words.html#first">FIRST</a>
+	<li><a href="words.html#ilke">ILKE</a>
+	<li><a href="words.html#ward">INWARD</a>
+	<li><a href="words.html#last">LAST</a>
+	<li><a href="words.html#least">LEAST</a>
+	<li><a href="words.html#less">LESS</a>
+	<li><a href="words.html#little">LITTLE</a>
+	<li><a href="words.html#long">LONG</a>
+	<li><a href="words.html#more">MORE</a>
+	<li><a href="words.html#most">MOST</a>
+	<li><a href="words.html#much">MUCH</a>
+	<li><a href="words.html#near">NEAR</a>
+	<li><a href="words.html#never">NEVER</a>
+	<li><a href="words.html#next">NEXT</a>
+	<li>NIGH (see <a href="words.html#near">NEAR</a>)
+	<li><a href="words.html#one">ONE</a>
+	<li><a href="words.html#ward">OUTWARD</a>
+	<li><a href="words.html#passing">PASSING</a>
+	<li><a href="words.html#as_degree">SO (degree)</a>
+	<li><a href="words.html#such">SUCH</a>
+	<li><a href="words.html#therefore">THEREFORE</a>
+	<li><a href="words.html#thilke">THILKE</a>
+	<li><a href="words.html#too">TOO</a>
+	<li><a href="words.html#ward">UPWARD</a>
+	<li><a href="words.html#worth">WORTH</a>
+	</ul>
+</ul>
+
+<a name="tags">
+<h4>List of tags</h4>
+
+<table border cellpadding=5>
+<tr>
+<th>Category
+<th>Positive
+<th>Comparative
+<th>Superlative
+<th>Possessive
+<tr>
+<td valign=top>adjective
+<td valign=top>ADJ
+<td valign=top>ADJR
+<td valign=top>ADJS
+<td valign=top>ADJ$ (very rare)
+<tr>
+<td valign=top>adverb
+<td valign=top>ADV
+<td valign=top>ADVR
+<td valign=top>ADVS
+</table>
+
+<p>
+Departicipial adjectives (INTERESTED, INTERESTING) are tagged
+as <tt>ADJ</tt> (rather than as participles, as in earlier releases).
+
+<p>
+<a href="split-join.html#as_written">Fused forms</a> with the distribution of
+PPs like ALIVE or ASLEEP are not treated as adjectives.</ul>
+
+<a name="comparative">
+<h4>Comparative adjectives and adverbs</h4>
+
+<blockquote> <pre>
+Thenne/ADV quene/NPR Igrayne/NPR waxid/VBD dayly/ADV gretter/ADJR
+and/CONJ gretter/ADJR
+
+he/PRO lovithe/VBP Arthure/NPR bettir/ADVR than/P us/PRO
+</pre> </blockquote>
+
+<p>
+Degree words are treated as comparatives.
+See
+<a href="words.html#as_degree">AS, SO (degree)</a>,
+<a href="words.html#enough">ENOUGH</a>,
+and
+<a href="words.html#too">TOO</a>
+for detailed discussion.
+
+<a name="pos-vs-comp">
+<h4>Apparent comparatives</h4>
+
+Except when construed with a THAN phrase or clause, apparently comparative forms
+that lack a base form are tagged as <tt>ADJ</tt> rather than <tt>ADJR</tt>.
+
+<p>
+<blockquote>
+<table border=1 cellpadding=5>
+<tr>
+<td>FORMER, INNER, NETHER, OUTER, UPPER
+</table>
+</blockquote>
+
+<p> LATER is tagged <tt>ADJ</tt> or <tt>ADV</tt> when not clearly
+comparative.  For unclear cases, the default is <tt>ADJR</tt> or
+<tt>ADVR</tt>.
+
+<p> LATTER is ordinarily tagged <tt>ADJ</tt>, but in early texts it
+functions as the ordinary comparative of LATE (later replaced by the
+innovative LATER) and is then tagged
+<tt>ADJR</tt>.
+
+<p>
+LOWER is tagged as <tt>ADJ</tt> when the counterpart of UPPER, and
+as <tt>ADJR</tt> when the counterpart of HIGHER.  For unclear cases, the
+default is <tt>ADJR</tt>.
+
+<a name="superlative">
+<h4>Superlative adjectives and adverbs</h4>
+
+<blockquote> <pre>
+in/P the/D greatest/ADJS church/N of/P London/NPR
+
+and/CONJ then/ADV every/Q knight/N took/VBD the/D way/N
+that/C he/PRO liked/VBD best/ADVS
+</pre> </blockquote>
+
+<a name="pos-vs-sup">
+<h4>Apparent superlatives</h4>
+
+Apparently superlative forms that lack a base form are tagged as <tt>ADJ</tt>
+rather than <tt>ADJS</tt>.
+
+<p>
+<blockquote>
+<table border=1 cellpadding=5>
+<tr>
+<td>INNERMOST, LOWERMOST, NETHERMOST, OUTERMOST, UNDERMOST,
+UPPERMOST, UTMOST, UTTERMOST
+</table>
+</blockquote>
+
+<a name="colors">
+<h4>Colors</h4>
+
+The default tag for basic color terms is <tt>ADJ.</tt>
+
+<blockquote>
+<table border cellpadding=3>
+<tr>
+<td>BLACK, BLUE, BROWN, GREEN, ORANGE,  PINK, PURPLE, RED, VIOLET, WHITE, YELLOW
+</table>
+</blockquote>
+
+<p> Color terms in other than prenominal or predicate position are
+tagged <tt>N.</tt>
+
+<blockquote><pre>
+the white/N of an egg
+a black/N like that of jet
+a deep red/N
+</pre></blockquote>
+
+<a name="ordinal_numbers">
+<h4>Ordinal numbers</h4>
+
+Ordinal numbers are tagged <tt>ADJ</tt>.  
+<a href="words.html#first">FIRST</a> also has an adverbial use.
+
+<blockquote> <pre>
++te/D thrid/ADJ day/N of/P +tat/D solempnyte/N
+
+&/CONJ +t=e=/D elleueneth/ADJ assembled/VBD a/D gret/ADJ power/N
+</pre> </blockquote>
+
+<p> Cases where an ordinal might be expected but without overt ordinal
+marking are treated as <a href="pos-misc.html#cardinal_numbers">cardinal
+numbers</a> (NUM).
+
+
+

@@ -1,0 +1,555 @@
+<head>
+<title>Annotation differences among the corpora</title>
+</head>
+
+<body>
+<a name="top">
+<h3>Annotation differences among the corpora</h3>
+
+<ul>
+<li><a href="differences.html#cipher">Cipher</a>
+<li><a href="differences.html#collective_nouns">Collective nouns</a>
+<li><a href="differences.html#quantifiers">Comparative and superlative quantifiers (LESS, LEAST; MUCH, MORE, MOST)</a>
+<li><a href="differences.html#concessive">Concessive clauses</a>
+	<ul>
+	<li><a href="differences.html#albeit">ALL BE IT (THAT), ALBEIT</a>
+	<li><a href="differences.html#howbeit">HOW BE IT (THAT), HOWBEIT</a>
+	<li><a href="differences.html#sobeit">SO BE IT (THAT)</a>
+	</ul>
+<li><a href="differences.html#disfluencies">Disfluencies</a>
+<li><a href="differences.html#do">DO (causative versus periphrastic)</a>
+<li><a href="differences.html#foreign">Foreign text</a>
+<li><a href="differences.html#lfd">Left dislocation</a>
+<li><a href="differences.html#needs">NEED(S) and other adverbial genitives</a>
+<li><a href="syn-sub.html#ppl_without_subjects">Participial clauses without subjects</a>
+<li><a href="differences.html#possessive_clitic">Possessive clitic
+<li><a href="split-join.html#differences">Splitting and joining words</a>
+</ul>
+
+<p>
+<hr>
+
+<a name="cipher">
+<h4>Ciphers</h4>
+
+<blockquote>
+
+Text used as cipher is tagged as CIPHER in the PCEEC.  In the other
+corpora, such text is tagged with its ordinary part of speech (N, NUM).
+
+</blockquote>
+
+<a name="collective_nouns">
+<h4>Collective nouns</h4>
+
+<blockquote>
+
+See
+also <a href="pos-nom.html#singular_collective_and_plural_nouns">Singular,
+collective, and plural nouns</a>.
+
+<p> In the PPCME2, collective nouns (FOLK, HORS, PEOPLE, etc.) are
+tagged as <tt>N</tt>.  In early texts, before the universalization of
+plural -S, it can be quite difficult to distinguish reliably between
+singular and plural.  For texts from the Middle English period M1, we
+have therefore tried to follow the translation that accompanies the text
+used, or when this is lacking, a separate translation.  For details,
+consult the information for the individual texts.
+
+<p> In the later corpora, PEOPLE is tagged as singular (<tt>N</tt>) when
+preceded by an unambiguously singular determiner (A, THAT, THIS), and as
+plural (<tt>NS</tt>) elsewhere.
+
+</blockquote>
+
+<a name="least">
+<a name="less">
+<a name="more">
+<a name="most">
+<a name="much">
+<a name="quantifiers">
+<h4>Comparative and superlative quantifiers</h4>
+
+<blockquote>
+
+In the PPCME2, LESS, LEAST and MUCH, MORE, MOST are generally tagged not
+as quantifiers (<tt>Q, QR, QS</tt>), but as adjectives (<tt>ADJ, ADJR,
+ADJS</tt>) under conditions
+described <a href="differences.html#q_as_adj_ppcme2">below</a>.  The
+distinction between the adjectival use and the pure quantifier use is
+not always easy to make in a consistent way and becomes more difficult
+over time.  In the later corpora, these items are therefore uniformly
+tagged as quantifiers (<tt>Q, QR, QS</tt>).
+
+<a name="q_as_adj_ppcme2">
+<p> LESS, LEAST and MUCH, MORE, MOST are treated as adjectives (<tt>ADJ,
+ADJR, ADJS</tt>) in the PPCME2 under the following conditions.
+See <a href="syn-phrase.html#adjp_heads_adj_comparative">Comparative
+adjectives as heads of ADJP</a>
+and <a href="syn-phrase.html#adjp_heads_adj_superlative">Superlative
+adjectives as heads of ADJP</a> for further relevant discussion.
+
+<ul>
+
+<li>When following a determiner or possessive and preceding a noun.
+    This includes cases in which a noun has clearly been elided, but
+    not comparative constructions like SHE LOVED HIM THE LESS or SHE
+    WAS THE MORE MERRY (where the quantifier is either followed by
+    nothing or something other than a noun).
+
+<blockquote> <pre>
+a/D michel/ADJ lust/N
+
+fram/P +te/D michel/ADJ conseil/N of/P +te/D vntrew/ADJ
+
+ouer/P +tat/D michele/ADJ water/N
+
+his/PRO$ michele/ADJ wisdom/N
+
+Hit/PRO is/BEP a/D michel/ADJ reunesse/N		&larr; MICHEL = ADJ (preceding determiner)
+
+of/P mani/Q mann/N +de/C is/BEP
+on/P michele/Q dwele/N on/P him/PRO seluen/N            &larr; MICHEL = Q (no determiner)
+
+and/CONJ +te/D more/ADJR fysches/NS swolwen/VBP +te/D lesse/ADJR          &larr; elided head noun
+
+'/PUNC and/CONJ I/PRO shall/MD ensure/VB you/PRO ye/PRO shall/MD have/HV
+the/D more/ADJR worship/N than/P ever/ADV ye/PRO had/HVD ./PUNC '/PUNC
+
+And/CONJ hem/PRO thinketh/VBP +tat/C the/D more/ADJR peyne/N &/CONJ
+the/D more/ADJR tribulacioun/N +tat/C +tei/PRO suffren/VBP for/P loue/N
+of/P here/PRO$ god/N ,/PUNC the/D <P_117>/CODE more/ADJR ioye/N +tei/PRO
+schull/MD haue/HV in/P another/D+OTHER world/N
+</pre> </blockquote>
+
+<li> When used as a predicate (with
+a <a href="words.html#copular_verbs">copular verb</a> or in
+a <a href="syn-sub.html#small_clauses">small clause</a>)
+
+<blockquote> <pre>
+for/CONJ he/PRO shal/MD ben/BE michel/ADJ bifore/P gode/NPR
+
+And/CONJ sum/Q men/NS maken/VBP hem/PRO more/ADJR
+
+and/CONJ maki+t/VBP his/PRO$ myracle/N more/ADJR
+
+Ne/NEG dowte/VBP we/PRO not/NEG how/WADV byleue/N may/MD now/ADV be/BE
+lesse/ADJR and/CONJ now/ADV be/BE more/ADJR
+</pre> </blockquote>
+
+</ul>
+
+</blockquote>
+
+<a name="concessive">
+<h4>Concessive clauses</h4>
+
+<blockquote>
+
+In the PPCME2, ALL BE IT (THAT) and SO BE IT (THAT) clauses are treated
+similarly to <a href="syn-sub.html#v1_conditionals">V1 conditionals</a>.
+HOW BE IT (THAT) clauses are treated as adverbial <a href="syn-sub.html#free_relatives">free relatives</a>.
+
+<p> In the later corpora, ALL BE IT and HOW BE IT (though not SO BE IT)
+come to be used absolutely.  Moreover, regardless of whether they appear
+absolutely or introduce subordinate clauses, these items come to be
+spelled as single words (ALBEIT, HOWBEIT).  We therefore treat them as
+<a href="words.html#albeit">unitary adverbs or prepositions</a>.  In the
+later corpora, SO BE IT clauses cease to pattern with ALL BE IT clauses.
+Instead, they are simply word order variants of IT BE SO and are
+annotated accordingly.
+
+</blockquote>
+
+<a name="albeit">
+<ul>
+<li><b>ALL BE IT (THAT), ALBEIT </b>
+
+<p>
+In the PPCME2, ALL BE IT (THAT) clauses, like SO BE IT (THAT) clauses,
+are treated similarly to <a href="syn-sub.html#v1_conditionals">V1
+conditionals</a>.  ALL is POS-tagged <tt>Q</tt>, surrounded by
+<tt>ADVP</tt> brackets, and treated as a daughter of <tt>CP-ADV</tt>.
+This is not intended as the correct analysis of the construction, but
+rather to fit in with the annotation of V1 conditionals.
+
+<blockquote> <pre>
+( (IP-MAT (CONJ and)
+          (PP (P atte)
+              (NP (N risyng)
+                  (PP (P of)
+                      (NP (D the) (N sonne)))))
+          (NP-SBJ (PRO I))
+          (VBD fond)
+          (NP-OB1 (D the) (ADJ secunde) (N degre)
+                  (PP (P of)
+                      (NP (NPR Aries))))
+          (IP-PPL (VAG sittyng)
+                  (PP (P upon)
+                      (NP (PRO$ myn) (N est) (N orisonte))))
+          (, ,)
+          (CP-ADV (ADVP (Q all))			&larr; ALL BE IT
+                  (IP-SUB (BEP be)
+                          (NP-SBJ-1 (PRO it))
+                          (CP-THT-1 (C that)
+                                    (IP-SUB (NP-SBJ (PRO it))
+                                            (BEP was)
+                                            (ADJP-PRD (FP but) (ADJ litel))))))
+          (. .))
+  (ID CMASTRO,673.C1.364))
+
+( (IP-MAT-SPE (CONJ And)
+              (, ,)
+              (CP-ADV (ADVP (Q al))			&larr; ALL BE IT
+                      (IP-SUB (BED were)
+                              (NP-SBJ-1 (PRO it))
+                              (ADVP (ADV so))
+                              (CP-THT-1 (C that)
+                                        (IP-SUB (NP-SBJ (PRO she))
+                                                (ADVP-TMP (ADV right) (ADV now))
+                                                (BED were)
+                                                (ADJP-PRD (ADJ deed))))))
+              (, ,)
+              (NP-SBJ (PRO ye))
+              (NEG ne)
+              (MD oughte)
+              (NEG nat)
+              (, ,)
+              (PP (P as)
+                  (PP (P for)
+                      (NP (PRO$ hir) (N deeth))))
+              (, ,)
+              (NP-OB1 (PRO$+N youreself))
+              (TO to)
+              (VB destroye)
+              (. .))
+  (ID CMCTMELI,217.C1b.18))
+</pre> </blockquote>
+
+<p> In the later corpora, ALBEIT (like HOWBEIT) is treated as
+a <a href="words.html#albeit">unitary adverb</a> (when used absolutely)
+or as a <a href="words.html#albeit">unitary preposition</a> (when
+introducing a subordinate clause).
+
+<blockquote> <pre>
+(NODE (CP-CAR (WNP-1 (WPRO Which))
+	      (C 0)
+	      (IP-SUB (PP (P in)
+		          (NP (NP-POS (D the) (N$ kinges))
+			      (NS daies)))
+   		      (, ,)
+		      (PP-LFD (P albeit)		&larr; ALBEIT
+			      (CP-ADV (C 0)
+				      (IP-SUB (NP-SBJ (PRO he))
+					      (BED was)
+					      (ADJP-PRD (ADV sore)
+					                (ADJ ennamored)
+					                (PP (P vpon)
+						            (NP (PRO her)))))))
+    		      (, ,)
+		      (ADVP-RSP (ADV yet))
+		      (NP-SBJ-RSP=1 (PRO he))
+    		      (VBD forbare)
+  		      (NP-OB1 (PRO her))
+		      (, ,)
+  		      (PP (CONJ either)
+  		          (PP (P for)
+		   	      (NP (N reuerence)))
+  		          (, ,)
+			  (CONJP (CONJ or)
+			         (PP (P for)
+				     (NP (D a) (ADJ certain) (ADJ frendly) (N faithfulnes)))))))
+      (ID MORERIC,55.118))
+</pre> </blockquote>
+
+<a name="howbeit">
+<li>
+<b>HOW BE IT (THAT), HOWBEIT</b>
+
+<p>
+In the PPCME2, HOW BE IT (THAT) clauses are treated as adverbial
+<a href="syn-sub.html#free_relatives">free relatives</a>.
+
+<blockquote> <pre>
+( (IP-MAT (CONJ And)	
+	  (ADVP (CP-FRL (WADVP-1 (WADV how))		&larr; HOW BE IT
+			(C 0)
+			(IP-SUB (ADVP *T*-1)
+				(BEP be)
+				(NP-SBJ-2 (PRO it))
+				(CP-THT-2 (C 0)
+					  (IP-SUB (IP-SUB-3 (NP-SBJ (PRO thou))
+							    (HVP hast)
+							    (ADVP-TMP (ADV often))
+							    (ADVP-TMP (ADV before))
+							    (PP (P in)
+								(NP (NP (PRO$ thy) (ADJ yonge) (N age))
+								    (CONJP (CONJ and)
+									   (NP (ADJ myddell) (N age)))))
+							    (VBN dyvydyd)
+							    (NP-OB1 (PRO$ thy) (N lyfe))
+							    (NP-TMP (Q+N somtyme))
+							    (PP (P to)
+								(NP (N vertue))))
+						  (, ,)
+						  (IP-SUB=3 (NP-TMP (Q+N somtyme))
+							    (PP (P to)
+								(NP (N vyce)))))))))
+	  (, ,)
+	  (NP-SBJ (PRO ye))
+	  (PP (P as)
+	      (ADVP-TMP (ADV now)))
+	  (PP (P in)
+	      (NP (PRO$ thy) (ADJR latter) (N age)))
+	  (VBP kepe)
+	  (NP-SBJ (PRO$ thy) (N lyfe))
+	  (ADJP-SPR (ADJ holy))
+	  (PP (P in)
+	      (NP (N vertue)))
+	  (. .)) (ID CMINNOCE,11.189))
+</pre> </blockquote>
+
+<p> In the later corpora, HOWBEIT (like ALBEIT) is treated as
+a <a href="words.html#howbeit">unitary adverb</a> (when used
+absolutely) or as a <a href="words.html#howbeit">unitary
+preposition</a> (when introducing a subordinate clause).
+
+<blockquote> <pre>
+( (IP-MAT-SPE (ADVP (ADV How_be_it)))					&larr; HOWBEIT
+	      (NP-SBJ (PRO he)
+		      (CP-REL-SPE (WNP-1 0)
+				  (C that)
+				  (IP-SUB-SPE (NP-SBJ *T*-1)
+					      (HVP hath)
+					      (VBN receaved)
+					      (NP-OB1 (PRO$ hys) (N testimonye)))))
+	      (HVP hath)
+	      (VBN set)
+	      (RP to)
+	      (NP-OB1 (PRO$ his)
+		      (N seale)
+		      (CP-THT-SPE (C that)
+				  (IP-SUB-SPE (NP-SBJ (NPR God))
+					      (BEP is)
+					      (ADJP-PRD (ADJ true)))))
+	      (. .))
+  (ID TYNDNEW,III,20J.218))
+</pre> </blockquote>
+
+<a name="sobeit">
+<li>
+<b>SO BE IT (THAT)</b>
+
+<p>
+In the PPCME2, SO BE IT (THAT) clauses, like ALL BE IT (THAT) clauses,
+are treated similarly to <a href="syn-sub.html#v1_conditionals">V1
+conditionals</a>.  SO is POS-tagged <tt>ADV</tt>, surrounded by
+<tt>ADVP</tt> brackets, and treated as a daughter of <tt>CP-ADV</tt>.
+Again, this is not intended as the correct analysis of the construction,
+but rather to fit in with the annotation of V1 conditionals.
+
+<blockquote> <pre>
+( (IP-MAT-SPE (CONJ and)
+              (NP-SBJ (Q all))
+              (MD $shal)
+              (BE be)
+              (VAN delyverde)
+              (, ,)
+              (PP (P so)
+                  (CP-ADV (C 0)
+                          (IP-SUB (NP-SBJ (PRO thou))
+                                  (MD wolte)
+                                  (VB telle)
+                                  (NP-OB2 (PRO me))
+                                  (NP-OB1 (PRO$ thy) (N name)))))
+              (, ,)
+              (CP-ADV (ADVP (ADV so))				&larr; SO BE IT
+                      (IP-SUB (BEP be)
+                              (NP-SBJ-1 (PRO hit))
+                              (CP-THT-1 (C that)
+                                        (IP-SUB (NP-SBJ (PRO thou))
+                                                (BEP be)
+                                                (NEG nat)
+                                                (NP-PRD (NPR sir) (NPR Launcelot))))))
+              (. .)
+              (' '))
+  (ID CMMALORY,191.2824))
+</pre> </blockquote>
+
+<p> In the later corpora, SO BE IT is a word order variant of IT BE SO
+and is tagged accordingly.
+
+<blockquote> <pre>
+( (IP-MAT (PP-LFD (P IF)
+		  (CP-ADV (C 0)
+			  (IP-SUB (ADVP (ADV SO))		&larr; SO BE IT
+				  (BEP BE)
+				  (NP-SBJ=1 (PRO IT))
+				  (, ,)
+				  (CP-THT-1 (C THAT)
+					    (IP-SUB (PP (P IN)
+							(NP (Q ANY) (N TRIANGLE)))
+						    (, ,)
+						    (NP-SBJ (D THE)
+							    (N SQUARE)
+							    (PP (P OF)
+								(NP (D THE) (ONE ONE) (N SYDE))))
+						    (BEP BE)
+						    (ADJP-PRD (ADJ =L)
+							      (PP (P TO)
+							          (NP (D THE)
+								      (NUM .IJ.)
+								      (NS SQUARES)
+								      (PP (P OF)
+								          (NP (D THE) (OTHER OTHER) (NUM IJ.) (NS SIDES)))))))))))
+	  (, ,)
+	  (ADVP-RSP (ADV THAN))
+	  (MD MUST)
+	  (NP-ADV (N NEDES))
+	  (NP-SBJ (D THAT) (N CORNER))
+	  (BE BE)
+	  (NP-PRD (D A)
+		  (ADJ RIGHT)
+		  (N CORNER)
+		  (, ,)
+		  (CP-REL (WNP-3 (WPRO WHICH))
+			  (C 0)
+			  (IP-SUB (NP-SBJ *T*-3)
+				  (BEP IS)
+				  (VAN CONTEINED)
+				  (PP (P BETWENE)
+				      (NP (D THOSE) (NUM TWO) (ADJR LESSER) (NS SYDES))))))
+	  (. .))
+  (ID RECORD,2.E4V.296))
+</pre> </blockquote>
+
+</ul>
+
+<a name="disfluencies">
+<h4>Disfluencies</h4>
+
+<blockquote>
+
+<a href="disfluencies.html">Disfluencies</a> are indicated only in the
+PPCMBE2; in the other corpora, they hardly ever occur.
+
+</blockquote>
+
+<a name="do">
+<h4>DO</h4>
+
+<blockquote>
+
+In Middle English, DO can be ambiguous between a causative
+(<a href="syn-sub.html#ecm_vs_object_control">ECM</a>) main verb and a
+periphrastic auxiliary.  The default in the PPCME2 is to treat ambiguous
+cases as causative except when a causative reading is impossible.
+Causative DO dies out in the course of Middle English, and so instances
+of DO in the later corpora that could in principle be treated as
+ambiguous are instead uniformly treated as periphrastic.
+
+</blockquote>
+
+<a name="foreign">
+<h4>Foreign text</h4>
+
+<blockquote>
+
+In the PPCHE, sequences of two or more foreign words are labelled as
+LATIN or FOREIGN (any language other than Latin).  In the PCEEC, such
+sequences are labelled uniformly as FOREIGN.
+
+</blockquote>
+
+<a name="lfd">
+<h4>Left dislocation</h4>
+
+<blockquote>
+
+In the PPCME2, PPs are annotated as left-dislocated only if the
+resumptive element is a matching PP (that is, if the preposition in the
+left-dislocated and in the resumptive element is identical, and if the
+objects of the prepositions corefer); there are only a handful of
+examples.
+
+<blockquote> <pre>
+( (IP-IMP (VBI Thynk)
+	  (ALSO eek)
+	  (CP-THT (C that)
+		  (IP-SUB (PP-LFD (P of)
+				  (NP (SUCH swich)
+				      (N seed)
+				      (PP (P as)
+					  (CP-CMP (WNP-1 0)
+						  (C 0)
+						  (IP-SUB (PP (P (CODE {of}))
+							      (NP *T*-1))
+							  (NP-SBJ (NS cherles))
+							  (VBP spryngen))))))
+			  (, ,)
+			  (PP-RSP (P of)
+				  (NP (SUCH swich) (N seed)))
+			  (NP-SBJ=2 *exp*)
+			  (VBP spryngen)
+			  (NP-2 (NS lordes))))
+	  (. .))
+  (ID CMCTPARS,314.C1.1108))
+</pre> </blockquote>
+
+<p> In the later corpora, the <tt>-LFD</tt> dash tag is used for such
+examples, but also more liberally to indicate a relationship between a
+pre-subject PP and any more broadly resumptive PP or ADVP.
+
+<blockquote> <pre>
+( (IP-MAT-SPE (PP-LFD (P Though)
+		      (CP-ADV-SPE (C 0)
+				  (IP-SUB-SPE (NP-SBJ (PRO I))
+					      (VBP beare)
+					      (NP-OB1 (N record))
+					      (PP (P of)
+						  (NP (PRO$ my) (N selfe))))))
+	      (, ,)
+	      (ADVP-RSP (ADV yet))
+	      (NP-SBJ (PRO$ my) (N record))
+	      (BEP is)
+	      (ADJP-PRD (ADJ true)))
+  (. :)) (ID AUTHNEW-E2-H,VIII,1J.1030))
+</pre> </blockquote>
+
+</blockquote>
+
+<a name="adverbial_genitives">
+<a name="needs">
+<h4>NEED(S) and other adverbial genitives</h4>
+
+<blockquote>
+
+In the PPCME2, NEED(S) and other originally adverbial genitives are
+treated as simple nouns projecting NP-ADV
+(see <a href="syn-const.html#adverbial_genitives">Adverbial genitives</a>
+for examples).  These forms die out in the course of Early Modern
+English.  Where they survive in the later corpora (notably in the
+collocation MUST NEEDS), they are tagged as adverbs projecting a simple
+ADVP.
+
+<blockquote> <pre>
+<b>PPCME2</b>						<b>Later corpora</b>
+
+(NP-ADV (N needs))				(ADVP (ADV needs))
+</pre> </blockquote>
+
+</blockquote>
+
+<a name="possessive_clitic">
+<h4>Possessive clitic</h4>
+
+<blockquote>
+
+In the PCEEC, the possessive clitic <i>'s</i> is always split off from
+its host noun.  In the other corpora, this is only true when the clitic
+takes scope over a constituent larger than its host
+(see <a href="syn-phrase.html#np_mod_poss">Genitive/possessive modifiers
+of N</a> for details).
+
+</blockquote>
+

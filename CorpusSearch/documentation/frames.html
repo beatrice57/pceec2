@@ -1,0 +1,97 @@
+<head>
+<title>Local frames</title>
+</head>
+
+<body>
+
+<h2>Local frames</h2>
+
+<ul>
+<li><a href="#what">What are local frames?</a>
+<li><a href="#sample">Sample output</a>
+</ul>
+
+<!--
+<p>
+<hr>
+-->
+
+<a name="what">
+<h3>What are local frames?</h3>
+
+<p>
+<b>This functionality is not fully tested.  Use it with care.
+Suggestions for improvement are welcome.</b>
+
+<p>
+Local frames are an approximation to subcategorization and selectional
+contexts for lexical heads.  Given a part-of-speech category and a
+lexical item of that category, CorpusSearch returns a list of the
+contexts in which the specified POS-word pair occurs in the corpus.
+
+<p>
+Each context is a string of sister nodes of the POS label(s) specified
+in the query.  If a PP occurs in a local frame, the preposition heading
+it is included immediately after the PP label.
+
+<p>
+The list of contexts is organized into subgroups that share the same
+"kernel", where a kernel is the subset of the sister nodes whose phrasal
+category is NP* (that is, subjects and objects).
+
+<a name="sample">
+<h3>Sample output</h3>
+
+The following query:
+
+<blockquote>
+<pre>
+node: IP*
+
+local_frames: (VB* over +tank*|thank*)
+</pre>
+</blockquote>
+
+results in this output (only the beginning is shown):
+
+<blockquote>
+<pre>
+/*
+PREFACE:
+CorpusSearch copyright Beth Randall 2000.
+Date:  Tue Sep 21 10:08:43 EDT 2004
+
+command file:     frames.q
+output file:      frames.out
+
+local frames:  (VB* over +tank*|thank*)
+*/
+
+/*
+NP-SBJ VB thankyn NP-OB2
+*/
+
+ALSO NP-SBJ MD VB NP-OB2 (ID CMKEMPE,57.1270)
+CONJ NP-SBJ MD TO VB NP-OB2 PP for (ID CMKEMPE,46.1024)
+
+/*
+NP-SBJ VBD +tankyd NP-OB2
+*/
+
+NP-SBJ VBD NP-OB2 PP for (ID CMKEMPE,58.1308)
+VBD NP-OB2 ADVP PP-RSP +terfore (ID CMKEMPE,78.1765)
+
+/*
+NP-SBJ VBD thankyd NP-OB2
+*/
+
+ADVP-TMP NP-SBJ IP-PPL VBD NP-OB2 PP as IP-PPL (ID CMKEMPE,224.3620)
+ADVP-TMP NP-SBJ IP-PPL VBD NP-OB2 PP of (ID CMKEMPE,133.3113)
+ADVP-TMP NP-SBJ VBD NP-OB2 PP of (ID CMKEMPE,25.533)
+CONJ ADVP-TMP NP-SBJ PP wyth VBD NP-OB2 PP of IP-PPL (ID CMKEMPE,87.1978)
+CONJ ADVP-TMP NP-SBJ VBD NP-OB2 ADVP PP of IP-PPL (ID CMKEMPE,94.2146)
+CONJ ADVP-TMP NP-SBJ VBD NP-OB2 PP of IP-PPL (ID CMKEMPE,13.255)
+</pre>
+</blockquote>
+
+</body>

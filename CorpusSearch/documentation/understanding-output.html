@@ -1,0 +1,453 @@
+<head>
+<title>Understanding the Output</title>
+</head>
+
+<body>
+
+<h2>Understanding CorpusSearch output</h2>
+
+<ul>
+<li><a href="#general">General form of the output</a>
+<li><a href="#sample">Sample output file</a>
+    <ul>
+    <li><a href="#preface">Preface</a>
+    <li><a href="#header">Header</a>
+    <li><a href="#output">Output sentence</a>
+    <li><a href="#footer">Footer</a>
+    <li><a href="#hits">Hits/tokens/total</a>
+    <li><a href="#summary">Summary</a>
+    </ul>
+<li><a href="#using">Using nodes_only and remove_nodes</a>
+</ul>
+
+<p>
+<hr>
+
+<a name="general">
+<h3>General form of the output</h3>
+
+By default, the name of an output file is the same as the input file,
+but with the (additional) extension <b>.out</b>.
+
+<p>
+Output files have the following general form:
+
+<ul>
+<li>Each output file contains a <a href="#preface">preface</a> and
+    a <a href="#summary">summary</a>.
+<li>For each input file reported in the output file, there is
+    a <a href="#header">header</a> and a <a href="#footer">footer</a>.
+<li>Each sentence token in the input file that matches the query is
+    associated with the <a href="#output">following information</a>:
+    <ul>
+    <li>the original text (or ur-text),
+    <li>a result block specifying the nodes that match the query, and
+    <li>the parsed structure itself.
+    </ul>
+</ul>
+
+<a name="sample">
+<h3>Sample output file</h3>
+
+In what follows, we walk through a sample output file resulting from a
+query that searches for inverted pronoun subjects - that is, pronoun
+subjects that follow the tensed verb.  (The query is somewhat simplified
+compared with what would be required for an actual search on Middle
+English files.)
+
+<a name="preface">
+<h4>Preface</h4>
+
+<blockquote>
+<pre>
+/*
+    PREFACE:
+    CorpusSearch copyright Beth Randall 2004.
+    Date:  Sun Apr 30 07:05:51 EDT 2004
+
+    command file:       inversion.q
+    output file:        inversion.out
+
+    remark:   This query searches for inverted pronoun subjects.
+
+    node:   IP*
+
+    print_indices: true
+
+    query:      (ADJP*|ADVP*|NP*|PP* iPrecedes BE[DP]|DO[DP]|HV[DP]|MD|VB[DP])
+            AND (ADJP*|ADVP*|NP*|PP* iDoms !\*T*)
+            AND (BE[DP]|DO[DP]|HV[DP]|MD|VB[DP] iPrecedes NP-SBJ*)
+            AND (NP-SBJ* iDoms PRO)
+
+*/
+</pre>
+</blockquote>
+
+The preface begins with a copyright declaration and the date and time of
+the search.
+
+<p>
+It then lists the names of the command file and output file.
+
+<p>
+The optional <a href="command-file.html#remark">remark</a> serves as a reminder
+of the purpose of the query.
+
+<p>
+The preface then prints a copy of the query.  Any labels from a
+definition file are expanded according to their definitions (this
+prevents confusion resulting from any subsequent changes to the
+definition file).  For instance, lines 1 and 3 of the above query might
+have looked like this in the original command file:
+
+<p>
+<blockquote>
+<pre>
+                (ADJP*|ADVP*|NP*|PP* iPrecedes finiteVerb)
+            ...
+            AND (finiteVerb iPrecedes NP-SBJ*
+            ...
+</pre>
+</blockquote>
+
+<a name="header">
+<h4>Header</h4>
+
+The header lists each source file with its name as it appears in the
+corpus directory.  If the source file is itself the output of a
+CorpusSearch run, the name appears as it appears in the ID nodes for
+that file (in this case, CMCAPCHR).  In the absence of an ID node, the
+filename is reported as NULL.  For more information on searching output
+files, see <a href="#using">below</a>.
+
+<blockquote>
+<pre>
+/*
+    HEADER:
+    source file:  cmcapchr.m4.psd
+*/
+</pre>
+</blockquote>
+
+<a name="output">
+<h4>Output sentence</h4>
+
+Each output sentence is divided into three parts:
+
+<ul>
+<li>the original text (also referred to as the ur-text)
+<li>the result block, which specifies the nodes that match the query
+<li>the sentence in its parsed form
+</ul>
+
+Here is a short example:
+
+<blockquote>
+<pre>
+/~*
+His fadir scheep kepte he ful mekly;
+(CMCAPCHR,32.13)
+*~/
+
+/*
+    1 IP-MAT: 2 NP-OB1, 7 VBD kepte, 6 NS scheep, 8 NP-SBJ, 9 PRO he
+*/
+
+(0  (1 IP-MAT (2 NP-OB1 (3 NP-POS (4 PRO$ His) (6 N$ fadir))
+			(8 NS scheep))
+	      (10 VBD kepte)
+	      (12 NP-SBJ (13 PRO he))
+	      (15 ADVP (16 ADVR ful) (18 ADV mekly))
+	      (20 E_S ;))
+    (22 ID CMCAPCHR,32.13))
+</pre>
+</blockquote>
+
+<p>
+The original text is surrounded by special markers, "/~*" and "*~/".  
+If a subsequent search is run on the output file, CorpusSearch finds 
+and records this block of data.  In this way, the original text of the
+entire sentence is conserved across multiple searches (with possibly
+different boundary nodes).
+
+<p>
+The result block is surrounded by special markers of its own, "/*" and
+"*/".  The first item in the result block is the boundary node (in this
+case, <nobr>1 IP-MAT),</nobr> which matches the value of the "node:"
+line of the command file.  The boundary node is separated by a colon
+from the rest of the list, which specifies the nodes in the structure
+that match the nodes specified in the body of the query.
+
+<p>
+The numbers preceding the nodes in the result block are the indices on
+the nodes of the labeled bracketing.  These indices are intended to
+clarify how the token comes to match the query.  They are always present
+in the result block.  They are explicitly included in the labeled
+bracketing when the <a href="command-file.html#preamble">preamble</a>
+includes the line "print_indices: true".
+<!--The list of indices and structures is structured so that no node is reported 
+more than once.-->
+
+<p>
+In cases where more than one node matches a single search-function
+argument, the result block reports the first matching node.  But in the
+case of negated arguments, the result block reports the last matching
+node (since the logic of negation requires it to check every possible
+match).  For instance, the argunent "!\*T*" in the second line of the
+sample query matches both "3 NP-POS" and "8 NS" in the sample input, and
+CorpusSearch reports the second node.
+
+<p>
+The parsed version of the output sentence is indented to show the
+structure of the tree.  Sisters have the same indentation (for instance,
+"2 NP-OB1" and "10 VBD").  Daughters are indented further than
+their mothers.  If a node dominates only leaves, they are printed on the
+same line to save space.
+
+<a name="footer">
+<h4>Footer</h4>
+
+The footer gives the statistics for <a href="#hits">hits, tokens, and
+total</a> as found in a particular input file.
+
+<blockquote>
+<pre>
+/*
+FOOTER
+  source file, hits/tokens/total
+cmcapchr.m4.psd     220/220/4175
+*/
+</pre>
+</blockquote>
+
+<p>
+This same information appears again as a line in the <a href="#summary">summary</a>.
+
+<a name="hits">
+<h4>Hits/tokens/total</h4>
+
+CorpusSearch reports the following statistics:
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td>hits
+<td>number of distinct boundary nodes contaning the searched-for structure
+<tr>
+<td>tokens
+<td>number of parsed objects enclosed in wrapper parens in which hits occurred
+<tr>
+<td>total
+<td>total number of independent parsed objects searched
+</table>
+
+<p>
+When searching a corpus file, tokens tend to be matrix sentences, though
+they can also be fragments of one sort or another.  Tokens can contain
+several distinct boundary nodes.  For instance, a root IP-MAT might
+contain several NP nodes, each of which counts as a boundary node in a
+query with the value "NP*" for "node".  If more than one of these NPs
+match the query, the single token in question contains more than one
+hit.  It is thus possible (and indeed common) for the number of hits to
+exceed the number of tokens.  Conversely, by definition, the number of
+tokens cannot exceed the number of hits; it can only ever equal it.
+
+<a name="summary">
+<h4>Summary</h4>
+
+The summary repeats the information in the footers for each individual
+input file, but reported together in one place - at the end of the
+output file.  The following sample summary was produced by a search on
+all files in the Middle English corpus (PPCME2) from the fourth time
+period (1420-1500), indicated by the "m4" in the filename.
+
+<blockquote>
+<pre>
+/*
+SUMMARY:  
+source files, hits/tokens/total:
+  cmaelr4.m4.psd    46/46/766
+  cmcapchr.m4.psd   220/220/4175
+  cmcapser.m4.psd   12/12/91
+  cmedmund.m4.psd   2/2/300
+  cmfitzja.m4.psd   14/14/228
+  cmgregor.m4.psd   14/14/2631
+  cminnoce.m4.psd   6/6/208
+  cmkempe.m4.psd    203/202/3851
+  cmmalory.m4.psd   214/213/4995
+  cmreynar.m4.psd   36/36/547
+  cmreynes.m4.psd   0/0/245
+  cmsiege.m4.psd    6/6/731
+whole search, hits/tokens/total
+773/771/18772
+*/
+</pre>
+</blockquote>
+
+<a name="using">
+<h3>Using nodes_only and remove_nodes</h3>
+
+Consider the following query (2vb.q), which searches for matrix clauses
+containing a subject that precedes at least two verbs (including
+modals).  We begin with a version of this query that sets "nodes_only"
+to "f"; "remove_nodes" is then necessarily set to "f" as well.  Later
+on, we discuss the effect of setting these commands to "t".
+
+<blockquote>
+<pre>
+nodes_only: f
+
+// the following command is commented out since it is redundant
+// remove_nodes: f
+
+node:  IP-MAT*
+
+query:     (IP-MAT* iDoms NP-SBJ*)
+       AND (NP-SBJ* hasSister BE[DP]|DO[DP]|HV[DP]|VB[DP]|MD)
+       AND (NP-SBJ* precedes BE[DP]|DO[DP]|HV[DP]|VB[DP]|MD)
+       AND (NP-SBJ* hasSister BE|BEN|DO|D[AO]N|HV|H[AV]N|VB|VA[GN])
+       AND (NP-SBJ* precedes BE|BEN|DO|D[AO]N|HV|H[AV]N|VB|VA[GN])
+</pre>
+</blockquote>
+
+<p>
+Here is a sample sentence that matches the query.
+
+<blockquote>
+<pre>
+/~*
+They would have told you if you had visited them.
+*~/
+/*
+1 IP-MAT:  1 IP-MAT, 2 NP-SBJ, 5 MD, 7 HV
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 PRO They))
+	      (5 MD would)
+	      (7 HV have)
+	      (9 VBN told)
+	      (11 NP-OB2 (12 PRO you))
+	      (14 PP (15 P if)
+		     (17 CP-ADV (18 C 0)
+				(20 IP-SUB (21 NP-SBJ (22 PRO you))
+					   (24 HVD had)
+					   (26 VBN visited)
+					   (28 NP-OB1 (29 PRO them)))))
+	      (31 . .)))
+</pre>
+</blockquote>
+
+<p>
+Let's now run the following query to find pronominal objects (pro-obj.q)
+on the above sentence.
+
+<blockquote>
+<pre>
+node: NP-OB*
+
+nodes_only: f
+
+query: (NP-OB* iDoms PRO)
+</pre>
+</blockquote>
+
+This gives the following output:
+
+<blockquote>
+<pre>
+/~*
+They would have told you if you had visited them.
+*~/
+/*
+11 NP-OB2:  11 NP-OB2, 12 PRO
+28 NP-OB1:  28 NP-OB1, 29 PRO
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 PRO They))
+	      (5 MD would)
+	      (7 HV have)
+	      (9 VBN told)
+	      (11 NP-OB2 (12 PRO you))
+	      (14 PP (15 P if)
+		     (17 CP-ADV (18 C 0)
+				(20 IP-SUB (21 NP-SBJ (22 PRO you))
+					   (24 HVD had)
+					   (26 VBN visited)
+					   (28 NP-OB1 (29 PRO them)))))
+	      (31 . .)))
+/*
+FOOTER
+  source file, hits/tokens/total
+  NULL			2/1/1
+*/
+</pre>
+</blockquote>
+
+The query matches the two pronouns in the one token and therefore
+reports 2 hits and 1 token.  But what if we want to restrict the second
+query to only the boundary nodes that match the first query?  In other
+words, what if we want to find only pronominal objects in matrix clauses
+with subjects that precede at least two verbs (without writing a single
+query to that effect)?  This can be done by setting the values of
+"nodes_only" and "remove_nodes" in 2vb.q to "t", resulting in 2vb-mod.q.
+
+<blockquote>
+<pre>
+nodes_only: t
+
+remove_nodes: t
+
+node:  IP-MAT*
+
+query:     (IP-MAT* iDoms NP-SBJ*)
+       AND (NP-SBJ* hasSister BE[DP]|DO[DP]|HV[DP]|VB[DP]|MD)
+       AND (NP-SBJ* precedes BE[DP]|DO[DP]|HV[DP]|VB[DP]|MD)
+       AND (NP-SBJ* hasSister BE|BEN|DO|D[AO]N|HV|H[AV]N|VB|VA[GN])
+       AND (NP-SBJ* precedes BE|BEN|DO|D[AO]N|HV|H[AV]N|VB|VA[GN])
+</pre>
+</blockquote>
+
+The relevantly different output of 2vb-mod.q is as follows:
+
+<blockquote>
+<pre>
+( (1 IP-MAT (2 NP-SBJ (3 PRO They))
+	    (5 MD would)
+	    (7 HV have)
+	    (9 VBN told)
+	    (11 NP-OB2 (12 PRO you))
+	    (14 PP (15 P if)
+		   (17 CP-ADV (18 C 0)
+			      (20 IP-SUB RMV:you_had_visited...)))
+	    (31 . .))
+  ) 
+</pre>
+</blockquote>
+
+Running pro-obj.q on the output of 2vb-mod.q results in the following
+output; again, only the relevant different parts are shown.
+
+<blockquote>
+<pre>
+/*
+11 NP-OB2:  11 NP-OB2, 12 PRO
+*/
+(0  (1 IP-MAT (2 NP-SBJ (3 PRO They))
+	      (5 MD would)
+	      (7 HV have)
+	      (9 VBN told)
+	      (11 NP-OB2 (12 PRO you))
+	      (14 PP (15 P if)
+		     (17 CP-ADV (18 C 0)
+				(20 IP-SUB RMV:you_had_visited...)))
+	      (22 . .)))
+/*
+FOOTER
+  source file, hits/tokens/total
+  NULL			1/1/1
+*/
+</pre>
+</blockquote>
+
+Because "remove_nodes: t" removes the subordinate clause, the query can
+match only the pronoun in the matrix clause - as desired.  the result
+block therefore contains only 1 line rather than 2, and the number of
+hits reported is again 1 rather than 2.

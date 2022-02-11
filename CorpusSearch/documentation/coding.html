@@ -1,0 +1,519 @@
+<head>
+<title>Coding queries</title>
+</head>
+
+<body>
+
+<h2>Coding queries</h2>
+
+<ul>
+<li><a href="#c">Sample command specification</a>
+<li><a href="#cod">Sample output</a>
+<li><a href="#search">Searching coding strings</a>
+<li><a href="#extract">Extracting coding strings</a>
+<li><a href="#edit">Manually editing coding strings</a>
+<li><a href="#tricks">Tricks of the trade</a>
+</ul>
+
+<p>
+<hr>
+
+<p>
+Coding queries are used to create input for multivariate analysis
+programs like Varbrul; general statistical programming environments like
+S, Splus, and R; and statistical analysis packages like Datadesk, JMP,
+SAS, and SPSS.  They are extremely powerful and flexible tools.  In
+particular, they allow us to circumvent the difficulties inherent in
+implementing OR and NOT.
+
+<p>
+Coding query files must have names that end in the extension <b>.c</b>.
+By default, their output has the same basename as the coding query file,
+but with the extension <b>.cod</b>.  The basename of the output file
+(but not the .cod extension) can be changed with the
+same <a href="installing.html#out-switch">the "out" switch</a> as for
+ordinary query files.
+
+<blockquote>
+<pre>
+CS foo.c bar.psd                    &larr; output = foo.cod
+
+CS foo.c bar.psd -out bar.cod
+</pre>
+</blockquote>
+
+<p>
+The command file for a coding query follows the same conventions as for
+an ordinary search query, except that the command specification
+is <b>coding_query:</b> (rather than <b>query:</b>).  In addition, the
+contents of the command specification essentially consist of multiple
+ordinary queries, as described in more detail below.
+
+<ul>
+<li>Preamble
+    <ul>
+    <li>Node specification (obligatory)
+    <li>"Ignore" commands (optional)
+    <li>Output format commands (optional)
+    <li>Reference to <a href="def.html">definition file</a> (optional)
+    </ul>
+<li>Command specification (obligatory)
+</ul>
+
+The output file of a coding query contains every token of the input
+file, with a coding node inserted at every boundary node as the first
+daughter of that node.
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>Including <nobr><b>copy_corpus: t</b></nobr> in a coding query would
+    be redundant, and in fact, it aborts the search.
+</table>
+
+<a name="c">
+<h3>Sample command specification</h3>
+
+The command specification for a coding query consists of the
+command <b>coding_query:</b> following by a list of coding columns.
+
+<blockquote>
+<pre>
+coding_query:
+
+column_number: {
+                 label-1: condition(s)
+                 label-2: condition(s)
+                 .
+                 .
+                 .
+               }
+</pre>
+</blockquote>
+
+<p>
+Here is a sample coding file that generates a coding string with four
+columns.
+
+<blockquote>
+<pre>
+node: IP-*
+
+coding_query:
+
+1: {
+        spe: (IP-*SPE* iDoms NP-SBJ*)
+        -:   ELSE
+   }
+
+2: {
+        mat: (IP-MAT* iDoms NP-SBJ*)
+        sub: (IP-SUB* iDoms NP-SBJ*)
+        inf: (IP-INF* iDoms NP-SBJ*)
+        -:   ELSE
+
+   }
+
+3: {
+        neg: (IP* iDoms NEG)
+        pos: (IP* iDoms !NEG)
+        -:   ELSE
+   }
+
+4: {
+        \1: (NP-SBJ* domsWords 1)
+        \2: (NP-SBJ* domsWords 2)
+        \3: (NP-SBJ* domsWords> 2)
+        \0: ELSE
+   }
+</pre>
+</blockquote>
+
+<p> In this example, column 1 of the coding string will contain "spe" if
+<tt>IP-*SPE* iDoms NP-SBJ*</tt>. If not, the column will contain "-", as
+specified by the ELSE condition (used only in coding queries).  In the
+absence of an explicit ELSE condition, if none of the stated conditions
+for the column are met, CorpusSearch fills the column by default with
+"_" (underscore).
+
+<p>
+The conditions for each column are evaluated in order.  As soon as a
+condition is met, the appropriate value is added to the coding string,
+and CorpusSearch moves on to the next column.  Depending on the input
+data and the logical relationships among the conditions being evaluated,
+the order in which they appear in the query can have an effect on the
+coding string.  For instance, if sentences can contain both "ne" and
+"not", then the following conditions will code "ne ... not" sentences 
+as "ne".
+
+<blockquote>
+<pre>
+3: {
+        ne:  (IP* iDoms NEG) AND (NEG iDoms ne)
+        not: (IP* iDoms NEG) AND (NEG iDoms not)
+        pos: (IP* iDoms !NEG)
+        -:   ELSE
+   }
+</pre>
+</blockquote>
+
+Reversing the order of the "ne" and the "not" conditions would lead to
+the "ne ... not" sentences being coded as "not".  Of course, if desired,
+it is possible to distinguish the "ne ... not" cases from the simple
+"ne" and the simple "not" cases with conditions along the following
+lines:
+
+<blockquote>
+<pre>
+3: {
+        ne-not:     (IP* iDoms [1]NEG) AND ([1]NEG iDoms ne)
+                AND (IP* iDoms [2]NEG) AND ([2]NEG iDoms not)
+        ne:         (IP* iDoms NEG) AND (NEG iDoms ne)
+        not:        (IP* iDoms NEG) AND (NEG iDoms not)
+        pos:        (IP* iDoms !NEG)
+        -:          ELSE
+   }
+</pre>
+</blockquote>
+
+In this query, the order of the simple "ne" and simple "not" conditions
+has no effect on the coding of the "ne ... not" sentences (provided, of
+course, that the "ne-not" condition precedes the other two).
+
+<p>
+When numerals (0-9) are used as values in a coding string, they must be
+escaped with backslash ("\") in the query, as illustrated for column 4
+in the sample file.  In the coding string, the numerals appear without
+the backslash.
+
+<a name="cod">
+<h3>Sample output</h3>
+
+As mentioned earlier, the output file of a coding query contains every
+token of the input file, with a coding node inserted at every boundary
+node as the first daughter of that node.  Coding nodes have the form:
+
+<blockquote>
+<pre>
+(CODING-&lt;node_label> &lt;coding_string>)
+</pre>
+</blockquote>
+
+The "node_label" suffix of the CODING node is the full label of the
+current instance of the node boundary.  For instance, if the node
+boundary is IP*, and the particular instantiation is IP-SUB-PRN-SPE,
+then the label for that IP's CODING node is CODING-IP-SUB-PRN-SPE.  If a
+sentence token contains more than one instance of the boundary node, the
+output token will contain multiple coding nodes.
+
+<p>
+Here is what an output token resulting from the sample coding query from
+the previous section would look like:
+
+<blockquote>
+<pre>
+/~*
+They do not know the value of a dollar.
+*~/
+
+( (IP-MAT (CODING-IP-MAT -:mat:neg:1)
+	  (NP-SBJ (PRO They))
+          (DOP do)
+          (NEG not)
+          (NP-OB1 (D the)
+                  (N value)
+		  (PP (P of)
+		      (NP (D a)
+			  (N dollar))))
+	  (. .)))
+</pre>
+</blockquote>
+
+<a name="search">
+<h3>Searching coding strings</h3> 
+
+Coding strings may be searched using the
+"<a href="search-functions.html#column">column</a>" function.  For
+instance, the following query would find the sample coded sentence
+above:
+
+<blockquote>
+<pre>
+query:  (CODING-IP-MAT* column 2 mat|sub)
+</pre>
+</blockquote>
+
+Coding queries can themselves search already existing coding strings.
+For instance, assume a coded corpus with three columns.  Column 1 codes
+whether the clause-initial constituent is the subject ("subj"), the
+finite verb ("verb"), or the direct object ("obj").  Columns 2 and 3
+code the same information for the second and third constituents in the
+sentence.  The following coding query could then be run on the coded
+corpus to classify sentences by clause type based on the information in
+the already existing three columns:
+
+<blockquote>
+<pre>
+4: {
+     svo:     (CODING-IP* column 1 subj) 
+          AND (CODING-IP* column 2 verb) 
+          AND (CODING-IP* column 3 obj) 
+     sov:     (CODING-IP* column 1 subj) 
+          AND (CODING-IP* column 2 obj) 
+          AND (CODING-IP* column 3 verb) 
+
+     osv: ...
+     ovs: ...
+     vos: ...
+     vso: ...
+     -:   ELSE
+}
+</pre>
+</blockquote>
+
+The query for column 4 must be stored in a coding query file distinct
+from the one for columns 1-3 and run separately.  If all four queries
+are combined in a single coding query file, CorpusSearch will code the
+input file, but it will assign its default elsewhere value "_" to column
+4 throughout, since the input file doesn't contain the CODING nodes
+referenced by the conditions for column 4.
+
+<a name="extract">
+<a name="print_only">
+<h3>Extracting coding strings</h3>
+
+A command file containing only the following command specification
+(without a <a href="command-file.html#preamble">preamble</a>) extracts
+all of the coding strings in a coded file:
+
+<blockquote>
+<pre>
+print_only: CODING*
+</pre>
+</blockquote>
+
+<p>
+The resulting output file has the extension <b>.ooo</b>.
+
+<p>
+The trailing asterisk on CODING is necessary because of the suffix on
+each CODING node that specifies its associated syntactic category.
+Coding strings for particular categories can be extracted with a
+"print_only" command that makes specific reference to those categories.
+For instance:
+
+<blockquote>
+<pre>
+print_only: CODING-IP*
+
+print_only: CODING-IP-MAT*
+</pre>
+</blockquote>
+
+<p>
+In coded files generated by older versions of CorpusSearch (before
+version 74), coding strings lacked node label suffixes.  For such files,
+the trailing asterisk is not necessary:
+
+<blockquote>
+<pre>
+print_only: CODING
+</pre>
+</blockquote>
+
+<p>
+It is generally useful to append a sentence token's ID information to
+each extracted coding string.  This can be done with the following
+command:
+
+<blockquote>
+<pre>
+add_IDs: t
+</pre>
+</blockquote>
+
+In the resulting output file, each coding string is followed by an "@"
+sign, which in turn is followed by the ID information.  For instance:
+
+<blockquote>
+<pre>
+1182:verse:v2:fullNP:transitive@ROLAND,3.102
+</pre>
+</blockquote>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>When exporting the coding string, "@" needs to be added to the list
+    of column delimiters (or it needs to be replaced by ":").
+</table>
+
+<a name="edit">
+<h3>Manually editing coding strings</h3>
+
+In general, the coding strings that CorpusSearch generates completely
+algorithmically are used "as is" as input to further statistical
+analysis.  But in connection with certain research questions, it is
+desirable to encode information about properties that are not generally
+annotated in the corpus.  In such cases, it is possible to edit the
+coding strings by hand.  For instance, a coding query might be
+formulated to generate a column for information concerning a noun
+phrase's discourse status ("old", "new", etc.), filling it with a
+default elsewhere value ("-"), the statistically most likely value, or
+whatever value seems most useful.  This column can then be reviewed and
+corrected by hand, and the resulting file can form the input to further
+CorpusSearch searches or to statistical analysis.
+
+<p>
+<b>Best practice:</b> In the situation just described, the wisest course
+is to add the information <u>to (a copy of) the corpus itself</u>.  For
+instance, discourse status could be indicated by adding "-OLD" or "-NEW"
+to existing NP labels (NP-SBJ-OLD, NP-OB1-NEW, etc.).  The work required
+to add the information manually is the same, whether the information is
+added to the corpus annotation or to the coding string.  The information
+is safer in the annotation (it can't be accidentally overwritten by
+accidentally running CorpusSearch on the corpus), and once it is
+represented there, it is easy to add it algorithmically to the coding
+string with appropriate coding queries.
+
+<a name="tricks">
+<h3>Tricks of the trade</h3>
+
+<ul>
+<li>CorpusSearch generates columns in the output in numerical order
+    regardless of their order in the query.  In other words, the
+    following coding file results in the same output when applied to the
+    same input as when columns 1 and 2 are listed in ascending numerical
+    order.
+
+<blockquote>
+<pre>
+coding_query:
+
+2: { label(s): condition(s) }
+1: { label(s): condition(s) }
+</pre>
+</blockquote>
+
+<li>The same file can be coded sequentially with different coding query
+    files and different boundary node choices.  For statistical
+    analysis, the coding strings can all
+    be <a href="#extract">extracted</a> together or separately by
+    individual label.
+
+<p>
+<li>The two properties just discussed can be exploited in situations
+    where it is desirable to generate certain columns with one choice of
+    boundary node or "ignore" nodes, and other columns with some other
+    choice.  In such a situation, the input file can be coded with two
+    (or more) separate coding queries along the following lines.
+    Running coding file 1 results in four columns.  CorpusSearch codes
+    Columns 1 and 4 according to the conditions associated with those
+    columns.  It generates columns 2 and 3 and fills them with the
+    default value "_" (underscore)
+
+<p>
+Coding file 1:
+
+<blockquote>
+<pre>
+node: {shared-boundary-node}
+
+ignore_nodes: {ignore-list-1}
+
+coding_query:
+
+1: { label(s): condition(s) }
+4: { label(s): condition(s) }
+</pre>
+</blockquote>
+
+The output of coding file 1 can then be coded using coding file 2.  (For
+the purposes under consideration, the two coding files share the same
+boundary node, but that is not formally necessary.)  CorpusSearch now
+codes columns 2 and 3 according to the specifications for those columns.
+In addition, it codes a fifth column in the ordinary way.
+
+<p>
+Coding file 2:
+<blockquote>
+<pre>
+node: {shared-boundary-node}
+
+ignore_nodes: {ignore-list-2}
+
+coding_query:
+
+2: { label(s): condition(s) }
+3: { label(s): condition(s) }
+5: { label(s): condition(s) }
+</pre>
+</blockquote>
+
+<p>
+<li>Coding a corpus using different boundary nodes provides information
+    about the structures of different syntactic domains.  In general,
+    one eventually wants to combine this information under a single
+    CODING node for statistical analysis.  This can be done by running
+    a <a href="revision.html">corpus revision query</a> with an
+    appropriate <a href="revision.html#concat">concat</a> command on the
+    coded file(s).
+
+<p>
+<li>Adding information about external (sociolinguistic) variables to a
+    coding string is particularly simple if each token in the corpus is
+    associated with the appropriate information (as is the case, for
+    instance, in the PCEEC).
+
+<blockquote>
+<pre>
+// date of composition (for PCEEC, where each token includes metadata)
+4: {
+        ____:  (LETTER column 3 _*)
+      \1410: (LETTER column 3 1410*)
+      \1411: (LETTER column 3 1411*)
+      \1412: (LETTER column 3 1412*)
+      \1413: (LETTER column 3 1413*)
+      \1414: (LETTER column 3 1414*)
+      \1415: (LETTER column 3 1415*)
+      \1416: (LETTER column 3 1416*)
+      ....
+</pre>
+</blockquote>
+
+<p>
+In other corpora, the information can be imported indirectly by means of
+reference to information in a token's ID, as in the following examples.
+Note that numeric codes need to be "escaped" with a backslash.
+
+<blockquote>
+<pre>
+// date of author's birth
+11: {
+      \1490:  (ABOTT-E1* inID)
+      \1630:  (ALHATTON2-E3* inID)
+      \1680:  (ALHATTON-E3* inID)
+      \1472:  (AMBASS-E1* inID)
+      \1668:  (ANHATTON-E3* inID)
+      \1458:  (APLUMPT-E1* inID)
+      \1485:  (APOOLE-E1* inID)
+      \1568:  (ARMIN-E2* inID)
+      \1515:  (ASCH-E1* inID)
+      \1632:  (AUNGIER-E3* inID)
+      ...
+}
+
+// author's sex
+13: {
+      f: (ABOTT*|ALHATTON*|ANHATTON*|APLUMPT*|APOOLE*|BEHN*|BOETHEL*|DELAPOLE*|DERING*|DPLUMPT*|EBEAUM*|ECUMBERL*|EHATTON*|ELIZ*|EOXINDEN*|EPOOLE*|EVERARD*|FHATTON*|FIENNES*|GREY*|HARLEY*|HOBY*|IPLUMPT*|JACKSON*|JPINNEY*|JUBARRING*|KOXINDEN*|KPASTON*|KSCROPE*|MANNERS*|MASHAM*|MHATTON*|MHOWARD*|MONTAGUE*|MOXINDEN*|MROPER*|MTUDOR*|NEVILL*|PEYTON*|PROUD*|SOUTHARD*|ZOUCH* inID)
+      m: ELSE
+}
+</pre>
+</blockquote>
+
+</ul>
+
+</body>
+

@@ -1,0 +1,1286 @@
+<head>
+<title>Corpus revision</title>
+</head>
+
+<body>
+
+<h2>Corpus revision</h2>
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="caution.GIF">
+<td>Before running any revision query, be sure to have a backup of the input file.
+</table>
+
+<ul>
+<li><a href="#introduction">Introduction</a>
+<li><a href="#no_multiple_flags">Don't repeat flags</a>
+<li><a href="#copy_corpus">Creating a revised corpus</a>
+<li><a href="#label_changes">Label changes</a>
+    <ul>
+    <li><a href="#replace_label">replace_label</a>
+    <li><a href="#prepend_label">prepend_label</a>
+    <li><a href="#append_label">append_label</a>
+    <li><a href="#pre_crop_label">pre_crop_label</a>
+    <li><a href="#post_crop_label">post_crop_label</a>
+    </ul>
+<li><a href="#structural_changes">Structural changes</a>
+    <ul>
+    <!--<li><a href="#delete_leaf">delete_leaf</a>-->
+    <li><a href="#delete_node">delete_node</a>
+    <!--<li><a href="#delete_subtree">delete_subtree</a>-->
+    <li><a href="#move_up_node">move_up_node</a>
+    <li><a href="#move_up_nodes">move_up_nodes</a>
+    <li><a href="#move_to">move_to</a>
+    <li><a href="#extend_span">extend_span</a>
+    <li><a href="#add_internal_node">add_internal_node</a>
+    <li><a href="#add_leaf_before">add_leaf_before</a>
+    <li><a href="#add_leaf_after">add_leaf_after</a>
+    <li><a href="#trace_before">trace_before</a>
+    <li><a href="#concat">concat</a>
+    </ul>
+</ul>
+
+<p>
+<hr>
+
+<a name="introduction">
+<h3>Introduction</h3>
+
+<p>
+Revision queries allow users to make automatic changes to a corpus.
+They are very useful for correcting systematic errors or revising a
+corpus to fit new annotation guidelines.  They can also be used to flag
+structures for manual review.  Finally, they can used as a "poor man's
+parser"; by running successive revision queries on a part-of-speech
+tagged corpus (suitably transformed to conform to Penn Treebank Format),
+users can build successively larger constituents.
+
+<p>
+Corpus revisions are implemented by ordinary CS queries that are
+supplemented with indices linking nodes in the query to revision
+instructions.  The revision-related indices (henceforth, “flags”) are
+enclosed in curly brackets.  Here is the general idea:
+
+<blockquote>
+<pre>
+query:     ({1}A function B)
+       AND (C function {2}D)
+
+revise{1}: info-x
+revise{2}: info-y
+</pre>
+</blockquote>
+
+<p>
+Here is an example from the Tycho Brahe Corpus of historical Portuguese.
+Originally, portmanteau items like <i>dos</i> 'of the' were treated as
+single orthographic words, but it was later decided to split such items
+into a preposition and a determiner, with "@" indicating the split, as
+shown below.
+
+<blockquote>
+<pre>
+Old:     (PP (P+D-P dos)
+             (NP (ADJ-P grandes)
+                 (N-P homens)
+
+New:     (PP (P d@)
+             (NP (D-P @os)
+                 (ADJ-P grandes)
+                 (N-P homens)
+</pre>
+</blockquote>
+
+The change can be implemented with the following revision query:
+
+<blockquote>
+<pre>
+node: PP*
+
+query:     (PP iDoms {1}P+D-P)
+       AND (P+D-P iDoms {2}dos)
+       AND (P+D-P hasSister NP) 
+       AND (P+D-P iPrecedes NP) 
+       AND (NP iDomsFirst {3}.*)
+
+replace_label{1}: P
+replace_label{2}: d@
+add_leaf_before{3}: (D-P @os)
+</pre>
+</blockquote>
+
+<p>
+The curly brackets around flags distinguish them from same-instance
+indices, which are enclosed in square brackets.  The following gives an
+example of a revision query containing both same-instance brackets and
+revision flags.
+
+<p>
+<table border cellpadding=5>
+<tr>
+<td><img src="hand.GIF">
+<td>Contrary to what one might expect, flags must follow same-instance
+indices.  In other words, curly brackets follow square brackets.
+</table>
+
+<blockquote>
+<pre>
+node: IP*
+
+query:     ([1]NP iDoms [2]{1}NP)
+       AND ([2]NP iDomsFirst DF)
+
+append_label{1}: -PART
+</pre>
+</blockquote>
+
+The above query has the effect shown below.
+
+<blockquote>
+<pre>
+Example input:
+
+(NP (Q beaucoup)
+    (NP (DF de) (NCPL livres))
+
+Example output:
+
+(NP (Q beaucoup)
+    (NP-PART (DF de) (NCPL livres))
+</pre>
+</blockquote>
+
+<a name="no_multiple_flags">
+<h4>Don't repeat flags</h4>
+
+CorpusSearch only needs to have arguments for revisions flagged once.
+Multiple flags, as in the query below, are ignored.
+
+<blockquote>
+<pre>
+query:     (NP* iDoms {1}ADV)
+       AND (NP* iDoms {2}ADJ)
+       AND ({1}ADV iPrecedes {2}ADJ)	&larr; WRONG - repeated flags
+
+add_internal_node{1,2}: ADJP
+</pre>
+</blockquote>
+
+<p>
+In response to a query like the one above, CorpusSearch issues a
+warning like the following:
+
+<blockquote>
+<pre>
+WARNING!  Subsequent flag {1} has been ignored.
+
+WARNING!  Subsequent flag {2} has been ignored.
+</pre>
+</blockquote>
+
+<p>
+The proper version of the above query is as follows:
+
+<blockquote>
+<pre>
+query:     (NP* iDoms {1}ADV)
+       AND (NP* iDoms {2}ADJ)
+       AND (ADV iPrecedes ADJ)		&larr; RIGHT - no repeated flags
+
+add_internal_node{1,2}: ADJP
+</pre>
+</blockquote>
+
+<a name="copy_corpus">
+<h4>Creating a revised corpus</h4>
+
+Revision queries are run like ordinary queries.  For example:
+
+<blockquote>
+<pre>
+CS revision.q /path/to/corpus.psd
+
+CS revision.q /path/to/corpus.psd -out better-corpus.psd
+</pre>
+</blockquote>
+
+<p>
+Running revision queries like the ones above results in output
+consisting of only tokens that match the query, as modified by the
+specified revisions.  This option can be useful in developing and
+testing complex revision queries, as it allows the developer to home in
+on the relevant tokens and changes.
+
+<p>
+In general, however, the desired output is a copy of the entire corpus,
+as modified by the revision query.  This can be achieved by adding the
+following line to the <a href="command-file.html#preamble">preamble</a>
+of a revision query.
+
+<blockquote>
+<pre>
+copy_corpus: t
+</pre>
+</blockquote>
+
+<a name="label_changes">
+<h3>Label changes</h3>
+
+The simplest revisions are changes to labels in the tree that otherwise
+leave the structure intact.
+
+<ul>
+<li><a href="#replace_label">replace_label</a>
+<li><a href="#prepend_label">prepend_label</a>
+<li><a href="#append_label">append_label</a>
+<li><a href="#pre_crop_label">pre_crop_label</a>
+<li><a href="#post_crop_label">post_crop_label</a>
+</ul>
+
+For expository simplicity, the following example queries do not specify
+"node".
+
+<a name="replace_label">
+<h4>replace_label</h4>
+
+Replaces label.  Use caution with input that matches wildcard characters
+(see below).
+
+Format: replace_label{1}: new_label
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  ({1}NP-ACC* iDoms .*)
+
+replace_label{1}: NP-OBJ
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-LFD (D This) (ONE one))
+          (, ,)
+          (NP-SBJ (PRO I))
+          (VBP like)
+          (NP-ACC-RSP (PRO it))
+          (ADVP (ADVR better))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-LFD (D This) (ONE one))
+          (, ,)
+          (NP-SBJ (PRO I))
+          (VBP like)
+          (NP-OBJ (PRO it))             &larr; -RSP tag not retained
+          (ADVP (ADVR better))
+          (. .)))
+</pre>
+</blockquote>
+
+<a name="prepend_label">
+<h4>prepend_label</h4>
+
+Format: prepend_label{1}: prefix
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     ({1}NP* iDoms CL)
+
+prepend_label{1}: CL-
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO Je))
+          (NP-ACC (CL les))
+          (VJ vois)
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO Je))
+          (CL-NP-ACC (CL les))
+          (VJ vois)
+          (. .)))
+</pre>
+</blockquote>
+
+<a name="append_label">
+<h4>append_label</h4>
+
+Format: append_label{1}: suffix
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     ({1}NP* iDoms CL)
+
+append_label{1}: -CL
+</pre>
+</blockquote>
+
+Example input (same as for prepend_label):
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO Je))
+          (NP-ACC (CL les))
+          (VJ vois)
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO Je))
+          (NP-ACC-CL (CL les))
+          (VJ vois)
+          (. .)))
+</pre>
+</blockquote>
+
+<a name="pre_crop_label">
+<h4>pre_crop_label</h4>
+
+Deletes the part of the label that ends with (and includes) the leftmost
+instance of the specified character.
+
+<p>
+Format: pre_crop_label{1}: delete_before_me
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query: (NP* iDoms {1}.*+N)
+
+pre_crop_label{1}: +
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (NP (ADJ+N wildlife)))
+
+( (NP (NPR+P+D+N Jack-in-the-pulpit)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+(NP (N wildlife))
+
+(NP (P+D+N Jack-in-the-pulpit))     &larr; probably not the desired result
+</pre>
+</blockquote>
+
+<a name="post_crop_label">
+<h4>post_crop_label</h4>
+
+Deletes the part of the label that begins with (and includes) the
+leftmost instance of the specified character.
+
+<p>
+Format: post_crop_label{1}: delete_after_me
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query: (NP* iDoms {1}N+.*|NS+.*)
+
+post_crop_label{1}: +
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (NP (N+ADJ court-martial)))
+
+( (NP (NS+P+N mothers-in-law)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (NP (N court-martial)))
+
+( (NP (NS mothers-in-law)))
+</pre>
+</blockquote>
+
+<p>
+Here is an example combining "post_crop_label" and "append_label" to replace
+a dash tag:
+
+<blockquote>
+<pre>
+query:  ({1}NP-ACC*|NP-DTV* iDoms N*)
+
+post_crop_label{1}: -
+append_label{1}: -OBJ
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO You))
+          (MD must)
+          (NEG not)
+          (VB exspecte)
+          (NP-ACC (Q no) (ADJ greate) (NS matters))
+          (NP-TMP (D this) (N time))
+          (. ,)) (ID KNYVETT-1630,87.25))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO You))
+          (MD must)
+          (NEG not)
+          (VB exspecte)
+          (NP-OBJ (Q no) (ADJ greate) (NS matters))
+          (NP-TMP (D this) (N time))
+          (. ,))
+  (ID KNYVETT-1630,87.25))
+</pre>
+</blockquote>
+
+<a name="structural_changes">
+<h3>Structural changes</h3>
+
+<ul>
+<!--<li><a href="#delete_leaf">delete_leaf</a>-->
+<li><a href="#delete_node">delete_node</a>
+<!--<li><a href="#delete_subtree">delete_subtree</a>-->
+<li><a href="#move_up_node">move_up_node</a>
+<li><a href="#move_up_nodes">move_up_nodes</a>
+<li><a href="#move_to">move_to</a>
+<li><a href="#extend_span">extend_span</a>
+<li><a href="#add_internal_node">add_internal_node</a>
+<li><a href="#add_leaf_before">add_leaf_before</a>
+<li><a href="#add_leaf_after">add_leaf_after</a>
+<li><a href="#trace_before">trace_before</a>
+<li><a href="#concat">concat</a>
+</ul>
+
+<p>
+If a revision would result in an illegal structure (for instance, a tree
+with crossing branches, or a tree containing an internal node without
+leaf descendants, CS issues a warning and does not change the tree.
+
+<!--
+<a name="delete_leaf">
+<h4>delete_leaf</h4>
+
+The argument specified in the query can match either a part-of-speech
+label or a text node.  Either way, the entire part-of-speech/text pair
+is deleted.
+
+<p>
+If the specified leaf is an only child, CS issues a warning and does not
+change the tree.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+ignore_nodes: null
+
+query: (NP* iDoms {1}\**)
+
+delete_leaf{1}:
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (CP-QUE-MAT-SPE (INTJP (INTJ Tush))
+                  (NP-VOC (N woman))
+                  (, ,)
+                  (WNP-1 (WPRO what))
+                  (IP-SUB-SPE (NP-ACC *T*-1)
+                              (VBP talke)
+                              (NP-SBJ (PRO you))
+                              (PP (P of)
+                                  (NP (D that))))
+                  (. ?)) (ID DELONEY,70.40))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (CP-QUE-MAT-SPE (INTJP (INTJ Tush))
+                  (NP-VOC (N woman))
+                  (, ,)
+                  (WNP-1 (WPRO what))
+                  (IP-SUB-SPE (VBP talke)
+                              (NP-SBJ (PRO you))
+                              (PP (P of)
+                                  (NP (D that))))
+                  (. ?))
+  (ID DELONEY,70.40))
+</pre>
+</blockquote>
+-->
+
+<a name="delete_node">
+<h4>delete_node</h4>
+
+Implements "pruning".  A node is deleted, but its descendants remain.
+
+<p>
+Format: delete_node{1}:
+
+<p>
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query: ([1]ADVP* iDomsOnly [2]{1}ADVP*)
+
+delete_node{1}:
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (FRAG (WNP (WPRO What))
+        (ADVP-TMP (ADVP (ADV neuer)))
+        (NP (D a) (ADJ great) (N belly))
+        (ADVP (ADV yet))
+        (. ?)) (ID DELONEY,69.5))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (FRAG (WNP (WPRO What))
+        (ADVP-TMP (ADV neuer)
+        (NP (D a) (ADJ great) (N belly))
+        (ADVP (ADV yet)
+        (. ?))
+  (ID DELONEY,69.5))
+</pre>
+</blockquote>
+
+<!--
+<a name="delete_subtree">
+<h4>delete_subtree</h4>
+
+Deletes the indicated node and all its descendants.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  ({1}CONJP* iDoms CONJ)
+
+delete{1}:
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO I))
+          (VBP hear)
+          (CP-THT (C 0)
+                  (IP-SUB (NP-SBJ (NP (N Lady) (N Banbery))
+                                  (CONJP (CONJ and)
+                                         (NP (D y=e=) (N Wardon)
+                                             (PP (P of)
+                                                 (NP (NPR All) (NPRS Souls))))))
+                          (BEP is)
+                          (ADJP (ADJ dead))))
+          (. .)) (ID ALHATTON,2,242.21))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO I))
+          (VBP hear)
+          (CP-THT (C 0)
+                  (IP-SUB (NP-SBJ (NP (N Lady) (N Banbery)))
+                          (BEP is)
+                          (ADJP (ADJ dead))))
+          (. .))
+  (ID ALHATTON,2,242.21))
+</pre>
+</blockquote>
+-->
+
+<a name="move_up_node">
+<h4>move_up_node</h4>
+
+<p>
+Format: move_up_node{1}:
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  (NP* iDoms {1}PP)
+
+move_up_node{1}:
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD saw)
+          (NP-ACC (D the) (N man)
+		  (PP (P with)
+		      (NP (D the) (N telescope))))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+
+( (IP-MAT (NP-SBJ (PRO He))
+	  (VBD saw)
+	  (NP-ACC (D the) (N man))
+	  (PP (P with)
+	      (NP (D the) (N telescope)))
+	  (. .)))
+</pre>
+</blockquote>
+
+<p> 
+If the target node is a middle or only child, CS issues a warning and
+does not change the tree.  In the following example, if the first PP
+("with the telescope") needs to be moved up, the query will need to be
+applied recursively.
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD saw)
+          (NP-ACC (D the) (N man)
+		  (PP (P with)
+		      (NP (D the) (N telescope)))
+		  (PP (P in)
+		      (NP (D the) (N tree))))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+WARNING! could not move_up_node{1}: (12 PP)
+
+( (IP-MAT (NP-SBJ (PRO He))
+	  (VBD saw)
+	  (NP-ACC (D the)
+		  (N man)
+		  (PP (P with)
+		      (NP (D the) (N telescope))))
+	  (PP (P in)
+	      (NP (D the) (N tree)))
+	  (. .)))
+</pre>
+</blockquote>
+
+<a name="move_up_nodes">
+<h4>move_up_nodes</h4> 
+
+<p>
+Format: move_up_nodes{1, 2}:
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     (NP* iDoms {1}PP)
+       AND (NP* iDoms {2}IP-PPL)
+       AND (NP* iDoms N|NS)
+       AND (N|NS iPrecedes PP)
+
+move_up_nodes{1, 2}:
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBD saw)
+          (NP-ACC (D the) (N man)
+		  (PP (P with)
+		      (NP (D the) (N telescope)))
+		  (PP (P in)
+		      (NP (D the) (N tree)))
+		  (IP-PPL (VAG munching)
+			  (NP-ACC (D an) (N apple))))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO He))
+	  (VBD saw)
+	  (NP-ACC (D the) (N man))
+	  (PP (P with)
+	      (NP (D the) (N telescope)))
+	  (PP (P in)
+	      (NP (D the) (N tree)))
+	  (IP-PPL (VAG munching)
+		  (NP-ACC (D an) (N apple)))
+	  (. .)))
+</pre>
+</blockquote>
+
+As usual, if the revision would result in an illegal tree, CS issues a
+warning and does not change the tree.
+
+<a name="move_to">
+<h4>move_to</h4>
+
+Moves a node flagged {1} to become a daughter of a target node flagged {2}.
+
+<p>
+Format: move_to{1, 2}:
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     (IP* iDoms {2}NP*)
+       AND (IP* iDoms {1}PP)
+       AND (PP iDoms P)
+       AND (P iDoms [oO]f)       
+       AND (NP* iPrecedes PP)
+move_to{1, 2}:
+</pre>
+</blockquote>
+
+<p>
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO He))
+          (VBP knows)
+          (NP-ACC (D the) (N king))
+          (PP (P of)
+              (NP (NPR England)))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (PRO He))
+	  (VBP knows)
+	  (NP-ACC (D the) (N king)
+		  (PP (P of)
+		      (NP (NPR England))))
+	  (. .)))
+</pre>
+</blockquote>
+ 
+<a name="extend_span">
+<h4>extend_span</h4>
+
+Extends the span of some constituent over an immediately adjacent sister.
+The order of the arguments is important.
+
+<p>
+Format: extend_span{1, 2}:
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     ({1}D hasSister {2}NP*)
+       AND (D iPrecedes NP*)
+
+extend_span{2, 1}:
+</pre>
+</blockquote>
+      
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (D the)
+          (NP-SBJ (ADJ basic)
+                  (N problem))
+          (BEP is)
+          (NP-OB1 (D this))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (D the) 
+                  (ADJ basic)
+                  (N problem))
+          (BEP is)
+          (NP-OB1 (D this))
+          (. .)))
+</pre>
+</blockquote>
+
+<a name="add_internal_node">
+<h4>add_internal_node</h4>
+
+<p>
+Format: 
+<br>
+add_internal_node{1, 2}: new_node
+<br>
+add_internal_node{1, 1}: new_unary_branching_node
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  ({1}MD HasSister {2}VB)
+
+add_internal_node{1, 2}: VERB-COMPLEX
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT-SPE (' ')
+              (NP-VOC (N Sir))
+              (, ,)
+              (' ')
+              (IP-MAT-PRN (VBD said)
+                          (NP-SBJ (NPR Ulfius)))
+              (, ,)
+              (' ')
+              (NP-SBJ (PRO he))
+              (MD wille)
+              (NEG not)
+              (VB dwelle)
+              (NP-MSR (ADJ long))
+              (. .)
+              (' '))
+  (ID CMMALORY,3.66))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT-SPE (' ')
+              (NP-VOC (N Sir))
+              (, ,)
+              (' ')
+              (IP-MAT-PRN (VBD said)
+                          (NP-SBJ (NPR Ulfius)))
+              (, ,)
+              (' ')
+              (NP-SBJ (PRO he))
+              (VERB-COMPLEX (MD wille) (NEG not) (VB dwelle))
+              (NP-MSR (ADJ long))
+              (. .)
+              (' '))
+  (ID CMMALORY,3.66))
+</pre>
+</blockquote>
+
+<p>
+If adding the specified node would produce crossing branches 
+in the tree, CS issues a warning is given and does not change
+the tree.
+
+<p>
+To add an unary-branching internal node, repeat the index.
+
+Example query:
+
+<blockquote>
+<pre>
+query: (IP* iDoms {1}ADV)
+
+add_internal_node{1, 1}: ADVP
+</pre>
+</blockquote>
+
+Example input:
+<blockquote>
+<pre>
+( (IP-MAT-SPE (CONJ but)
+              (ADV truly))
+              (NP-VOC (N gossip))
+              (NP-SBJ (PRO you))
+              (BEP are)
+              (ADJP (ADJ welcome))
+              (. ,))
+  (ID DELONEY,69.9))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT-SPE (CONJ but)
+              (ADVP (ADV truly))
+              (NP-VOC (N gossip))
+              (NP-SBJ (PRO you))
+              (BEP are)
+              (ADJP (ADJ welcome))
+              (. ,))
+  (ID DELONEY,69.9))
+</pre>
+</blockquote>
+
+<a name="add_leaf_before">
+<a name="add_leaf_after">
+<h4>add_leaf_before, add_leaf_after</h4>
+
+<p>
+Format: add_leaf_before{1}: (preterminal terminal)
+
+<p>
+add_leaf_after{1}: (preterminal terminal)
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:  (PP iDoms {1}P)
+
+add_leaf_before{1}: (X FOO)
+add_leaf_after{1}: (Y BAR)
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (PP (P Unto)
+              (NP (D that)))
+          (NP-SBJ (PRO they)
+                  (QP (Q all)))
+          (ADVP (ADV well))
+	  (VBD accordyd))
+  (ID CMMALORY,5.110) )
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (PP (X FOO)
+              (P Unto)
+              (Y BAR)
+              (NP (D that)))
+          (NP-SBJ (PRO they)
+                  (QP (Q all)))
+          (ADVP (ADV well))
+          (VBD accordyd))
+  (ID CMMALORY,5.110))
+</pre>
+</blockquote>
+
+<a name="trace_before">
+<h4>trace_before</h4>
+
+Adds a trace before the node flagged {2} and at the same time coindexes
+the trace with the node flagged {1}.
+
+<p>
+Format: trace_before{1, 2}: (preterminal terminal)
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:     (CP* iDoms {1}WNP*)
+       AND (CP* iDoms IP-SUB*)
+       AND (IP-SUB* iDomsFirst {2}.*)
+
+trace_before{1, 2}: (NP-SBJ *T*)
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (CP-QUE-MAT-SPE (NP-VOC (NPR Sir) (NPR Melyas))
+                  (, ,)
+                  (WNP (WPRO who))
+                  (IP-SUB-SPE (HVP hath)
+                              (VBN wounded)
+                              (NP-OB1 (PRO you)))
+                  (. ?)) (ID CMMALORY,645.4103))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (CP-QUE-MAT-SPE (NP-VOC (NPR Sir) (NPR Melyas))
+                  (, ,)
+                  (WNP-1 (WPRO who))
+                  (IP-SUB-SPE (NP-SBJ *T*-1)
+                              (HVP hath)
+                              (VBN wounded)
+                              (NP-OB1 (PRO you)))
+                  (. ?)) (ID CMMALORY,645.4103))
+</pre>
+</blockquote>
+
+<a name="concat">
+<h4>concat</h4>
+
+<p>
+Format: concat{1, 2}:
+
+<p>
+Concatenates the terminals dominated by two preterminal (part-of-speech)
+tags.  Primarily useful for concatenating coding strings (see
+<a href="coding.html">Coding queries</a> for details), which formally are
+orthographic words dominated by the preterminal tag CODING-* (where "*"
+is the boundary node for the coding query).  Coding strings are
+constrained to contain information only about the structures dominated
+by the boundary node where they are inserted, but "concat" allows
+information associated with different nodes to appear in the same coding
+string.
+
+<p>
+For instance, in a study of relative clauses, it might be useful to
+study correlations between the properties of a relative clause and its
+head noun phrase.  In the example below, the properties of the noun
+phrase and of the relative clause are captured in the coding strings
+CODING-NP* and CODING-CP-REL*.  The query appends the coding string
+specified by the index {2} to the one specified by the index {1}.
+
+<blockquote>
+<pre> 
+query:      (NP* iDoms CODING-NP*)
+        AND (CODING-NP* iDoms [1]{2}.*)
+        AND (NP* iDoms CP-REL*)
+        AND (CP-REL* iDoms CODING-CP-REL*)
+        AND (CODING-CP-REL iDoms [2]{1}.*)
+
+concat{1, 2}:
+</pre>
+</blockquote>
+
+<p>
+Example input (schematic):
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (CODING-NP-SBJ a:b:c)
+                  ...
+                  (CP-REL (CODING-CP-REL d:e:f)))
+          ...))
+</pre>
+</blockquote>
+
+<p>
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (CODING-NP-SBJ a:b:c:d:e:f)
+                  ...
+                  (CP-REL (CODING-CP-REL d:e:f)))
+          ...))
+</pre>
+</blockquote>
+
+Concatenation in the reverse order is of course also possible.
+
+<p>
+Example query (same query as above, but different order of flag indices):
+
+<blockquote>
+<pre> 
+query:      (NP* iDoms CODING-NP*)
+        AND (CODING-NP* iDoms [1]{2}.*)
+        AND (NP* iDoms CP-REL*)
+        AND (CP-REL* iDoms CODING-CP-REL*)
+        AND (CODING-CP-REL iDoms [2]{1}.*)
+
+concat{2, 1}:
+</pre>
+</blockquote>
+
+<p>
+Example input (same as for original query):
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (CODING-NP-SBJ a:b:c)
+                  ...
+                  (CP-REL (CODING-CP-REL d:e:f)))
+          ...))
+</pre>
+</blockquote>
+
+<p>
+Example output (schematic):
+
+<blockquote>
+<pre>
+( (IP-MAT (NP-SBJ (CODING-NP-SBJ a:b:c)
+                  ...
+                  (CP-REL (CODING-CP-REL d:e:f:a:b:c)))
+          ...))
+</pre>
+</blockquote>
+
+<!-- The coding strings themselves are specified by the expression ".*"
+and are distinguished from one another in the usual way by the indices
+in <a href="query-language.html#prefix-indices">square brackets</a>.
+Omitting the indices in square brackets leads to a failure of the
+"concat" query, since the two instances of ".*" will be interpreted by
+default as referring to the same node and it is impossible for the same
+node to have more than one mother.
+-->
+
+<p>
+The following example illustrates how verb-level lemma information in a
+lemmatized corpus can be copied to an IP-level coding string.
+
+<p>
+Example query:
+
+<blockquote>
+<pre>
+query:      (IP-MAT* iDoms CODING*)
+        AND (CODING* iDoms [1]{1}.*)
+        AND (IP-MAT* iDoms VB*)
+        AND (VB* iDoms METAWORD) 
+        AND (METAWORD iDoms LEMMA) 
+        AND (LEMMA iDoms OEDID) 
+        AND (OEDID iDoms {2}[2].*)
+
+concat{2, 1}:
+</pre>
+</blockquote>
+
+Example input:
+
+<blockquote>
+<pre>
+( (IP-MAT (CODING-IP-MAT do-neg:subj-pro:v2-no)
+          (NP-SBJ (PRO (ORTHO They)
+                 (META (LEMMA (HEADWORD they) (OEDID 200700)))))
+          (DOD (ORTHO did@)
+                 (META (LEMMA (HEADWORD they) (OEDID 56228))))
+          (NEG (ORTHO @n't)
+                 (META (LEMMA (HEADWORD they) (OEDID 128494))))
+          (VB (ORTHO come)
+               (META (LEMMA (HEADWORD come) (OEDID 36824))))
+          (. .)))
+</pre>
+</blockquote>
+
+Example output:
+
+<blockquote>
+<pre>
+( (IP-MAT (CODING-IP-MAT do-neg:subj-pro:v2-no:36824)
+	  (NP-SBJ (PRO (ORTHO They)
+		       (META (LEMMA (HEADWORD they) (OEDID 200700)))))
+	  (DOD (ORTHO did@)
+	       (META (LEMMA (HEADWORD they) (OEDID 56228))))
+	  (NEG (ORTHO @n't)
+	       (META (LEMMA (HEADWORD they) (OEDID 128494))))
+	  (VB (ORTHO come)
+	      (META (LEMMA (HEADWORD come) (OEDID 36824))))
+	  (. .)))
+</pre>
+</blockquote>
+
