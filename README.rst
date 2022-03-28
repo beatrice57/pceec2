@@ -5,7 +5,7 @@ The pceec2 repository contains
 
 - a revised and corrected version of the parsed files in the PCEEC
   (as deposited with the Oxford Text Archive in 2006)
-- accompanying sociolinguistic information
+- a corrected version of the accompanying sociolinguistic information
 - accompanying documentation
 - CorpusSearch2 and accompanying documentation
 
