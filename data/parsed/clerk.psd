@@ -2077,8 +2077,9 @@
 							      (NP (D a)
 								  (NUMP (NUM iij) (CONJ or) (NUM iiij))
 								  (PUNC <font>)
-								  (NS =li=))))))))))))
-  (PUNC <$$font>))
+								  (NS =li=)))))))))))
+	  (PUNC <$$font>))
+  (ID CLERK,172.136))
 
 ( (METADATA (AUTHOR GARRATT_SWIFT:MALE:_:_:_)
 	    (RECIPIENT PETER_STONOR:MALE:_:_:_)

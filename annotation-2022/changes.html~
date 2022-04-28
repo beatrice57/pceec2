@@ -1,0 +1,160 @@
+<head>
+<title>Changes to 2016 annotation guidelines</title>
+</head>
+
+<a name="top">
+<h3>Changes w.r.t. 2016 annotation guidelines</h3>
+
+<h4>Adjectival vs. verbal participles</h4>
+
+<blockquote>
+
+When modifying nouns or as predicate adjectives, departicipial
+adjectives (INTERESTED, INTERESTING) are tagged as ADJ (rather than as
+VAG or VAN).
+
+</blockquote>
+
+<h4>AS</h4>
+
+<blockquote>
+
+When functioning as the head of a degree complement, AS is now labelled
+P (rather than C).  Its clausal complement bears a dash tag (CP-DEG,
+IP-INF-DEG), just as in the corresponding comparative case (CP-CMP).
+
+</blockquote>
+
+<h4><a href="words.htm#as_well_as">AS WELL AS</h4>
+
+<blockquote>
+
+The correlative conjunction use of <a href="words.htm#as_well_as">AS
+WELL AS</a> is now distinguished from its ordinary comparative use
+(which remains the default).
+
+</blockquote>
+
+<h4>Comparative and degree complements</h4>
+
+<blockquote>
+
+For both theoretical and practical reasons, <a
+href="syn-sub.html#degree_complements">degree complements</a> are now
+annotated on a par with of <a
+href="syn-sub.htm#comparatives">comparative complements</a>.  The
+complements of degree and comparative heads, as well as their traces
+when extraposed, uniformly attach in the lowest position available to
+them <u>in the overt syntax</u>.
+
+<p>
+As a result, prenominal SUCH no longer projects an ADJP dominating the
+trace of an extraposed degree complement.
+
+</blockquote>
+
+<!--
+<h4>Conjunction of unlike categories</h4>
+
+<blockquote>
+
+<a href="syn-conj.html#conj_of_unlike_categories">Conjunction of unlike
+categories</a> at the word level now follows the same conventions as for
+phrases.
+
+</blockquote>
+-->
+
+<h4>Complex tags</h4>
+
+<blockquote>
+
+In the PCEEC, PPCEME, and PPCMBE2, complex tags are generally replaced by
+appropriate simple tags.
+
+<blockquote>
+<table cellpadding=5>
+<tr>
+<td>(NP (ADJ+N gentleman))
+<td>(NP (N gentleman))
+<tr>
+<td>(ADJP (ADVR+ADJ overeager))
+<td>(ADJP (ADJ overeager))
+<tr>
+<td>(PP (Q+BEP+PRO albeit) (CP-ADV ...))
+<td>(PP (P albeit) (CP-ADV ...))
+<tr>
+<td>(ADVP (WADV+ADV however))
+<td>(ADVP (ADV however))
+<tr>
+<td>(WADJP (WADV+ADV however) (ADJ great))
+<td>(WADJP (WADV however) (ADJ great))
+</table>
+</blockquote>
+
+<p>
+The complex tags are retained, however, if simplifying the tag would
+require splitting words or revising higher syntactic labels as well as
+in certain other cases.
+
+<blockquote>
+<table cellpadding=5>
+<tr>
+<td>(D+OTHER another)
+<td><u>not</u> (D an@) (OTHER @other)
+<tr>
+<td>(PP (P+N indeed)
+<td><u>not</u> (ADVP (ADV indeed))
+<tr>
+<td>(NP (Q+ONE everyone))
+<td><u>not</u> (NP (Q everyone))
+</table>
+</blockquote>
+
+</blockquote>
+
+<h4>ELSE</h4>
+
+<blockquote>
+
+When following the head it modifies, ELSE (like ENOUGH) now consistently
+projects a phrase (ADJP or ADVP, as appropriate in context) in the
+PPCME2 as in the later corpora.
+
+</blockquote>
+
+<h4>ENOUGH</h4>
+
+<blockquote>
+
+When following the head it modifies, ENOUGH (like ELSE) now consistently
+projects a phrase (ADJP or ADVP, as appropriate in context) in the
+PPCME2 as in the later corpora.
+
+<p>
+ENOUGH is labeled ADVR only when it modifies an adjective; otherwise, it
+is labeled ADJR, projecting NP-MSR if necessary.
+
+</blockquote>
+
+<h4>Predicate adjective or noun phrases</h4>
+
+<blockquote>
+
+Predicate adjective phrases are explicitly tagged as ADJP-PRD (rather
+than as plain ADJP), and predicate noun phrases are tagged as NP-PRD
+(rather than as NP-OB1).
+
+</blockquote>
+
+<h4>Punctuation</h4>
+
+<blockquote>
+
+Punctuation (including parentheses and brackets) is uniformly tagged as
+PUNC.  As in earlier releases, it is attached as high as possible (not
+necessarily where it "belongs").
+
+</blockquote>
+
+

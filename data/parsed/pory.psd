@@ -3540,8 +3540,9 @@
 				  (IP-SUB (NP-SBJ *T*-1)
 					  (VBP costeth)
 					  (NP-OB2 (NPR Christendome))
-					  (NP-OB1 (NUM 800000) (NS +L)))))))
-  (CODE {TEXT:+L800000.}))
+					  (NP-OB1 (NUM 800000) (NS +L))))))
+	  (CODE {TEXT:+L800000.}))
+  (ID PORY,73.142))
 
 ( (METADATA (AUTHOR JOHN_PORY:MALE:_:1572:46)
 	    (RECIPIENT DUDLEY_CARLETON:MALE:_:1573:45)
@@ -6085,8 +6086,9 @@
 	  (NP-SBJ (D the) (ADJ major) (N part))
 	  (VBD stood)
 	  (PP (P for)
-	      (NP (NUM 500) (NS +L))))
-  (CODE {TEXT:+L500.}))
+	      (NP (NUM 500) (NS +L)))
+	  (CODE {TEXT:+L500.}))
+  (ID PORY,127.230))
 
 ( (METADATA (AUTHOR JOHN_PORY:MALE:_:1572:60)
 	    (RECIPIENT JOHN_SCUDAMORE:MALE:_:1601:31)
