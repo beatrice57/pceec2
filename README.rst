@@ -18,12 +18,6 @@ Taylor, Arja Nurmi, Anthony Warner, Susan Pintzuk, and Terttu
 Nevalainen.  Compiled by the CEEC Project Team.
 <https://github.com/beatrice57/pceec2>
 
-License
-=======
-
-Same as for 2006 release.
-<https://ota.bodleian.ox.ac.uk/repository/xmlui/page/licence-ota>
-
 Contact
 ========
 
