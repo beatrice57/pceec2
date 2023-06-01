@@ -19,10 +19,9 @@ Nevalainen.  Compiled by the CEEC Project Team.
 <https://github.com/beatrice57/pceec2>
 
 Contact
-========
+=======
 
-Beatrice Santorini (beatrice AT sas DOT upenn DOT edu, beatrice DOT
-santorini AT gmail DOT com)
+Beatrice Santorini (beatrice DOT santorini AT gmail DOT com)
 
 Acknowledgments
 ===============
