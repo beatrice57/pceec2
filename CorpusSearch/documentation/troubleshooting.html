@@ -25,6 +25,7 @@
 <li><a href="#missing-prefix-indices">Missing prefix indices</a>
 <li><a href="#missing-same-instance">Missing same-instance</a>
 <li><a href="#redundant-exists">Redundant "exists"</a>
+<li><a href="query-language.html#reg-exps">Regular expressions not giving expected results
 <li><a href="#stalled-search">Stalled search</a>
 
 </ul>
@@ -294,7 +295,7 @@ This query can never return any hits, because the two instances of PRO
 are interpreted by default as referring to the same node.  But that
 configuration is not a possible tree structure, as one and the same node
 cannot be simultaneously dominated by the subject and the object.  The
-two instances of PRO must be distinguished with distinct prefix indices:
+two instances of PRO must be distinguished with prefix indices:
 
 <blockquote>
 <pre>

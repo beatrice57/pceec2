@@ -456,7 +456,7 @@ will find sentences like this one:
 CorpusSearch allows the use of basic regular expression syntax in the
 arguments to functions, but does not support full regular expression
 syntax.  (This is because of weaknesses in Java, the language
-CorpusSearch is written in.)
+that CorpusSearch is written in.)
 
 <a name="regexp-square">
 <h4>Square brackets</h4> 
@@ -512,9 +512,9 @@ In particular, after square brackets, ".*" and "*" behave erratically.
 
 <blockquote>
 <pre>
-gi[uv]*            &larr; matches "giv", but not "give", "given" (the asterisk is unexpectedly inert)
+gi[uv]*            &larr; matches "giu" and "giv", but not "giue", "giuen", ... "give", "given", ... (the asterisk is unexpectedly inert)
 
-gi[uv].*           &larr; matches "give", "given", but not "giv" (the asterisk unexpectedly disallows zero instances of the wildcard period)
+gi[uv].*           &larr; matches "giue", "giuen", ... "give", "given", ... but not "giu" or "giv" (the asterisk unexpectedly disallows zero instances of the wildcard period)
 </pre>
 </blockquote>
 
@@ -527,7 +527,7 @@ confusing):
 
 <blockquote>
 <pre>
-gi[uv]|gi[uv].*    &larr; matches "giv", "give", "given"
+gi[uv]|gi[uv].*    &larr; matches "giu", "giue", "giuen", ... "giv", "give", "given", ...
 </pre>
 </blockquote>
 
