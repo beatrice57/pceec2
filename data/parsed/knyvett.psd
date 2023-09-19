@@ -35201,6 +35201,7 @@
 		    (NP-OB1 (PRO$ my) (N Innocency)))
 	  (CONJP (CONJ &)
 		 (IP-MAT=1 (VB mollify')
+			   (CODE {COM:sic})
 			   (NP-OB1 (PRO$ ther)
 				   (NS harts)
 				   (CP-REL (WNP-2 0)

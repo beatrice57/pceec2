@@ -6447,6 +6447,7 @@
 			      (ADJP-PRD (ADJ abel)
 					(IP-INF (TO to)
 						(VB settifis)
+						(CODE {COM:sic})
 						(NP-OB1 (PRO$ his) (NS bels))))
 			      (PP (P be_cos)
 				  (PP (P of)
