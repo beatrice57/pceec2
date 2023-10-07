@@ -7,7 +7,13 @@ The pceec2 repository contains
   (originally deposited with the Oxford Text Archive in 2006)
 - a corrected version of the accompanying sociolinguistic information
 - accompanying documentation concerning the source texts
-- CorpusSearch2 and accompanying documentation
+
+The PCEEC2 can be searched with CorpusSearch, which can be downloaded from 
+https://corpussearch.sourceforge.net/.  
+
+The users guide at the Sourceforge site is no longer being maintained.  
+The current version is at 
+https://www.ling.upenn.edu/~beatrice/corpus-ling/CS-users-guide/index.html.
 
 Citation
 ========
