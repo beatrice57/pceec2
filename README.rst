@@ -8,21 +8,13 @@ The pceec2 repository contains
 - a corrected version of the accompanying sociolinguistic information
 - accompanying documentation concerning the source texts
 
-The PCEEC2 can be searched with CorpusSearch, which can be downloaded from 
-https://corpussearch.sourceforge.net/.  
-
-The users guide at the Sourceforge site is no longer being maintained.  
-The current version is at 
-https://www.ling.upenn.edu/~beatrice/corpus-ling/CS-users-guide/index.html.
-
 Citation
 ========
 
 Parsed Corpus of Early English Correspondence 2, parsed version.
-2022.  Revised and corrected by Beatrice Santorini.  Annotated by Ann
-Taylor, Arja Nurmi, Anthony Warner, Susan Pintzuk, and Terttu
-Nevalainen.  Compiled by the CEEC Project Team.
-<https://github.com/beatrice57/pceec2>
+2022.  Compiled by the CEEC Project Team.  Annotated by Ann Taylor, Arja
+Nurmi, Anthony Warner, Susan Pintzuk, and Terttu Nevalainen.  Revised
+and corrected by Beatrice Santorini.  <https://github.com/beatrice57/pceec2>
 
 Contact
 =======
