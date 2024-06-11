@@ -286,11 +286,11 @@
 				      (PP (P unto)
 					  (NP (NP-POS (D the) (N$ kinges))
 					      (N $highness)))
-				      (IP-PPL (VAG concerning)
-					      (NP-OB1 (PRO$ my)
-						      (N retorne)
-						      (PP (P into)
-							  (NP (NPR England))))))))
+				      (PP (P concerning)
+					  (NP (PRO$ my)
+					      (N retorne)
+					      (PP (P into)
+						  (NP (NPR England))))))))
 	  (PUNC .))
   (ID ELYOT,2.38))
 
@@ -539,9 +539,9 @@
 					  (N towne)
 					  (PP (P of)
 					      (NP (NPR Nurenberg)))))))
-			  (RRC (ADVP (ADV specially))
-			       (VAG concerning)
-			       (NP-OB1 (D the) (N fayth)))))
+			  (PP (ADVP (ADV specially))
+			      (P concerning)
+			      (NP (D the) (N fayth)))))
 	  (PUNC ,))
   (ID ELYOT,2.44))
 
@@ -643,8 +643,8 @@
 	  (NP-SBJ (PRO he))
 	  (MD shall)
 	  (HV have)
-	  (NP-OB1 (N leve)
-		  (IP-INF (TO to) (VB looke)))
+	  (NP-OB1 (N leve))
+	  (IP-INF (TO to) (VB looke))
 	  (PP (P so)
 	      (CODE <P_3>)
 	      (CP-ADV (C that)
@@ -1755,8 +1755,7 @@
 							      (VBP remaynith)
 							      (ADVP (ADV yet))
 							      (PUNC ,)
-							      (NP-5 (NUMP (PP (P above)
-									      (NP (NUM vC))))
+							      (NP-5 (NUMP (ADV above) (NUM vC))
 								    (NS quarters)
 								    (PP *T*-4)))))))))))
 	  (PUNC .))
@@ -1948,26 +1947,25 @@
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_HOWARD_II:MALE:_:1473:59)
 	    (LETTER ELYOT_002:E1:1532:AUTOGRAPH:OTHER))
-  (XX (PP (P yf)
-	  (CP-ADV (C 0)
-		  (IP-SUB (NP-SBJ (PRO it))
-			  (MD shall)
-			  (VB please)
-			  (NP-OB2 (PRO$ your) (CODE <em>) (N grace))
-			  (CODE ...)
-			  (CODE <$$em>)
-			  (XX (NP (NPR Baynton))
-			      (IP-INF (TO to)
-				      (VB know)
-				      (NP-OB1 (Q some)
-					      (PP (P of)
-						  (NP (D theise) (NS stories)))))))))
-      (PUNC ,)
-      (NP-SBJ (PRO I))
-      (MD $wold))
+  (IP-MAT (PP (P yf)
+	      (CP-ADV (C 0)
+		      (IP-SUB (NP-SBJ (PRO it))
+			      (MD shall)
+			      (VB please)
+			      (NP-OB2 (PRO$ your) (CODE <em>) (N grace))
+			      (CODE ...)
+			      (CODE <$$em>)
+			      (XX (NP (NPR Baynton))
+				  (IP-INF (TO to)
+					  (VB know)
+					  (NP-OB1 (Q some)
+						  (PP (P of)
+						      (NP (D theise) (NS stories)))))))))
+	  (PUNC ,)
+	  (NP-SBJ (PRO I))
+	  (MD $wold)
+	  (CODE {ED:THE_END_OF_THE_LETTER_MUTILATED}))
   (ID ELYOT,5.105))
-
-( (CODE {ED:THE_END_OF_THE_LETTER_MUTILATED}))
 
 ( (CODE <Q_ELY_A_1532_T_TELYOT>))
 
@@ -2009,7 +2007,7 @@
 			  (ADJP (QS moste) (ADJ honorable))
 			  (N Counsayle)))))
       (PUNC .))
-  (ID ELYOT,7.120))
+  (ID ELYOT,7.119))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2113,7 +2111,7 @@
 																(ADJ saulfe)
 																(N retorne))))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,8.121))
+  (ID ELYOT,8.120))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2124,7 +2122,7 @@
 	  (VBP speake)
 	  (PP (P withoute)
 	      (NP (N flatery))))
-  (ID ELYOT,8.122))
+  (ID ELYOT,8.121))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2161,7 +2159,7 @@
 							(PP (P in)
 							    (NP (Q any) (N necessitie)))))))))
 	  (PUNC .))
-  (ID ELYOT,8.123))
+  (ID ELYOT,8.122))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2292,7 +2290,7 @@
 																 (BEN ben)
 																 (ADJP-PRD (ADJ expedient))))))))))))))))))))
 	  (PUNC :))
-  (ID ELYOT,8.124))
+  (ID ELYOT,8.123))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2333,7 +2331,7 @@
 				  (NEG not)
 				  (VAN offendid))))
 	  (PUNC .))
-  (ID ELYOT,8.125))
+  (ID ELYOT,8.124))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2456,7 +2454,7 @@
 							  (HV have)
 							  (VBN lakkid)))))))
 	  (PUNC .))
-  (ID ELYOT,8.126))
+  (ID ELYOT,8.125))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2509,7 +2507,7 @@
 					  (BEP is)
 					  (NP-PRD (Q no) (ADJ litle) (N thinge))))))
 	  (PUNC .))
-  (ID ELYOT,8.127))
+  (ID ELYOT,8.126))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2647,7 +2645,7 @@
 																		       (ADJX (ADJ assurid))))
 																	  (N witt))))))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,9.128))
+  (ID ELYOT,9.127))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2780,7 +2778,7 @@
 						    (PP (P for)
 							(NP (Q any) (N ambition)))))))))
 	  (PUNC .))
-  (ID ELYOT,9.129))
+  (ID ELYOT,9.128))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2807,7 +2805,7 @@
 						       (P of)
 						       (NP (N estimation))))))))
 	  (PUNC ,))
-  (ID ELYOT,9.130))
+  (ID ELYOT,9.129))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2844,7 +2842,7 @@
 										(VB gieve)
 										(NP-OB2 (PRO me))))))))))))
 	  (PUNC .))
-  (ID ELYOT,9.131))
+  (ID ELYOT,9.130))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2869,7 +2867,7 @@
 							      (MD may)
 							      (VB *))))))))
 	  (PUNC .))
-  (ID ELYOT,9.132))
+  (ID ELYOT,9.131))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -2904,7 +2902,7 @@
 										    (MD shold)
 										    (BE be)))))))))))
 	  (PUNC .))
-  (ID ELYOT,9.133))
+  (ID ELYOT,9.132))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3034,7 +3032,7 @@
 										     (VB pay)
 										     (NP-OB1 (D the) (N residue)))))))))))
 	(PUNC .))
-  (ID ELYOT,10.134))
+  (ID ELYOT,10.133))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3055,7 +3053,7 @@
 				  (PP (P for)
 				      (NP (NPR Cambrige) (NPR Shyre))))))
 	  (PUNC .))
-  (ID ELYOT,10.135))
+  (ID ELYOT,10.134))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3070,7 +3068,7 @@
 	  (BEP am)
 	  (NP-SBJ (PRO I))
 	  (ADJP-PRD (QR more) (ADJ undone)))
-  (ID ELYOT,10.136))
+  (ID ELYOT,10.135))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3102,7 +3100,7 @@
 					  (PP (P of)
 					      (NP (NUM one_hundred) (NS marces))))))))
 	  (PUNC ;))
-  (ID ELYOT,10.137))
+  (ID ELYOT,10.136))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3121,7 +3119,7 @@
 	  (DOP doo)
 	  (VB know)
 	  (PUNC .))
-  (ID ELYOT,10.138))
+  (ID ELYOT,10.137))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3140,7 +3138,7 @@
 			    (TO to)
 			    (VB begg)))
 	  (PUNC .))
-  (ID ELYOT,10.139))
+  (ID ELYOT,10.138))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3166,7 +3164,7 @@
 			  (BE be)
 			  (VAN dischargid)))
 	  (PUNC ;))
-  (ID ELYOT,10.140))
+  (ID ELYOT,10.139))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3190,13 +3188,12 @@
 		  (N part)
 		  (PP (P of)
 		      (NP (D the) (N Contray)))
-		  (ADJP-LOC (NP-MSR (NUMP (PP (P above)
-					      (NP (NUM thre))))
+		  (ADJP-LOC (NP-MSR (NUMP (ADV above) (NUM thre))
 				    (NS myles))
 			    (PP (P from)
 				(NP (PRO$ my) (N house)))))
 	  (PUNC ,))
-  (ID ELYOT,10.141))
+  (ID ELYOT,10.140))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3219,7 +3216,7 @@
 					      (BE be)
 					      (VAN *))))))
 	  (PUNC .))
-  (ID ELYOT,10.142))
+  (ID ELYOT,10.141))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3227,8 +3224,9 @@
   (IP-MAT (NP-SBJ (PRO$ My) (ADJ long) (NS lettres))
 	  (HVP have)
 	  (VBN made)
-	  (NP-OB1 (D ye) (QR lese) (N tyme)))
-  (ID ELYOT,10.143))
+	  (NP-OB1 (QP (D ye) (QR lese))
+		  (N tyme)))
+  (ID ELYOT,10.142))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3250,7 +3248,7 @@
 						(MD wold))))))
 	  (CODE {constrain_me})
 	  (PUNC ,))
-  (ID ELYOT,10.144))
+  (ID ELYOT,10.143))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3274,7 +3272,7 @@
 			  (PP (P with)
 			      (NP (ADJ longe) (N lif)))))
 	  (PUNC .))
-  (ID ELYOT,10.145))
+  (ID ELYOT,10.144))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3299,7 +3297,7 @@
 			  (NPR Elyot)
 			  (NP-PRN (N kt)))))
 	  (PUNC .))
-  (ID ELYOT,10.146))
+  (ID ELYOT,10.145))
 
 ( (CODE <Q_ELY_A_1532_T_TELYOT>))
 
@@ -3336,7 +3334,7 @@
 	  (CONJP (CONJ and)
 		 (NP (PRO$ myn) (ADJ assurid) (N frende)))
 	  (NP-PRN (NPR Master) (NPR Cromewell))))
-  (ID ELYOT,11.160))
+  (ID ELYOT,11.159))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3348,7 +3346,7 @@
 	  (PP (P unto)
 	      (NP (PRO you)))
 	  (PUNC .))
-  (ID ELYOT,11.161))
+  (ID ELYOT,11.160))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3411,7 +3409,7 @@
 						  (NEG not)
 						  (VAN chaungid)))))))
 	  (PUNC .))
-  (ID ELYOT,11.162))
+  (ID ELYOT,11.161))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3544,7 +3542,7 @@
 										   (CONJP (CONJ and)
 											  (NX (N Master)))))))))))))
 	  (PUNC .))
-  (ID ELYOT,12.163))
+  (ID ELYOT,12.162))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3588,7 +3586,7 @@
 					  (PP (P of)
 					      (NP (N wisedom))))))))
 	  (PUNC ,))
-  (ID ELYOT,12.164))
+  (ID ELYOT,12.163))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3604,7 +3602,7 @@
 		    (PP (P in)
 			(NP (N philosophy))))
 	  (PUNC .))
-  (ID ELYOT,12.165))
+  (ID ELYOT,12.164))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3614,9 +3612,9 @@
 	  (CP-THT (C 0)
 		  (IP-SUB (NP-SBJ (PRO ye)
 				  (RRC (BAG being)
-				       (ADJP (ADJ wery)
-					     (PP (P of)
-						 (NP (PRO$ my) (ADJ longe) (N bablyng))))))
+				       (ADJP-PRD (ADJ wery)
+						 (PP (P of)
+						     (NP (PRO$ my) (ADJ longe) (N bablyng))))))
 			  (VBP tary)
 			  (IP-INF-PRP (TO to)
 				      (VB here)
@@ -3630,7 +3628,7 @@
 							      (PP (P of)
 								  (NP *T*-1))))))))
 	  (PUNC .))
-  (ID ELYOT,12.166))
+  (ID ELYOT,12.165))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3649,7 +3647,7 @@
 				  (PP (P of)
 				      (NP (PRO$ my) (N grief))))))
 	  (PUNC .))
-  (ID ELYOT,12.167))
+  (ID ELYOT,12.166))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3680,7 +3678,7 @@
 		  (PP (P for)
 		      (NP *)))
 	  (PUNC .))
-  (ID ELYOT,12.168))
+  (ID ELYOT,12.167))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3706,7 +3704,7 @@
 				      (NP (ADJP (ADJ right) (CONJ or) (ADJ goode))
 					  (N consyderation)))))))
 	  (PUNC .))
-  (ID ELYOT,12.169))
+  (ID ELYOT,12.168))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3794,12 +3792,12 @@
 				  (NS men)))
 		  (CONJP (CONJ and)
 			 (IP-INF (ADVP (ADVR so)
-				       (CP-DEG *ICH*-1))
+				       (CP-DEG *ICH*-4))
 				 (TO to)
 				 (VB applie)
 				 (NP-OB1 (PRO$ my) (N busyness))
 				 (PUNC ,)
-				 (CP-DEG-1 (C that)
+				 (CP-DEG-4 (C that)
 					   (IP-SUB (NP-SBJ (D the)
 							   (ADJ saide)
 							   (N sute)
@@ -3809,11 +3807,10 @@
 									       (NP (D an) (NUM half))))))
 						   (VBD stoode)
 						   (NP-OB2 (PRO me))
-						   (NP-OB1 (NUMP (PP (P above)
-								     (NP (NUM one_hundred))))
+						   (NP-OB1 (NUMP (ADV above) (NUM one_hundred))
 							   (NS poundes)))))))
 	  (PUNC .))
-  (ID ELYOT,12.170))
+  (ID ELYOT,12.169))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3871,7 +3868,7 @@
 						  (NP-OB2 (PRO you))
 						  (ADVP-TMP (ADV hereafterward))))))))
 	  (PUNC .))
-  (ID ELYOT,12.171))
+  (ID ELYOT,12.170))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3898,7 +3895,7 @@
 				  (NP-SBJ (PRO ye))
 				  (VBP know))))
 	  (PUNC .))
-  (ID ELYOT,13.172))
+  (ID ELYOT,13.171))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -3974,8 +3971,9 @@
 										 (ALSO allso)
 										 (NP-PRD (N Clerk)
 											 (PP (P of)
-											     (NP (D the) (N Assisis))
-											     (ADVP-DIR (ADV westward))))
+											     (NP (D the)
+												 (N Assisis)
+												 (ADVP (ADV westward)))))
 										 (PUNC ,)
 										 (CP-CAR (WNP-4 (WPRO which))
 											 (C 0)
@@ -3987,7 +3985,7 @@
 													   (ADVP (ADV yerly))
 													   (NP (NUM one_hundred) (NS Marces)))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,13.173))
+  (ID ELYOT,13.172))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4084,7 +4082,7 @@
 					      (NP-OB1 (PRO him))
 					      (NP-SPR (PRO$ my) (ADJ goode) (N lorde))))))
 	  (PUNC .))
-  (ID ELYOT,13.174))
+  (ID ELYOT,13.173))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4124,7 +4122,7 @@
 							      (NP-SBJ *arb*)
 							      (VB say))))))))
 	  (PUNC ;))
-  (ID ELYOT,13.175))
+  (ID ELYOT,13.174))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4145,7 +4143,7 @@
 		      (PP (P from)
 			  (NP (PRO me))))
 	  (PUNC .))
-  (ID ELYOT,13.176))
+  (ID ELYOT,13.175))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4179,7 +4177,7 @@
 							  (HVD hadd)
 							  (NP-OB1 (N promyse)
 								  (PP *T*-3))))))))))
-  (ID ELYOT,13.177))
+  (ID ELYOT,13.176))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4190,7 +4188,7 @@
 	  (VBD receyvid)
 	  (NP-OB1 (PRO it))
 	  (PUNC ;))
-  (ID ELYOT,13.178))
+  (ID ELYOT,13.177))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4306,7 +4304,7 @@
 													  (PP (P to)
 													      (NP (PRO$ my) (ADJ sayde) (N lorde))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,13.179))
+  (ID ELYOT,13.178))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4323,7 +4321,7 @@
 		    (CONJP (CONJ and)
 			   (NP (D the) (N stone)))))
 	  (PUNC ,))
-  (ID ELYOT,13.180))
+  (ID ELYOT,13.179))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4359,7 +4357,7 @@
 					  (BE be)
 					  (ADJP-PRD (ADJ necessary))))))
 	  (PUNC .))
-  (ID ELYOT,14.181))
+  (ID ELYOT,14.180))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4381,7 +4379,7 @@
 	  (PP-2 (P of)
 		(NP (D the) (ADJ sayde) (N office)))
 	  (PUNC ,))
-  (ID ELYOT,14.182))
+  (ID ELYOT,14.181))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4418,7 +4416,7 @@
 					   (PP (P than)
 					       (ADVP (ADV bifore)))))))
 	  (PUNC .))
-  (ID ELYOT,14.183))
+  (ID ELYOT,14.182))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4462,7 +4460,7 @@
 	  (PUNC ,)
 	  (NP-OB1 (NUM thre_hundred_and_xlviii) (NS li))
 	  (PUNC .))
-  (ID ELYOT,14.184))
+  (ID ELYOT,14.183))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4502,7 +4500,7 @@
 		  (PP (P except)
 		      (NP (NUM foure_hundred) (N shepe)))))
 	  (PUNC :))
-  (ID ELYOT,14.185))
+  (ID ELYOT,14.184))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4545,7 +4543,7 @@
 										       (PP (P on)
 											   (NP *T*-3))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,14.186))
+  (ID ELYOT,14.185))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4574,7 +4572,7 @@
 		      (BEP am))
 	  (ADVP (ADV truely) (CONJ and) (ADV faithfully))
 	  (PUNC ,))
-  (ID ELYOT,14.187))
+  (ID ELYOT,14.186))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4605,15 +4603,17 @@
 							    (PP (P with)
 								(NP (PRO$ my) (N service)))))))))
 	  (PUNC .))
-  (ID ELYOT,14.188))
+  (ID ELYOT,14.187))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
 	    (LETTER ELYOT_004:E1:1532:AUTOGRAPH:OTHER))
   (IP-MAT (CONJ But)
 	  (ADVP-TMP (ADV now)
-		    (CP-ADV (C that)
-			    (IP-SUB (NP-SBJ (PRO I))
+		    (CP-REL (WADVP-1 0)
+			    (C that)
+			    (IP-SUB (ADVP-TMP *T*-1)
+				    (NP-SBJ (PRO I))
 				    (VBD trustid)
 				    (IP-INF (IP-INF (TO to)
 						    (VB lyve)
@@ -4640,24 +4640,24 @@
 							   (PUNC .)
 							   (PUNC <paren>)
 							   (IP-MAT-PRN (CONJ for)
-								       (NP-1 (OTHER other) (N promosion))
+								       (NP-2 (OTHER other) (N promosion))
 								       (NP-SBJ (PRO I))
 								       (VBD lokid)
 								       (NEG not)
 								       (PP (P for)
-									   (NP *ICH*-1)))))))))
+									   (NP *ICH*-2)))))))))
 	  (PUNC <$$paren>)
 	  (NP-SBJ (PRO I))
 	  (VBP wote)
 	  (NEG not)
-	  (CP-QUE-SUB (WPP-2 (P by)
+	  (CP-QUE-SUB (WPP-3 (P by)
 			     (WNP (WD what)
 				  (N malice)
 				  (PP (P of)
 				      (NP (N fortune)))))
 		      (C 0)
 		      (PUNC ,)
-		      (IP-SUB (PP *T*-2)
+		      (IP-SUB (PP *T*-3)
 			      (NP-SBJ (PRO I))
 			      (BEP am)
 			      (VAN constrayned)
@@ -4666,14 +4666,14 @@
 				      (PP (P in)
 					  (NP (D that)
 					      (N office)
-					      (CP-REL (WPP-3 (WADV+P wherunto))
+					      (CP-REL (WPP-4 (WADV+P wherunto))
 						      (C 0)
-						      (IP-SUB (PP *T*-3)
+						      (IP-SUB (PP *T*-4)
 							      (BEP is)
 							      (PP (P as)
-								  (CP-ADV (WADVP-4 0)
+								  (CP-ADV (WADVP-5 0)
 									  (C 0)
-									  (IP-SUB (ADVP *T*-4)
+									  (IP-SUB (ADVP *T*-5)
 										  (NP-SBJ (PRO it))
 										  (BED wer))))
 							      (NP-SBJ (ADJ appendant)
@@ -4683,7 +4683,7 @@
 									      (CONJP (CONJ and)
 										     (NP (ADJ goode) (N name)))))))))))))
 	  (PUNC $.))
-  (ID ELYOT,14.189))
+  (ID ELYOT,14.188))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4695,7 +4695,7 @@
 	  (ADJP-PRD (ADJ certayne)
 		    (PP *ICH*-1))
 	  (PUNC ,))
-  (ID ELYOT,14.190))
+  (ID ELYOT,14.189))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4750,7 +4750,7 @@
 						      (P of)
 						      (NP (N dett)))))))))
 	  (PUNC .))
-  (ID ELYOT,14.191))
+  (ID ELYOT,14.190))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4766,7 +4766,7 @@
 		  (NP-OB1 (PRO$ my) (N household))
 		  (ADVP-TMP (ADV eftsones)))
 	  (PUNC ,))
-  (ID ELYOT,15.192))
+  (ID ELYOT,15.191))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4779,7 +4779,7 @@
 	  (NP-OB1 (D the) (N kinge))
 	  (ADVP (ADV sklenderly))
 	  (PUNC .))
-  (ID ELYOT,15.193))
+  (ID ELYOT,15.192))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4790,7 +4790,7 @@
 	  (IP-MAT-PRN (NP-SBJ (PRO I))
 		      (VBP pray)
 		      (NP-OB2 (PRO you))))
-  (ID ELYOT,15.194))
+  (ID ELYOT,15.193))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4807,7 +4807,7 @@
 				      (NP-MSR (Q somewhat))
 				      (VAN inquietid)))))
 	  (PUNC ;))
-  (ID ELYOT,15.195))
+  (ID ELYOT,15.194))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4863,7 +4863,7 @@
 															 (NP-SBJ (PRO$ my) (ADJ pour) (N hart))
 															 (VBP desyrith)))))))))))))))))
 	(PUNC .))
-  (ID ELYOT,15.196))
+  (ID ELYOT,15.195))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4915,7 +4915,7 @@
 								  (PP (P of)
 								      (NP (PRO$ your) (N worship)))))))))))
 	  (PUNC .))
-  (ID ELYOT,15.197))
+  (ID ELYOT,15.196))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4950,7 +4950,7 @@
 										      (PP (P with)
 											  (NP *T*-2)))))))))))))
 	  (PUNC .))
-  (ID ELYOT,15.198))
+  (ID ELYOT,15.197))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4968,7 +4968,7 @@
 						 (TO to)
 						 (DO doo))))))
 	  (PUNC .))
-  (ID ELYOT,15.199))
+  (ID ELYOT,15.198))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:42?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -4988,7 +4988,7 @@
 		  (NP-PRN (NPR Th)
 			  (NPR Elyot)
 			  (NP-PRN (N kt))))))
-  (ID ELYOT,15.200))
+  (ID ELYOT,15.199))
 
 ( (CODE <Q_ELY_A_1533_T_TELYOT>))
 
@@ -5020,7 +5020,7 @@
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
 	    (LETTER ELYOT_005:E1:1533:AUTOGRAPH:OTHER))
   (FOREIGN (FW A) (FW Monsieur) (FW sir) (FW Jehan) (FW Haket) (FW Ambassador) (FW de) (FW Le) (FW Roy) (PUNC .))
-  (ID ELYOT,16.214))
+  (ID ELYOT,16.213))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5032,7 +5032,7 @@
 	  (NP-OB1 (PRO me))
 	  (PP (P unto)
 	      (NP (PRO you))))
-  (ID ELYOT,16.215))
+  (ID ELYOT,16.214))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5055,7 +5055,7 @@
 				  (PP (P by)
 				      (NP (NPR Master) (NPR Raynsford)))))))
 	  (PUNC .))
-  (ID ELYOT,16.216))
+  (ID ELYOT,16.215))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5077,7 +5077,7 @@
 						      (P of)
 						      (NP (D theise) (NS partes))))))))
 	  (PUNC .))
-  (ID ELYOT,16.217))
+  (ID ELYOT,16.216))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5088,7 +5088,7 @@
 	  (Q all)
 	  (NP-PRD (OTHER other) (N wise))
 	  (PUNC .))
-  (ID ELYOT,16.218))
+  (ID ELYOT,16.217))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5100,7 +5100,7 @@
 			  (VBP amend)
 			  (NP-OB1 (PRO it))))
 	  (PUNC .))
-  (ID ELYOT,17.219))
+  (ID ELYOT,17.218))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5126,7 +5126,7 @@
 					      (IP-SUB (NP-SBJ (PRO it))
 						      (VBP fallith)))))))
 	  (PUNC .))
-  (ID ELYOT,17.220))
+  (ID ELYOT,17.219))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5140,7 +5140,7 @@
 	  (PP (P in)
 	      (NP (ADJ goode) (N helth)))
 	  (PUNC .))
-  (ID ELYOT,17.221))
+  (ID ELYOT,17.220))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5169,7 +5169,7 @@
 					 (ADVP (ADV freely) (CONJ and) (ADV thankfully))
 					 (VAN herd)))))
 	  (PUNC .))
-  (ID ELYOT,17.222))
+  (ID ELYOT,17.221))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5184,7 +5184,7 @@
 			    (VB (VB lyve) (CONJ and) (VB dye))
 			    (PP (ADV+P therin))))
 	  (PUNC $.))
-  (ID ELYOT,17.223))
+  (ID ELYOT,17.222))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5233,7 +5233,7 @@
 								       (BEP am)
 								       (VAN sworne))))))))
 	    (PUNC .))
-  (ID ELYOT,17.224))
+  (ID ELYOT,17.223))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5248,7 +5248,7 @@
 				    (MD shall)
 				    (ADVP-TMP (ADV ones))
 				    (VB dye)))))
-  (ID ELYOT,17.225))
+  (ID ELYOT,17.224))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5275,7 +5275,7 @@
 				 (IP-SUB=2 (NP-OB1 (D that))
 					   (ADVP (ADV everlastingly))))))
 	  (PUNC .))
-  (ID ELYOT,17.226))
+  (ID ELYOT,17.225))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5294,7 +5294,7 @@
 		  (PP (P of)
 		      (NP (D the) (N spiritualtie))))
 	  (PUNC .))
-  (ID ELYOT,17.227))
+  (ID ELYOT,17.226))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5306,7 +5306,7 @@
 	  (BEP is)
 	  (NP-1 (Q no) (ADJ perfect) (N agrement))
 	  (PUNC $.))
-  (ID ELYOT,17.228))
+  (ID ELYOT,17.227))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5338,7 +5338,7 @@
 				  (VB pitie)
 				  (NP-OB1 (PRO theim)))))
 	  (PUNC .))
-  (ID ELYOT,17.229))
+  (ID ELYOT,17.228))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5355,7 +5355,7 @@
 				  (VBD left)
 				  (NP-OB1 (PRO theim))))))
 	  (PUNC .))
-  (ID ELYOT,17.230))
+  (ID ELYOT,17.229))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5373,7 +5373,7 @@
 	  (VB recompence)
 	  (NP-OB1 (PRO you))
 	  (PUNC $.))
-  (ID ELYOT,17.231))
+  (ID ELYOT,17.230))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5383,7 +5383,7 @@
 	  (NP-OB2 (PRO you))
 	  (NP-OB1 (Q moche) (N honor))
 	  (PUNC .))
-  (ID ELYOT,17.232))
+  (ID ELYOT,17.231))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5452,7 +5452,7 @@
 												    (BEP is)
 												    (ADJP-PRD (ADJ worthy))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,17.233))
+  (ID ELYOT,17.232))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5466,7 +5466,7 @@
 		  (PP (P of)
 		      (NP (NPR April))))
 	  (PUNC .))
-  (ID ELYOT,17.234))
+  (ID ELYOT,17.233))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT JOHN_HACKETT:MALE:_:_:_)
@@ -5480,7 +5480,7 @@
       (NP-PRN (NPR Th)
 	      (NPR Elyot)
 	      (NP-PRN (N kt))))
-  (ID ELYOT,17.235))
+  (ID ELYOT,17.234))
 
 ( (CODE <Q_ELY_A_1533_T_TELYOT>))
 
@@ -5589,7 +5589,7 @@
 										   (IP-SUB=6 (ADVP (ADV unneth))
 											     (NP-OB1 (PRO$ his) (N personage))))))))))))
 	  (PUNC .))
-  (ID ELYOT,19.250))
+  (ID ELYOT,19.249))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5643,7 +5643,7 @@
 						      (NP (D a) (ADJ grete) (N porcion)))
 						  (VAG lakking))))))
 	  (PUNC ;))
-  (ID ELYOT,19.251))
+  (ID ELYOT,19.250))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5667,9 +5667,8 @@
 	  (PUNC ,)
 	  (NP-SBJ (PRO he))
 	  (VBP kepith)
-	  (NP-OB1 (D an) (ADJ honest) (N port))
-	  (CODE {TEMP:best_guess}))
-  (ID ELYOT,19.252))
+	  (NP-OB1 (D an) (ADJ honest) (N port)))
+  (ID ELYOT,19.251))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5692,7 +5691,7 @@
 			  (BEP be)
 			  (ADJP-PRD (ADV very) (ADJ towardly))))
 	  (PUNC .))
-  (ID ELYOT,19.253))
+  (ID ELYOT,19.252))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5708,7 +5707,7 @@
 				  (FOR for)
 				  (TO to)
 				  (VB sett)
-				  (ADVP-DIR (ADV furth))
+				  (ADVP (ADV furth))
 				  (PP (P in)
 				      (NP (N mariage)))))
 		  (CP-REL (WNP-2 (WPRO which))
@@ -5727,7 +5726,7 @@
 					  (PP (P of)
 					      (NP (D a) (ADJ litle) (N substance)))))))
 	  (PUNC .))
-  (ID ELYOT,19.254))
+  (ID ELYOT,19.253))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5821,7 +5820,7 @@
 										 (NP (NP-POS (D the) (N$ kinges))
 										     (N highness))))))))))))
 	  (PUNC .))
-  (ID ELYOT,19.255))
+  (ID ELYOT,19.254))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5846,7 +5845,7 @@
 					  (PP (P aboute)
 					      (NP (ADJR gretter) (NS affaires))))))))
 	  (PUNC .))
-  (ID ELYOT,19.256))
+  (ID ELYOT,19.255))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -5858,7 +5857,7 @@
       (NP-PRN (NPR Th)
 	      (NPR Elyot)
 	      (NP-PRN (N kt))))
-  (ID ELYOT,19.257))
+  (ID ELYOT,19.256))
 
 ( (CODE <Q_ELY_A_1533_T_TELYOT>))
 
@@ -5901,7 +5900,7 @@
 		  (ADJ goode)
 		  (N Ladisshipp)))
       (PUNC .))
-  (ID ELYOT,20.271))
+  (ID ELYOT,20.270))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -5916,7 +5915,7 @@
 	  (PP (P unto)
 	      (NP (PRO$ your) (ADJ goode) (N ladisship)))
 	  (PUNC .))
-  (ID ELYOT,20.272))
+  (ID ELYOT,20.271))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -5954,7 +5953,7 @@
 	  (VB thank)
 	  (NP-OB2 (PRO you))
 	  (PUNC .))
-  (ID ELYOT,20.273))
+  (ID ELYOT,20.272))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -5974,11 +5973,11 @@
 				      (NP (NP (PRO him))
 					  (CONJP (CONJ and)
 						 (NP (Q all) (PRO$ his) (NS bretherne)))))))
-		  (RRC (VAG concerning)
-		       (NP-OB1 (PRO$ theire)
-			       (N loyaltie)
-			       (CONJP (CONJ and)
-				      (NX (ADJ assurid) (N honestie)))))))
+		  (PP (P concerning)
+		      (NP (PRO$ theire)
+			  (N loyaltie)
+			  (CONJP (CONJ and)
+				 (NX (ADJ assurid) (N honestie)))))))
 	  (PUNC ,)
 	  (NP-SBJ (PRO I))
 	  (BEP am)
@@ -6015,7 +6014,7 @@
 											  (CONJP (CONJ and)
 												 (NP (PRO$ your) (N ladisshipp)))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,20.274))
+  (ID ELYOT,20.273))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -6135,7 +6134,7 @@
 			  (PP (P toward)
 			      (NP (PRO$ your) (ADJ sayde) (N servaunt)))))
 	  (PUNC .))
-  (ID ELYOT,20.275))
+  (ID ELYOT,20.274))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -6167,7 +6166,7 @@
 		  (PP (P for)
 		      (NP (PRO$ his) (N advauncement))))
 	  (PUNC .))
-  (ID ELYOT,21.276))
+  (ID ELYOT,21.275))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -6223,13 +6222,13 @@
 						  (NP-MSR (Q moche))
 						  (VB (VB esteme) (CONJ and) (VB dreade))))))))
 	  (PUNC .))
-  (ID ELYOT,21.277))
+  (ID ELYOT,21.276))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
 	    (LETTER ELYOT_007:E1:1533:AUTOGRAPH:OTHER))
   (IP-MAT (CONJ And)
-	  (IP-PPL (ADVP (ADVR so))
+	  (IP-PPL (ADVP (ADV so))
 		  (DAG doing))
 	  (PP (P besydes)
 	      (CP-ADV (C that)
@@ -6255,7 +6254,7 @@
 	  (PP (P with)
 	      (NP (PRO$ my) (ADJ poure) (N service)))
 	  (PUNC .))
-  (ID ELYOT,21.278))
+  (ID ELYOT,21.277))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -6269,7 +6268,7 @@
 	  (PP (P in)
 	      (NP (Q moche) (N honor)))
 	  (PUNC .))
-  (ID ELYOT,21.279))
+  (ID ELYOT,21.278))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -6283,7 +6282,7 @@
 		  (PP (P of)
 		      (NP (NPR Decembre))))
 	  (PUNC .))
-  (ID ELYOT,21.280))
+  (ID ELYOT,21.279))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT HONOR_PLANTAGENET[N.GRENVILLE]:FEMALE:_:1494?:39?)
@@ -6293,7 +6292,7 @@
 	(NP (NPR Th)
 	    (NPR Elyot)
 	    (NP-PRN (N kt))))
-  (ID ELYOT,21.281))
+  (ID ELYOT,21.280))
 
 ( (CODE <Q_ELY_A_1533?_T_TELYOT>))
 
@@ -6334,7 +6333,7 @@
 			  (PP (P of)
 			      (NP (NP-POS (D the) (N$ Kinges))
 				  (NS Jewelles)))))))
-  (ID ELYOT,22.295))
+  (ID ELYOT,22.294))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6433,7 +6432,7 @@
 												      (PP (P from)
 													  (NP (PRO$ my) (ADJ folissh) (N hedd))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,22.296))
+  (ID ELYOT,22.295))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6455,7 +6454,7 @@
 		    (VB here)
 		    (NP-OB1 (D the) (ADJ pour) (N gardyner)))
 	  (PUNC $.))
-  (ID ELYOT,22.297))
+  (ID ELYOT,22.296))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6488,7 +6487,7 @@
 				   (PP (P of)
 				       (NP (N reward) (CONJ or) (N glory)))))))
 	  (PUNC $;))
-  (ID ELYOT,22.298))
+  (ID ELYOT,22.297))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6545,7 +6544,7 @@
 										 (VB trust)
 										 (NP-OB1 (PRO me))))))))))))
 	  (PUNC .))
-  (ID ELYOT,22.299))
+  (ID ELYOT,22.298))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6560,7 +6559,7 @@
 	  (PP (P in)
 	      (NP (PRO me)))
 	  (PUNC .))
-  (ID ELYOT,22.300))
+  (ID ELYOT,22.299))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6572,7 +6571,7 @@
 	  (ADVP (ADV never_the_lasse))
 	  (IP-INF (TO to)
 		  (VB sett)
-		  (ADVP-DIR (ADV furth))
+		  (ADVP (ADV furth))
 		  (PP (P in)
 		      (NP (Q some) (N wise)))
 		  (NP-OB1 (D that)
@@ -6614,7 +6613,7 @@
 										  (VB (VB reade) (CONJ or) (VB heere))
 										  (NP-OB1 (PRO it))))))))))))
 	  (PUNC .))
-  (ID ELYOT,22.301))
+  (ID ELYOT,22.300))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6662,7 +6661,7 @@
 									  (VBP seemyth)
 									  (ADJP-PRD (D the) (ADJR lenger))))))))))))
 	  (PUNC .))
-  (ID ELYOT,22.302))
+  (ID ELYOT,22.301))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6694,7 +6693,7 @@
 	  (VB seme)
 	  (ADJP-PRD (ADV very) (ADJ tediouse))
 	  (PUNC .))
-  (ID ELYOT,22.303))
+  (ID ELYOT,22.302))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6713,7 +6712,7 @@
 	  (PP (P in)
 	      (NP (ADJ goode) (N part)))
 	  (PUNC ,))
-  (ID ELYOT,22.304))
+  (ID ELYOT,22.303))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6744,7 +6743,7 @@
 							      (NP (PRO$ theire) (N taste)))
 							  (ADJP-PRD (ADJ unsavery) (CONJ and) (ADJ bitter)))))))))
 	  (PUNC .))
-  (ID ELYOT,23.305))
+  (ID ELYOT,23.304))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6805,7 +6804,7 @@
 						  (VB compelle)
 						  (NP-OB1 (PRO me))))))))
 	  (PUNC .))
-  (ID ELYOT,23.306))
+  (ID ELYOT,23.305))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6845,7 +6844,7 @@
 								    (IP-PPL (VAG consumyng)
 									    (NP-OB1 (PRO$ my) (N tyme)))))))))))
 	  (PUNC .))
-  (ID ELYOT,23.307))
+  (ID ELYOT,23.306))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6858,7 +6857,7 @@
 		  (PP (P with)
 		      (NP (Q moche) (N worship))))
 	  (PUNC .))
-  (ID ELYOT,23.308))
+  (ID ELYOT,23.307))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:43?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:48?)
@@ -6870,7 +6869,7 @@
 	    (NPR Elyot)
 	    (NP-PRN (N kt)))
 	(PUNC .))
-  (ID ELYOT,23.309))
+  (ID ELYOT,23.308))
 
 ( (CODE <Q_ELY_A_1534?_T_TELYOT>))
 
@@ -6909,7 +6908,7 @@
 	(PP (P With)
 	    (NP (QS moste) (ADJ humble) (NS recommendacions)))
 	(PUNC ,))
-  (ID ELYOT,24.323))
+  (ID ELYOT,24.322))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:44?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:49?)
@@ -6951,7 +6950,7 @@
 		      (NP (PRO you)))
 		  (NP-OB1 (FP onely) (Q all) (PRO$ my) (ADJ hole) (N confidence)))
 	  (PUNC ,))
-  (ID ELYOT,24.324))
+  (ID ELYOT,24.323))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:44?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:49?)
@@ -6964,7 +6963,7 @@
 	  (PUNC .)
 	  (ADVP-LOC (CP-FRL (WADVP-1 (WADV where))
 			    (C 0)
-			    (IP-SUB (ADVP *T*-1)
+			    (IP-SUB (ADVP-LOC *T*-1)
 				    (ADVP-TMP (ADV late))
 				    (NP-SBJ (PRO I))
 				    (HVP have)
@@ -6997,7 +6996,7 @@
 										(VB declare)
 										(NP-OB1 (PRO it)))))))))))
 	  (PUNC .))
-  (ID ELYOT,24.325))
+  (ID ELYOT,24.324))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:44?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:49?)
@@ -7026,7 +7025,7 @@
 						(PUNC ,)
 						(IP-INF-2 (TO to)
 							  (VB sett)
-							  (ADVP-DIR (ADV furth))
+							  (ADVP (ADV furth))
 							  (PP (P with)
 							      (NP (PRO$ your)
 								  (ADJ gentill)
@@ -7143,7 +7142,7 @@
 								 (IP-SMC (NP-SBJ (PRO me))
 									 (ADJP-PRD (ADJ ingrate) (CONJ or) (ADJ unthankfull))))))))))
 	  (PUNC .))
-  (ID ELYOT,25.326))
+  (ID ELYOT,25.325))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:44?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:49?)
@@ -7209,7 +7208,7 @@
 															 (PP (P of)
 															     (NP (ADJ harty) (N frendship))))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,25.327))
+  (ID ELYOT,25.326))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:44?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:49?)
@@ -7257,7 +7256,7 @@
 					    (NP (ADJ long) (N contynuance)))
 					(PP (P in)
 					    (NP (N honor)))))))
-  (ID ELYOT,25.328))
+  (ID ELYOT,25.327))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:44?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:49?)
@@ -7268,7 +7267,7 @@
 	(NP (NPR Th)
 	    (NPR Elyot)
 	    (NP-PRN (N kt))))
-  (ID ELYOT,25.329))
+  (ID ELYOT,25.328))
 
 ( (CODE <Q_ELY_A_1536_T_TELYOT>))
 
@@ -7313,7 +7312,7 @@
 	  (PP (P unto)
 	      (NP (PRO you)))
 	  (PUNC .))
-  (ID ELYOT,26.344))
+  (ID ELYOT,26.343))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7346,8 +7345,8 @@
 					       (PP (P in)
 						   (NP (NP-POS (PRO$ his) (N$ graces))
 						       (N proclamacion)
-						       (RRC (VAG concerning)
-							    (NP-OB1 (ADJ sediciouse) (NS bookes))))))))))))
+						       (PP (P concerning)
+							   (NP (ADJ sediciouse) (NS bookes))))))))))))
 	  (PUNC ,)
 	  (ADVP-TMP (ADV now))
 	  (PP (P for_as_moche)
@@ -7424,7 +7423,7 @@
 														  (PP (P of)
 														      (NP (N amitie)))))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,26.345))
+  (ID ELYOT,26.344))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7446,13 +7445,13 @@
 			    (NP-OB1 (Q many)
 				    (NS bookes)
 				    (PUNC ,)
-				    (RRC (ADVP (ADV specially))
-					 (VAG concerning)
-					 (NP-OB1 (NP (N humanitie))
-						 (CONJP (CONJ and)
-							(NP (ADJ morall) (N Philosophy))))))))
+				    (PP (ADVP (ADV specially))
+					(P concerning)
+					(NP (NP (N humanitie))
+					    (CONJP (CONJ and)
+						   (NP (ADJ morall) (N Philosophy))))))))
 	  (PUNC ,))
-  (ID ELYOT,26.346))
+  (ID ELYOT,26.345))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7468,19 +7467,19 @@
 		  (N numbre)
 		  (PP *ICH*-1))
 	  (PUNC .))
-  (ID ELYOT,26.347))
+  (ID ELYOT,26.346))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
 	    (LETTER ELYOT_010:E1:1536:AUTOGRAPH:OTHER))
   (IP-MAT (CONJ But)
-	  (IP-PPL (VAG concerning)
-		  (NP-OB1 (ADJ holy) (NPR scripture)))
+	  (PP (P concerning)
+	      (NP (ADJ holy) (NPR scripture)))
 	  (NP-SBJ (PRO I))
 	  (HVP have)
 	  (NP-OB1 (QP (ADV very) (Q fewe)))
 	  (PUNC ,))
-  (ID ELYOT,26.348))
+  (ID ELYOT,26.347))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7492,7 +7491,7 @@
 	  (ADVP-TMP (ADV never))
 	  (VBD delyted)
 	  (PUNC :))
-  (ID ELYOT,26.349))
+  (ID ELYOT,26.348))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7505,7 +7504,7 @@
 	  (ADVP-TMP (ADV ever))
 	  (VBD abhorred)
 	  (PUNC :))
-  (ID ELYOT,26.350))
+  (ID ELYOT,26.349))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7527,7 +7526,7 @@
 	  (ADVP-TMP (ADV never))
 	  (VBD esteemyd)
 	  (PUNC .))
-  (ID ELYOT,26.351))
+  (ID ELYOT,26.350))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7557,7 +7556,7 @@
 	  (RP oute)
 	  (NP-OB1 (PRO$ theire) (ADJ corrupt) (NS affections))
 	  (PUNC ;))
-  (ID ELYOT,26.352))
+  (ID ELYOT,26.351))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7611,8 +7610,7 @@
 						       (IP-SUB (PP *T*-3)
 							       (HVP hath)
 							       (VBN happed)
-							       (NP-SBJ (Q no)
-								       (ADJ litle)
+							       (NP-SBJ (QP (NEG no) (Q litle))
 								       (N contencion)
 								       (PP (P betwixt)
 									   (NP (NP (PRO me))
@@ -7657,7 +7655,7 @@
 																						  (PP (P in)
 																						      (NP (PRO theim)))))))))))))))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,27.353))
+  (ID ELYOT,27.352))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7680,7 +7678,7 @@
 							 (NP (PRO$ my) (N raison))))
 					  (VBD condemned)))))
 	  (PUNC :))
-  (ID ELYOT,27.354))
+  (ID ELYOT,27.353))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7719,7 +7717,7 @@
 					 (VBD withdrue)
 					 (NP-OB1 (PRO$ oure) (ADJ familiare) (N repayr))))))
 	  (PUNC .))
-  (ID ELYOT,27.355))
+  (ID ELYOT,27.354))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7769,7 +7767,7 @@
 							  (TO to)
 							  (VB reade))))))))
 	  (PUNC .))
-  (ID ELYOT,27.356))
+  (ID ELYOT,27.355))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7794,7 +7792,7 @@
 	  (NP-OB1 (PRO it))
 	  (ADVP (ADV right) (ADV gladly))
 	  (PUNC .))
-  (ID ELYOT,27.357))
+  (ID ELYOT,27.356))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7833,7 +7831,7 @@
 				    (PP (P by)
 					(NP (NPR Master) (NPR Pace)))))))
 	  (PUNC ;))
-  (ID ELYOT,27.358))
+  (ID ELYOT,27.357))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7852,7 +7850,7 @@
 			      (CONJP (CONJ or)
 				     (NX (N mater)))))))
 	  (PUNC ,))
-  (ID ELYOT,27.359))
+  (ID ELYOT,27.358))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7868,7 +7866,7 @@
 	  (NEG not)
 	  (ADJP-PRD (ADJ sure))
 	  (PUNC ,))
-  (ID ELYOT,27.360))
+  (ID ELYOT,27.359))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7887,7 +7885,7 @@
 			      (VBD bowght)
 			      (NP-OB1 (PRO it)))))
 	  (PUNC .))
-  (ID ELYOT,27.361))
+  (ID ELYOT,27.360))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7932,7 +7930,7 @@
 			  (PP (P after)
 			      (NP (PRO$ my) (ADJ present) (N recovery)))))
 	  (PUNC ,))
-  (ID ELYOT,27.362))
+  (ID ELYOT,27.361))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -7954,7 +7952,7 @@
 	  (VB make)
 	  (NP-OB1 (ADJ diligent) (N serche))
 	  (PUNC ,))
-  (ID ELYOT,27.363))
+  (ID ELYOT,27.362))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8088,7 +8086,7 @@
 										    (MD will)
 										    (VB folow)))))))))
 	  (PUNC .))
-  (ID ELYOT,27.364))
+  (ID ELYOT,27.363))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8122,7 +8120,7 @@
 				  (CONJP (CONJ or)
 					 (NX (N dissimulacion))))))
 	  (PUNC .))
-  (ID ELYOT,28.365))
+  (ID ELYOT,28.364))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8142,7 +8140,7 @@
 				  (VBD favored)
 				  (NP-OB1 (N hypocrysy) (PUNC :) (N supersticion) (CONJ and) (N vanitie)))))
 	  (PUNC .))
-  (ID ELYOT,28.366))
+  (ID ELYOT,28.365))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8227,7 +8225,7 @@
 										 (PP (P with)
 										     (NP (ADJ longe) (N lif))))))))))))
 	  (PUNC .))
-  (ID ELYOT,28.367))
+  (ID ELYOT,28.366))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8241,7 +8239,7 @@
 		  (PP (P of)
 		      (NP (NPR sainct) (NPR Thomas)))))
 	  (PUNC .))
-  (ID ELYOT,28.368))
+  (ID ELYOT,28.367))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8252,7 +8250,7 @@
 	(NP (NPR Th)
 	    (NPR Elyot)
 	    (NP-PRN (N kt))))
-  (ID ELYOT,28.369))
+  (ID ELYOT,28.368))
 
 ( (CODE <Q_ELY_A_1536_T_TELYOT>))
 
@@ -8292,7 +8290,7 @@
 		  (N lord)
 		  (NP-PRN (ADJ Pryvy) (N Seale))))
       (PUNC .))
-  (ID ELYOT,30.383))
+  (ID ELYOT,30.382))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8354,7 +8352,7 @@
 		      (NP (PRO$ my) (N penne)))
 		  (NP-OB1 (PRO$ my) (ADJ sayde) (N duety)))
 	  (PUNC .))
-  (ID ELYOT,30.384))
+  (ID ELYOT,30.383))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8445,7 +8443,7 @@
 						 (PP (P of)
 						     (NP (PRO$ your) (N Prynce)))))))))
 	  (PUNC .))
-  (ID ELYOT,30.385))
+  (ID ELYOT,30.384))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8513,11 +8511,11 @@
 									    (ADVP-TMP (ADV never))
 									    (HV have)
 									    (NP-OB1 (N cause)
-										    (IP-INF (TO to)
-											    (VB repent)
-											    (PP *T*-1))))))))))))
+										    (IP-INF (PP *T*-1)
+											    (TO to)
+											    (VB repent))))))))))))
 	  (PUNC .))
-  (ID ELYOT,30.386))
+  (ID ELYOT,30.385))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8553,7 +8551,7 @@
 				  (PP (P of)
 				      (NP (PRO$ my) (N hart))))))
 	  (PUNC .))
-  (ID ELYOT,30.387))
+  (ID ELYOT,30.386))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8610,7 +8608,7 @@
 						     (CONJP (CONJ and)
 							    (NX (NS lawes))))))))))
 	  (PUNC .))
-  (ID ELYOT,31.388))
+  (ID ELYOT,31.387))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8637,7 +8635,7 @@
 		    (N subject)
 		    (RRC (VAG lyving))))
 	  (PUNC .))
-  (ID ELYOT,31.389))
+  (ID ELYOT,31.388))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8649,7 +8647,7 @@
 	  (ADVP-TMP (ADV now))
 	  (IP-INF (TO to)
 		  (VB lay)
-		  (ADVP-DIR (ADV a_part))
+		  (ADVP (ADV a_part))
 		  (NP-OB1 (D the)
 			  (N remembraunce)
 			  (PP (P of)
@@ -8704,7 +8702,7 @@
 						      (BEP is)
 						      (NP-PRD (PRO$ my) (N Juge))))))))
 	  (PUNC .))
-  (ID ELYOT,31.390))
+  (ID ELYOT,31.389))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8873,7 +8871,7 @@
 																			   (VB mayntayne)
 																			   (NP-OB1 (PRO$ my) (ADJ pour) (N house))))))))))))))))))))))
 	  (PUNC .))
-  (ID ELYOT,31.391))
+  (ID ELYOT,31.390))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8899,7 +8897,7 @@
 	  (IP-SMC (NP-SBJ (PRO me))
 		  (ADJP-PRD (ADJ ingrate)))
 	  (PUNC .))
-  (ID ELYOT,31.392))
+  (ID ELYOT,31.391))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8935,7 +8933,7 @@
 			  (CONJP (CONJ and)
 				 (NX (N servyce))))))
 	  (PUNC .))
-  (ID ELYOT,31.393))
+  (ID ELYOT,31.392))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8954,7 +8952,7 @@
 					      (PP (P to)
 						  (NP (D the) (N Court))))))))
 	  (PUNC .))
-  (ID ELYOT,31.394))
+  (ID ELYOT,31.393))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8980,7 +8978,7 @@
 			  (N favor)
 			  (PP (ADV+P therin)))))
 	  (PUNC .))
-  (ID ELYOT,32.395))
+  (ID ELYOT,32.394))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -8993,7 +8991,7 @@
 		      (NP (NPR Smythfeld)))))
 	  (NP-TMP (D this) (NPR moneday))
 	  (PUNC .))
-  (ID ELYOT,32.396))
+  (ID ELYOT,32.395))
 
 ( (METADATA (AUTHOR THOMAS_ELYOT:MALE:_:1490?:46?)
 	    (RECIPIENT THOMAS_CROMWELL:MALE:_:1485?:51?)
@@ -9003,5 +9001,5 @@
 	(NP (NPR Th)
 	    (NPR Elyot)
 	    (NP-PRN (N kt))))
-  (ID ELYOT,32.397))
+  (ID ELYOT,32.396))
 
