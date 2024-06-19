@@ -11585,7 +11585,7 @@
 	      (NP (N mind)))
 	  (CP-QUE-SUB (WNP-1 (WNP (WD what) (D a) (N cut))
 			     (PUNC ,)
-			     (WNP (WD what) (D a) (VAG gnawing) (N worme)))
+			     (WNP (WD what) (D a) (ADJ gnawing) (N worme)))
 		      (C 0)
 		      (IP-SUB (NP-PRD *T*-1)
 			      (NP-SBJ (PRO it))

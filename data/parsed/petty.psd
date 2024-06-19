@@ -10215,7 +10215,7 @@
 					 (VBP signify)
 					 (NP-OB1 (Q little))))))
 	  (PUNC .)
-	  (CP-CAR (WPP (WADV+P Wherefore))
+	  (CP-CAR (WPP-X (WADV+P Wherefore))
 		  (C 0)
 		  (CP-QUE-MAT (PP (P if)
 				  (CP-ADV (C 0)

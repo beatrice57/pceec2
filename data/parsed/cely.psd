@@ -11856,7 +11856,7 @@
 	  (NP (NPR Calles)))
       (PUNC ,)
       (BEP be)
-      (NP (D thys))
+      (NP-SBJ (D thys))
       (VAN dd)
       (PUNC .))
   (ID CELY,31.843))

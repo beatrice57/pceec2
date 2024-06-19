@@ -31068,7 +31068,7 @@
 			     (PUNC ,)
 			     (NP-PRN (NUM 270))
 			     (PUNC ,)
-			     (REF (VAN edit:)
+			     (REF (N edit:)
 				  (NPR Amster:)
 				  (PP (P in)
 				      (NP (N fol:)))))))))

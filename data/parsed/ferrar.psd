@@ -11016,7 +11016,7 @@
 				    (NS thankes)
 				    (PP *T*-2))
 			    (PUNC ;)
-			    (CP-REL-3 (WNP-4 (WPRO$ whose) (VAN blessed) (N Angell))
+			    (CP-REL-3 (WNP-4 (WPRO$ whose) (ADJ blessed) (N Angell))
 				      (C 0)
 				      (IP-SUB (IP-SUB (NP-SBJ *T*-4)
 						      (ADVP-TMP (ADV ever))
