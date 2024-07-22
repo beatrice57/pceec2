@@ -9630,7 +9630,7 @@
 	    (RECIPIENT GEORGE_WILLINGHAM:MALE:_:_:_)
 	    (LETTER WHARTON_008:E3:1642:AUTOGRAPH:OTHER))
   (FRAG (NP-SBJ (D the) (NS gates))
-	(NP-OB1 (NUM seaven))
+	(NP-PRD (NUM seaven))
 	(PUNC ,))
   (ID WHARTON,21.556))
 
@@ -9638,7 +9638,7 @@
 	    (RECIPIENT GEORGE_WILLINGHAM:MALE:_:_:_)
 	    (LETTER WHARTON_008:E3:1642:AUTOGRAPH:OTHER))
   (FRAG (NP-SBJ (D the) (NS bulwarkes))
-	(NP-OB1 (NP (NUM five))
+	(NP-PRD (NP (NUM five))
 		(PUNC ,)
 		(CONJP (CONJ but)
 		       (ADJP (Q much) (ADJ decayed))))

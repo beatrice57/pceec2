@@ -4526,7 +4526,7 @@
 				(VB her)
 				(PP (P of)
 				    (NP *T*-1)))))
-	(NP-OB1 (D the)
+	(NP-PRD (D the)
 		(NPR Island)
 		(PP (P of)
 		    (NP (NPR Man)))

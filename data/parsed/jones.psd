@@ -5646,7 +5646,7 @@
 		(N number)
 		(PP (P of)
 		    (NP (Q either))))
-	(NP-OB1 (QP (NEG not) (Q many)))
+	(NP-PRD (QP (NEG not) (Q many)))
 	(PUNC ,))
   (ID JONES,191.315))
 

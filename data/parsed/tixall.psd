@@ -5996,7 +5996,7 @@
 	    (RECIPIENT HERBERT_ASTON:MALE:BROTHER-IN-LAW:1614?:_)
 	    (LETTER TIXALL_012:E3:1670S?:AUTOGRAPH:FAMILY_OTHER))
   (FRAG (NP-SBJ (PRO$ Her's))
-	(NP-OB1 (D the) (ADJ active))
+	(NP-PRD (D the) (ADJ active))
 	(PUNC ,))
   (ID TIXALL,35.408))
 
@@ -6004,7 +6004,7 @@
 	    (RECIPIENT HERBERT_ASTON:MALE:BROTHER-IN-LAW:1614?:_)
 	    (LETTER TIXALL_012:E3:1670S?:AUTOGRAPH:FAMILY_OTHER))
   (FRAG (NP-SBJ (PRO$ mine))
-	(NP-OB1 (D the) (ADJ passive) (N part))
+	(NP-PRD (D the) (ADJ passive) (N part))
 	(PUNC .))
   (ID TIXALL,35.409))
 
@@ -15065,7 +15065,7 @@
 	    (RECIPIENT GERTRUDE_ASTON:FEMALE:NIECE:_:_?)
 	    (LETTER TIXALL_033:E3:1675?:AUTOGRAPH:FAMILY_OTHER))
   (FRAG (NP-SBJ (PRO$ Yours))
-	(NP-OB1 (D a)
+	(NP-PRD (D a)
 		(ADJ whole)
 		(N pack)
 		(PP (P of)

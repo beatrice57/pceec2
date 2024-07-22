@@ -29409,7 +29409,7 @@
 				(ADJP (ADVR so) (ADJ long))
 				(N absence)))
 			(PUNC ,)
-			(NP-OB1 (PRO$ our)
+			(NP-PRD (PRO$ our)
 				(N place)
 				(PP (P of)
 				    (NP (N banishment)))))))

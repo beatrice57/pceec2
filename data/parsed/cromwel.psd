@@ -6360,8 +6360,7 @@
 													    (CONJP (CONJ or)
 														   (NP (NPR Sondaye)
 														       (PP (P in)
-															   (NP (D the)
-															       (N (PP morning)))))))))))))))))))))
+															   (NP (D the) (N morning))))))))))))))))))))
   (ID CROMWEL,I,348.348))
 
 ( (METADATA (AUTHOR THOMAS_CROMWELL:MALE:_:1485?:47?)
@@ -21525,7 +21524,7 @@
 	  (PUNC ,)
 	  (CONJP (CONJ and)
 		 (IP-MAT=1 (NP-SBJ (Q som)
-				   (PP (PP of)
+				   (PP (P of)
 				       (NP (PRO them))))
 			   (ADVP-TMP (ADV alredy))
 			   (VAN executed)

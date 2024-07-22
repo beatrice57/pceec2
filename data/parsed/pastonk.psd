@@ -24555,7 +24555,7 @@
 	  (PUNC :)
 	  (CONJP (CONJ and)
 		 (FRAG (NP-SBJ (D the) (ADJ second) (N fitt))
-		       (NP-OB1 (Q+N nothinge)
+		       (NP-PRD (Q+N nothinge)
 			       (CP-EOP (WNP-1 0)
 				       (IP-INF (TO to)
 					       (VB speake)

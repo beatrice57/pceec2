@@ -26485,7 +26485,7 @@
 			  (CODE <em>)
 			  (CODE ...)
 			  (CODE <$$em>)
-			  (ADJ nyonley)
+			  (X nyonley)
 			  (NS days))))
 	  (BEP is)
 	  (NP-PRD (Q no)

@@ -1659,7 +1659,7 @@
 	    (RECIPIENT ARTHUR_PLANTAGENET:MALE:_:_:_)
 	    (LETTER LISLE_004:E1:1533:AUTOGRAPH:FAMILY_SERVANT))
   (FRAG (NP-SBJ (D the) (QS moste) (N partt))
-	(NP-OB1 (ADJ Iyntyll) (NS myn))
+	(NP-PRD (ADJ Iyntyll) (NS myn))
 	(PUNC <slash>))
   (ID LISLE,I,562.119))
 
@@ -7151,7 +7151,7 @@
 							(FOR ffor)
 							(TO to)
 							(VB get)
-							(NP-OB1 (PRO$ my@) (N schartore))
+							(NP-OB1 (PRO$ my) (N schartore))
 							(ADVP-TMP (ADV schortle)))))))))
   (ID LISLE,V,614.481))
 

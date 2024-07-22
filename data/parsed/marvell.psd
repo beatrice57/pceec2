@@ -2238,7 +2238,7 @@
 			  (NP (D the) (N Coast)))
 		      (PUNC ,)
 		      (FRAG (NP-SBJ (NPR Burlington))
-			    (NP-OB1 (ONE one))))
+			    (NP-PRD (ONE one))))
 	  (PUNC .))
   (ID MARVELL,310.140))
 
@@ -6741,7 +6741,7 @@
 	    (RECIPIENT HENRY_THOMPSON:MALE:_:1626:48)
 	    (LETTER MARVELL_010:E3:1674:AUTOGRAPH:OTHER))
   (FRAG (NP-SBJ (D the) (ADJ first))
-	(NP-OB1 (PRO$ my) (N acquaintance)))
+	(NP-PRD (PRO$ my) (N acquaintance)))
   (ID MARVELL,335.392))
 
 ( (METADATA (AUTHOR ANDREW_MARVELL_JR:MALE:_:1621:53)
@@ -6749,7 +6749,7 @@
 	    (LETTER MARVELL_010:E3:1674:AUTOGRAPH:OTHER))
   (FRAG (CONJ but)
 	(NP-SBJ (D this))
-	(NP-OB1 (PRO$ my) (N Friend))
+	(NP-PRD (PRO$ my) (N Friend))
 	(PUNC .))
   (ID MARVELL,335.393))
 

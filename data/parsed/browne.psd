@@ -6155,7 +6155,7 @@
 		      (NP (NPR Martial)
 			  (PUNC ,)
 			  (CODE <font>)
-			  (REF (FW lib.) (CODE <$$font>) (FW 3) (PUNC ,) (CODE <font>) (FW epigram.) (CODE <$$font>) (FW 74)))))
+			  (REF (FOREIGN (FW lib.) (CODE <$$font>) (FW 3) (PUNC ,) (CODE <font>) (FW epigram.) (CODE <$$font>) (FW 74))))))
 	  (PUNC .))
   (ID BROWNE,94.469))
 
@@ -16369,7 +16369,6 @@
 	  (NP-OB1 (PRO$ my) (N Daughter))
 	  (IP-INF (PP (P att)
 		      (NP (PRO$ her) (ADJS best) (N lausuer)))
-		  (CODE {COM:best_guess_at_lemma})
 		  (TO to)
 		  (VB gett)
 		  (NP-OB1 (NP-POS (PRO$ my)

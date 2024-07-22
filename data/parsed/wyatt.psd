@@ -23612,7 +23612,7 @@
   (FRAG (CONJ And)
 	(NP-SBJ (PRO I))
 	(ADVP-TMP (ADV alway))
-	(NP-OB1 (PRO$ your) (ADJ bond) (N bedesman))
+	(NP-PRD (PRO$ your) (ADJ bond) (N bedesman))
 	(PUNC ,)
 	(PP (P as)
 	    (CP-ADV (WNP-1 0)
