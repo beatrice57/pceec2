@@ -39705,7 +39705,7 @@
 									     (IP-SUB (NP-SBJ-3 (PRO it))
 										     (BEP is)
 										     (VAN discovered)
-										     (CP-QUE-SUB=3 (WPP-4 (P at)
+										     (CP-QUE-SUB-3 (WPP-4 (P at)
 													  (WNP (WD what) (N disagreement)))
 												   (C 0)
 												   (IP-SUB (PP *T*-4)

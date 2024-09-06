@@ -527,7 +527,7 @@
 			  (BE be)
 			  (ADVP-TMP (ADV sonne))
 			  (VAN senne)
-			  (CP-QUE-SUB=1 (CP-QUE-SUB (WADJP-2 (WADVP (WADV how) (ADV well))
+			  (CP-QUE-SUB-1 (CP-QUE-SUB (WADJP-2 (WADVP (WADV how) (ADV well))
 							     (ADJ beloved))
 						    (C 0)
 						    (IP-SUB (ADJP-PRD *T*-2)

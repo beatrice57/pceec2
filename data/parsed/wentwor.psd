@@ -29969,7 +29969,7 @@
 	    (LETTER WENTWOR_065:E2:1624:COPY:FRIEND))
   (IP-MAT (NP-SBJ-1 (EX there))
 	  (BEP is)
-	  (NP=1 (ADVP (ADVR as@)
+	  (NP-1 (ADVP (ADVR as@)
 		      (ADV @well)
 		      (PP *ICH*-2))
 		(NP (N Cuntry))

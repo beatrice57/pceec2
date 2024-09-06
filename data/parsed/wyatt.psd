@@ -25882,7 +25882,7 @@
 	  (NP-SBJ-2 (PRO it))
 	  (BEP is)
 	  (VAN thowght)
-	  (CP-THT=2 (C 0)
+	  (CP-THT-2 (C 0)
 		    (IP-SUB (NP-SBJ (D th'@) (N @emperour))
 			    (MD woll)
 			    (NEG not)

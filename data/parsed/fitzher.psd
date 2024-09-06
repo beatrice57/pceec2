@@ -233,7 +233,7 @@
 			    (VBP think)
 			    (IP-SMC (NP-SBJ-3 (PRO yt))
 				    (ADJP-PRD (ADJ important))
-				    (IP-INF=3 (TO to)
+				    (IP-INF-3 (TO to)
 					      (BE be)
 					      (VAN (VAN known) (CONJ and) (VAN considered))
 					      (PP (P of)

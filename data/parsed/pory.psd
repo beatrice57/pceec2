@@ -5859,7 +5859,7 @@
 						      (IP-SUB (NP-SBJ-2 (PRO it))
 							      (VBD skill'd)
 							      (NEG not)
-							      (CP-QUE-SUB=2 (WNP-3 (WPRO which)
+							      (CP-QUE-SUB-2 (WNP-3 (WPRO which)
 										   (PP (P of)
 										       (NP (D the) (NUM twoe))))
 									    (C 0)

@@ -7899,7 +7899,7 @@
 	  (NP-SBJ-1 (PRO it))
 	  (MD may)
 	  (BE *)
-	  (CP-THT=1 (C 0)
+	  (CP-THT-1 (C 0)
 		    (IP-SUB (NP-SBJ (PRO$ his) (N rejoiceing))
 			    (MD might)
 			    (HV have)

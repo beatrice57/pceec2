@@ -11688,7 +11688,7 @@
 	    (LETTER MARVELL_015:E3:1677:AUTOGRAPH:OTHER))
   (IP-MAT (NP-SBJ-1 (PRO It))
 	  (VBD lasted)
-	  (NP=1 (N debate))
+	  (NP-1 (N debate))
 	  (PP (P from)
 	      (PP (NP-MSR (Q halfe) (D an) (N houre))
 		  (P past)

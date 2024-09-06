@@ -29755,7 +29755,7 @@
 			  (PP (P to)
 			      (NP (PRO us)))
 			  (PUNC ,)
-			  (CP-QUE-SUB=1 (CP-QUE-SUB (WQ whether)
+			  (CP-QUE-SUB-1 (CP-QUE-SUB (WQ whether)
 						    (C 0)
 						    (IP-SUB (NP-SBJ (PRO he))
 							    (BED was)

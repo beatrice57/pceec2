@@ -26995,7 +26995,7 @@
 	  (PP (P vnto)
 	      (NP (PRO me)))
 	  (PUNC ,)
-	  (CP-QUE-SUB=1 (WNP-2 (WD what) (D a) (N nomber))
+	  (CP-QUE-SUB-1 (WNP-2 (WD what) (D a) (N nomber))
 			(C 0)
 			(IP-SUB (NP-SBJ *T*-2)
 				(HVD had)

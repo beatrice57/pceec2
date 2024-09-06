@@ -27707,7 +27707,7 @@
 			       (N office)
 			       (ADJP (ADJ neere)
 				     (NP (NS$ Doctors) (NS Commons))))))))
-	  (NP=1 (CP-FRL (WNP-2 (WPRO who))
+	  (NP-1 (CP-FRL (WNP-2 (WPRO who))
 			(C 0)
 			(IP-SUB (NP-SBJ *T*-2)
 				(MD can)

@@ -1876,7 +1876,7 @@
 	  (BEP is)
 	  (NEG not)
 	  (VAN agreed)
-	  (CP-QUE-SUB=1 (WNP-2 (WPRO what))
+	  (CP-QUE-SUB-1 (WNP-2 (WPRO what))
 			(C 0)
 			(IP-SUB (NP-SBJ *T*-2)
 				(MD shall)

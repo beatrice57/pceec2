@@ -4716,7 +4716,7 @@
   (IP-MAT (NP-SBJ-1 (PRO It))
 	  (BEP is)
 	  (ADJP-PRD (ADJ good))
-	  (IP-INF=1 (FOREIGN (FW principiis) (FW obstare)))
+	  (IP-INF-1 (FOREIGN (FW principiis) (FW obstare)))
 	  (PUNC :))
   (ID JONES,189.262))
 
@@ -43821,7 +43821,7 @@
 			  (ADJP-PRD (ADJ unknowne)
 				    (PP (P to)
 					(NP (PRO$ yo=r=) (N Lo=pp=))))
-			  (CP-QUE-SUB=1 (WPP-2 (P upon)
+			  (CP-QUE-SUB-1 (WPP-2 (P upon)
 					       (WNP (WD what) (N consideration)))
 					(C 0)
 					(IP-SUB (PP *T*-2)

@@ -1466,7 +1466,7 @@
 						 (PP (P throughout)
 						     (NP (Q all) (NPR Christendom))))))))
 			  (PUNC ,)
-			  (CP-QUE-SUB=1 (CP-QUE-SUB (WNP-3 (WNP (WD what) (N laud))
+			  (CP-QUE-SUB-1 (CP-QUE-SUB (WNP-3 (WNP (WD what) (N laud))
 							   (PUNC ,)
 							   (CONJP (WNP (WD what)
 								       (N worship)

@@ -310,7 +310,7 @@
 			(MD may)
 			(VB plese)
 			(NP-OB2 (PRO$ yo=r=) (ADJ goode) (N lordeship))
-			(IP-INF=3 (IP-ABS (NP-SBJ (D the) (NS premysses))
+			(IP-INF-3 (IP-ABS (NP-SBJ (D the) (NS premysses))
 					  (CODE {TEXT:pmysses})
 					  (VAN considerd))
 				  (NP-SBJ (D a) (N remedy))
