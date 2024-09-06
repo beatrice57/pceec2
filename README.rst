@@ -11,10 +11,8 @@ The pceec2 repository contains
   original version, Terttu Nevalainen, has given permission to
   distribute on github.
 
-- a lemmatized version of the corrected parsed files, using the Oxford
-  English Dictionary (OED) as lemma authority
-
 - a corrected version of the accompanying sociolinguistic information
+
 - accompanying documentation concerning the source texts
 
 Citation
