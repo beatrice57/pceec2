@@ -5,11 +5,13 @@ The pceec2 repository contains
 
 - a revised and corrected version of the parsed files in the PCEEC
 
-  The original 2006 version was deposited for distribution with the
-  Oxford Text Archive (OTA).  The OTA has not responded to requests to
-  deposit the corrected version with them.  The main author of the
-  original version, Terttu Nevalainen, has given permission to
-  distribute on github.
+  The original 2006 version
+  <https://www-users.york.ac.uk/~lang22/PCEEC-manual/corpus_description/index.htm>
+  was deposited for distribution with the Oxford Text Archive (OTA).
+  The OTA has not responded to requests to deposit the corrected version
+  with them.  The main author of the original version, Terttu
+  Nevalainen, has given permission to distribute the corrected version 
+  on github.
 
 - a corrected version of the accompanying sociolinguistic information
 
