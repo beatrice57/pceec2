@@ -19,10 +19,13 @@ The pceec2 repository contains
 Citation
 ========
 
-Parsed Corpus of Early English Correspondence 2.  2022.  Compiled by the
-CEEC Project Team.  Annotated by Ann Taylor, Arja Nurmi, Anthony Warner,
-Susan Pintzuk, and Terttu Nevalainen.  Revised and corrected by Beatrice
-Santorini.  <https://github.com/beatrice57/pceec2>
+Parsed Corpus of Early English Correspondence, second edition.
+2022.
+Annotated by Ann Taylor, Arja Nurmi, Anthony Warner, Susan Pintzuk, and
+Terttu Nevalainen.
+Revised and corrected by Beatrice Santorini.
+Compiled by the CEEC Project Team.
+<https://github.com/beatrice57/pceec2>
 
 Contact
 =======
