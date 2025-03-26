@@ -8484,7 +8484,7 @@
 						  (MD will)
 						  (HV have)
 						  (IP-SMC (NP-SBJ (PRO it))
-							  (VAN knowen))
+							  (ADJP-PRD (ADJ knowen)))
 						  (PP (P as)
 						      (ADVP (ADV yet))))))))
 	  (PUNC .))

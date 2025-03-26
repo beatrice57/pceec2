@@ -5894,7 +5894,7 @@
 											  (NP-SBJ (NPR God))
 											  (VBP maketh)
 											  (IP-SMC (NP-SBJ (PRO$ his))
-												  (VAN knowne))))))))))))
+												  (ADJP-PRD (ADJ knowne)))))))))))))
 	  (PUNC .))
   (ID STUART,136.206))
 
@@ -40939,7 +40939,7 @@
 	  (ADJP-PRD (ADJ sparinge)
 		    (IP-INF (TO to)
 			    (VB make)
-			    (IP-SMC (VAN knowne)
+			    (IP-SMC (ADJP-PRD (ADJ knowne))
 				    (NP-SBJ (NP-POS (PRO$ your) (N$ honours))
 					    (N worthines)
 					    (PUNC ,)

@@ -14648,7 +14648,7 @@
 	    (LETTER DERBY_040:E1:1536:COPY:OTHER))
   (IP-MAT (IP-MAT (CONJ And)
 		  (IP-ABS (NP-SBJ (D that))
-			  (VAN knowen))
+			  (ADJP-PRD (ADJ knowen)))
 		  (PUNC ,)
 		  (NP-SBJ (PRO I))
 		  (MD shall)

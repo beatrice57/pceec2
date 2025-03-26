@@ -14300,7 +14300,7 @@
 	  (IP-INF (NP-SBJ (PRO yo=w=))
 		  (VB make)
 		  (IP-SMC (NP-SBJ-1 (PRO it))
-			  (VAN knowen)
+			  (ADJP-PRD (ADJ knowen))
 			  (PUNC ,)
 			  (CP-THT-1 (C That)
 				    (IP-SUB (IP-SUB (NP-SBJ (PRO shee))

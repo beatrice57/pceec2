@@ -10455,7 +10455,6 @@
 	  (NP-SBJ (PRO you))
 	  (NP-OB1 (Q no)
 		  (N thowe)
-		  (CDOE {TEMP:best_guess})
 		  (PP-RSP (ADV+P therefore)))
 	  (PUNC .))
   (ID CELY,28.745))

@@ -8682,7 +8682,7 @@
 	  (CP-ADV (C that)
 		  (PUNC ,)
 		  (IP-SUB (IP-ABS (NP-SBJ (D the) (N trewyth))
-				  (VAN knowyn))
+				  (ADJP-PRD (ADJ knowyn)))
 			  (PUNC ,)
 			  (NP-SBJ (PRO ye))
 			  (MD may)

@@ -4659,7 +4659,7 @@
 	  (VAN asoynyd)
 	  (NP-TMP (NUM ij)
 		  (NS tymys)
-		  (NP-ADV-XXX (D a) (N rewe)))
+		  (NP-MSR-XXX (D a) (N rewe)))
 	  (PP (P yn)
 	      (NP (PRO$ his) (ADJ oune) (N pleynte)))
 	  (PUNC .))

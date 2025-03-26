@@ -4703,7 +4703,7 @@
 	  (NP-SBJ (PRO you))
 	  (MD shall)
 	  (VB make)
-	  (IP-SMC (VAN knowne)
+	  (IP-SMC (ADJP-PRD (ADJ knowne))
 		  (NP-SBJ (NP (D the)
 			      (N right)
 			      (PP (P of)

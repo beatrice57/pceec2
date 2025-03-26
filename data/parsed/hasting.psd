@@ -27181,7 +27181,7 @@
 			      (HVD had)
 			      (VBN made)
 			      (IP-SMC (NP-SBJ (PRO it))
-				      (VAN knowne))))
+				      (ADJP-PRD (ADJ knowne)))))
 	  (PUNC .))
   (ID HASTING,105.1315))
 

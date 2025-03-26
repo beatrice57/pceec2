@@ -22985,7 +22985,7 @@
 	    (LETTER HARLEY_038:E3:1641:AUTOGRAPH:FAMILY_NUCLEAR))
   (IP-MAT (ADVP-TMP (ADJ Just) (ADV nowe))
 	  (NP-SBJ (NPR M=r=) (NPR Ballam))
-	  (VBD tell)
+	  (VBP tell)
 	  (NP-OB2 (PRO me))
 	  (CP-THT (C 0)
 		  (IP-SUB (NP-SBJ (PRO he))
@@ -29156,7 +29156,7 @@
 			      (NEG not)
 			      (HV haue)
 			      (IP-SMC (NP-SBJ (PRO it))
-				      (VAN knowne)))))
+				      (ADJP-PRD (ADJ knowne))))))
 	  (PUNC .))
   (ID HARLEY,182.2143))
 

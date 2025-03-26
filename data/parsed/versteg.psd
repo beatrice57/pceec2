@@ -20224,7 +20224,7 @@
 												  (BED was)
 												  (VAN made)
 												  (IP-SMC (NP-SBJ-3 *-2)
-													  (VAN knowne)
+													  (ADJP-PRD (ADJ knowne))
 													  (CP-THT-3 (C 0)
 														    (IP-SUB (NP-SBJ (D the) (D the@) (ADJ @said) (N Father))
 															    (BED was)

@@ -29983,7 +29983,7 @@
 	  (NEG not)
 	  (HV have)
 	  (IP-SMC (NP-SBJ-1 (PRO it))
-		  (VAN knowne)
+		  (ADJP-PRD (ADJ knowne))
 		  (CP-THT-1 (C that)
 			    (IP-SUB (NP-SBJ (PRO I))
 				    (VBP desire)
@@ -88051,7 +88051,7 @@
 			  (NEG not)
 			  (HV have)
 			  (IP-SMC (NP-SBJ (PRO itt))
-				  (VAN knowne))))
+				  (ADJP-PRD (ADJ knowne)))))
 	  (PUNC .))
   (ID OXINDE,I,312.5429))
 

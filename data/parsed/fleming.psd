@@ -10251,7 +10251,7 @@
 	  (VAN disappointed)
 	  (NP-TMP (D this) (N weeke))
 	  (PP (P of)
-	      (NP (PRO$ my) (N Pol)))
+	      (NP (PRO$ my) (NPR Pol)))
 	  (PUNC :))
   (ID FLEMING,116.782))
 
@@ -27172,9 +27172,8 @@
 	    (RECIPIENT DANIEL_FLEMING:MALE:_:1633:40)
 	    (LETTER FLEMING_064:E3:1673:AUTOGRAPH:FRIEND))
   (FRAG (NP (NPR Williamson))
-	(N franck)
-	(NPR M.)
-	(NPR Hickes)
+	(NP (N franck))
+	(NP (NPR M.) (NPR Hickes))
 	(PUNC .))
   (ID FLEMING,193.1889))
 

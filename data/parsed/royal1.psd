@@ -11379,7 +11379,7 @@
 	  (MD wil)
 	  (VB make)
 	  (IP-SMC (NP-SBJ-1 *exp*)
-		  (VAN knowen)
+		  (ADJP-PRD (ADJ knowen))
 		  (CP-THT-1 (C that)
 			    (IP-SUB (PP (P in)
 					(NP (PRO me)))
