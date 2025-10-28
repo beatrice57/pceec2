@@ -6,5 +6,5 @@ License
 
 The files in this repository are distributed under the same license as 
 the 2006 release:
-<https://ota.bodleian.ox.ac.uk/repository/xmlui/page/licence-ota>
+https://llds.ling-phil.ox.ac.uk/llds/xmlui/handle/20.500.14106/2510
 

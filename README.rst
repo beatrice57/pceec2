@@ -6,7 +6,7 @@ The pceec2 repository contains
 - a revised and corrected version of the parsed files in the PCEEC
 
   The original 2006 version
-  (https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2510)
+  (https://llds.ling-phil.ox.ac.uk/llds/xmlui/handle/20.500.14106/2510)
   was deposited with the Oxford Text Archive (OTA).  The OTA has not
   responded to repeated requests to deposit the corrected version with
   them.  The main author of the original version, Terttu Nevalainen, and
@@ -44,4 +44,4 @@ Acknowledgments
 ===============
 
 Same as for 2006 release.
-https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2510
+https://llds.ling-phil.ox.ac.uk/llds/xmlui/handle/20.500.14106/2510
