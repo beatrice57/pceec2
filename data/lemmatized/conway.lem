@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_conway>))
 
 ( (CODE <B_CONWAY>))
@@ -70980,7 +70981,8 @@
 						  (IP-SUB (IP-SUB (ADVP-LOC *T*-2)
 								  (NP-SBJ (PRO they#they_pron))
 								  (VBD staid#stay_v1)
-								  (NP-MSR (FP onely#only_adj) (ONE one#one_adj) (N day#day_n)))
+								  (NP-MSR (NUMP (FP onely#only_adj) (ONE one#one_adj))
+									  (N day#day_n)))
 							  (CONJP (CONJ and#and_conj1)
 								 (IP-SUB (NP-SBJ *con*)
 									 (VBD alotted#allot_v)

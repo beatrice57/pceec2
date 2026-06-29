@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_leycest>))
 
 ( (CODE <B_LEYCEST>))
@@ -18502,8 +18503,7 @@
 	    (LETTER LEYCEST_017:E2:1586:COPY:OTHER))
   (IP-MAT (NP-SBJ (PRO he))
 	  (HVP hath)
-	  (NP-OB1 (FP only)
-		  (ONE one)
+	  (NP-OB1 (NUMP (FP only) (ONE one))
 		  (N fault)
 		  (PUNC ,)
 		  (CP-REL (WNP-1 (WPRO which))
@@ -91644,4 +91644,3 @@
 	  (NPR Walsingham))
       (PUNC .))
   (ID LEYCEST,481.4098))
-

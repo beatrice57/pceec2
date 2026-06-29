@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_stockwe>))
 
 ( (CODE {CALL:n/a}))
@@ -3924,7 +3925,7 @@
 			  (VB make#make_v1)
 			  (IP-SMC (NP-SBJ (PRO him#him_pron))
 				  (NP-PRD (PRO$ your#your_pron)
-					  (FP onelie#only_adj)
+					  (ADJ onelie#only_adj)
 					  (N comfort#comfort_n)
 					  (PUNC ,)
 					  (CP-REL (WNP-2 (WPRO w=ch=#which_adj))

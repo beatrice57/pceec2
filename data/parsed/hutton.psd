@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_hutton>))
 
 ( (CODE <B_HUTTON>))
@@ -33963,7 +33964,7 @@
 							  (VBD intended)
 							  (PP (P as)
 							      (NP (D the)
-								  (FP onely)
+								  (ADJ onely)
 								  (NS meanes)
 								  (CP-REL (WNP-2 0)
 									  (C 0)
@@ -36030,4 +36031,3 @@
 	  (VAN dd)
 	  (PUNC .))
   (ID HUTTON,321.2370))
-

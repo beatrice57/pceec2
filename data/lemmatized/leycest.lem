@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_leycest>))
 
 ( (CODE <B_LEYCEST>))
@@ -18502,8 +18503,7 @@
 	    (LETTER LEYCEST_017:E2:1586:COPY:OTHER))
   (IP-MAT (NP-SBJ (PRO he#he_pron))
 	  (HVP hath#have_v)
-	  (NP-OB1 (FP only#only_adj)
-		  (ONE one#one_adj)
+	  (NP-OB1 (NUMP (FP only#only_adj) (ONE one#one_adj))
 		  (N fault#fault_n)
 		  (PUNC ,)
 		  (CP-REL (WNP-1 (WPRO which#which_adj))

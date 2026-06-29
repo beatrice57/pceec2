@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_hatton>))
 
 ( (CODE <B_HATTON>))
@@ -40670,7 +40671,7 @@
 			 (NP (ONE one#one_adj) (N servant#servant_n)))
 		  (PUNC <paren>)
 		  (NP-PRN (D y=e=#the_adj)
-			  (FP only#only_adj)
+			  (ADJ only#only_adj)
 			  (NS personns#person_n)
 			  (CP-REL (WNP-1 (WPRO who#who_pron))
 				  (C 0)

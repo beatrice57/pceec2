@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_arundel>))
 
 ( (CODE <B_ARUNDEL>))
@@ -25613,8 +25614,7 @@
   (IP-MAT (NP-SBJ (PRO I))
 	  (HVP have)
 	  (VBN receaved)
-	  (NP-OB1 (FP onely)
-		  (ONE one)
+	  (NP-OB1 (NUMP (FP onely) (ONE one))
 		  (N letter)
 		  (CP-REL (WPP-1 (P in)
 				 (WNP (WPRO which)))
@@ -28143,4 +28143,3 @@
 		      (NP (NPR Arundel)))))
       (PUNC .))
   (ID ARUNDEL,501.2041))
-

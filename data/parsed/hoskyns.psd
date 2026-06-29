@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_hoskyns>))
 
 ( (CODE <B_HOSKYNS>))
@@ -3301,10 +3302,10 @@
 	    (LETTER HOSKYNS_006:E2:1615:AUTOGRAPH:FAMILY_NUCLEAR))
   (PP (P To)
       (NP (PRO$ my)
-	  (FP only)
+	  (ADJ only)
 	  (N comfort)
 	  (CONJP (CONJ &)
-		 (NX (FP only) (ADJ earthly) (N joy)))
+		 (NX (ADJ only) (ADJ earthly) (N joy)))
 	  (NP-PRN (PRO$ my)
 		  (NPR Ben)
 		  (PUNC :)
@@ -18265,4 +18266,3 @@
 			  (NP-PRN (NPR J.) (NPR Hoskyns))))
 	  (PUNC .))
   (ID HOSKYNS,257.1394))
-

@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_origin3>))
 
 ( (CODE <B_ORIGIN3>))
@@ -7344,7 +7345,7 @@
 	  (IP-PPL-ABS (NP-SBJ (NPR Yrland#NA))
 		      (BAG being#be_v)
 		      (NP-PRD (D the#the_adj)
-			      (FP onlie#only_adj)
+			      (ADJ onlie#only_adj)
 			      (N Egg#egg_n)
 			      (CP-REL (WNP-1 0)
 				      (C 0)

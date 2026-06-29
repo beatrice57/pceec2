@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_fleming>))
 
 ( (CODE {CALL:DA_690_O97_O8_v44}))
@@ -28187,17 +28188,17 @@
 	    (RECIPIENT DANIEL_FLEMING:MALE:_:1633:42)
 	    (LETTER FLEMING_069:E3:1675:AUTOGRAPH:FRIEND))
   (IP-MAT (NP-SBJ (D The)
-		  (FP only)
+		  (ADJ only)
 		  (N thing)
 		  (CP-REL (WNP-1 0)
 			  (C 0)
 			  (IP-SUB (NP-OB1 *T*-1)
 				  (NP-SBJ (PRO I))
-				  (HVP have)
-				  (CP-EOP (WNP-2 0)
-					  (IP-INF (NP-OB1 *T*-2)
-						  (TO to)
-						  (VB wish))))))
+				  (HVP have)))
+		  (CP-EOP (WNP-2 0)
+			  (IP-INF (NP-OB1 *T*-2)
+				  (TO to)
+				  (VB wish))))
 	  (BEP is)
 	  (NP-PRD (Q some)
 		  (N occasion)
@@ -57466,4 +57467,3 @@
 	(NP (D These))
 	(PUNC .))
   (ID FLEMING,334.3920))
-

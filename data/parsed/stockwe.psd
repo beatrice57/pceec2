@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_stockwe>))
 
 ( (CODE {CALL:n/a}))
@@ -3924,7 +3925,7 @@
 			  (VB make)
 			  (IP-SMC (NP-SBJ (PRO him))
 				  (NP-PRD (PRO$ your)
-					  (FP onelie)
+					  (ADJ onelie)
 					  (N comfort)
 					  (PUNC ,)
 					  (CP-REL (WNP-2 (WPRO w=ch=))
@@ -38499,4 +38500,3 @@
 		  (NP-PRN (NPR William) (NPR Humber)))
 	  (PUNC .))
   (ID STOCKWE,II,55.2539))
-

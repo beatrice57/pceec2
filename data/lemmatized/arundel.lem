@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_arundel>))
 
 ( (CODE <B_ARUNDEL>))
@@ -25613,8 +25614,7 @@
   (IP-MAT (NP-SBJ (PRO I#i_pron))
 	  (HVP have#have_v)
 	  (VBN receaved#receive_v)
-	  (NP-OB1 (FP onely#only_adj)
-		  (ONE one#one_adj)
+	  (NP-OB1 (NUMP (FP onely#only_adj) (ONE one#one_adj))
 		  (N letter#letter_n1)
 		  (CP-REL (WPP-1 (P in#in_prep)
 				 (WNP (WPRO which#which_adj)))

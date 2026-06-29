@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_hatton>))
 
 ( (CODE <B_HATTON>))
@@ -40670,7 +40671,7 @@
 			 (NP (ONE one) (N servant)))
 		  (PUNC <paren>)
 		  (NP-PRN (D y=e=)
-			  (FP only)
+			  (ADJ only)
 			  (NS personns)
 			  (CP-REL (WNP-1 (WPRO who))
 				  (C 0)
@@ -48407,4 +48408,3 @@
 				   (PUNC ,)
 				   (NP-PRN (NPR W.) (NPR L.)))))))
   (ID HATTON,II,7.2892))
-

@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_willoug>))
 
 ( (CODE {CALL:DA_670_N_89_T6_v24}))
@@ -136,7 +137,7 @@
 					(NP (SUCH suche) (NS lettres)))
 				    (CONJP (CONJ or)
 					   (PP (P for)
-					       (NP (FP ony)
+					       (NP (Q ony)
 						   (ADJ olde)
 						   (NS rakenynges)
 						   (PP (P on)
@@ -14052,4 +14053,3 @@
 		(NP-PRN (NPR Thomas) (NPR Derbye))))
 	(PUNC .))
   (ID WILLOUG,89.783))
-

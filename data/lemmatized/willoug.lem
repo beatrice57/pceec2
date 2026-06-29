@@ -136,7 +136,7 @@
 					(NP (SUCH suche#such_adj) (NS lettres#letter_n1)))
 				    (CONJP (CONJ or#or_conj2)
 					   (PP (P for#for_prep)
-					       (NP (FP ony#only_adj)
+					       (NP (Q ony#any_adj)
 						   (ADJ olde#old_adj)
 						   (NS rakenynges#reckoning_n)
 						   (PP (P on#on_prep)

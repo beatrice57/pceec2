@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_hutton>))
 
 ( (CODE <B_HUTTON>))
@@ -33963,7 +33964,7 @@
 							  (VBD intended#intend_v)
 							  (PP (P as#as_adv)
 							      (NP (D the#the_adj)
-								  (FP onely#only_adj)
+								  (ADJ onely#only_adj)
 								  (NS meanes#mean_n2)
 								  (CP-REL (WNP-2 0)
 									  (C 0)

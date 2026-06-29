@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_origin3>))
 
 ( (CODE <B_ORIGIN3>))
@@ -7344,7 +7345,7 @@
 	  (IP-PPL-ABS (NP-SBJ (NPR Yrland))
 		      (BAG being)
 		      (NP-PRD (D the)
-			      (FP onlie)
+			      (ADJ onlie)
 			      (N Egg)
 			      (CP-REL (WNP-1 0)
 				      (C 0)
@@ -14391,4 +14392,3 @@
 	      (NP (NPR Sandwich))))
       (PUNC .))
   (ID ORIGIN3,328.1010))
-

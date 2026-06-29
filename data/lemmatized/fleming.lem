@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_fleming>))
 
 ( (CODE {CALL:DA_690_O97_O8_v44}))
@@ -28187,7 +28188,7 @@
 	    (RECIPIENT DANIEL_FLEMING:MALE:_:1633:42)
 	    (LETTER FLEMING_069:E3:1675:AUTOGRAPH:FRIEND))
   (IP-MAT (NP-SBJ (D The#the_adj)
-		  (FP only#only_adj)
+		  (ADJ only#only_adj)
 		  (N thing#thing_n1)
 		  (CP-REL (WNP-1 0)
 			  (C 0)
@@ -32082,7 +32083,7 @@
 								 (PP (P to#to_prep)
 								     (NP (PRO$ my#my_adj) (N view#view_n))))))
 					 (PUNC <$$paren>)
-					 (NP-SBJ (FP only#only_adj)
+					 (NP-SBJ (ZZZ-FP only#only_adj)
 						 (SUCH such#such_adj)
 						 (NS truiths#truth_n)
 						 (PP *ICH*-4))

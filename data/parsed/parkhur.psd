@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_parkhur>))
 
 ( (CODE {CALL:DA_670_N59_N863_v43}))
@@ -8160,8 +8161,7 @@
 	  (NP-VOC (NPR Mr.) (NPR Thimelthorpe))
 	  (PUNC ,)
 	  (CP-THT-1 (C that)
-		    (IP-SUB (NP-SBJ (NP (FP only)
-					(CODE {TEXT:onelye})
+		    (IP-SUB (NP-SBJ (NP (FP onelye)
 					(ADJ tame)
 					(NS beastes))
 				    (PUNC ,)
@@ -47973,4 +47973,3 @@
       (NP-PRN (NPR J.) (NPR N))
       (PUNC .))
   (ID PARKHUR,255.2725))
-

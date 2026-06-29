@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_conway>))
 
 ( (CODE <B_CONWAY>))
@@ -70980,7 +70981,8 @@
 						  (IP-SUB (IP-SUB (ADVP-LOC *T*-2)
 								  (NP-SBJ (PRO they))
 								  (VBD staid)
-								  (NP-MSR (FP onely) (ONE one) (N day)))
+								  (NP-MSR (NUMP (FP onely) (ONE one))
+									  (N day)))
 							  (CONJP (CONJ and)
 								 (IP-SUB (NP-SBJ *con*)
 									 (VBD alotted)
@@ -78900,4 +78902,3 @@
 	    (LETTER CONWAY_098:E3:1658?:AUTOGRAPH:OTHER))
   (NP-TMP (NPR Septembr.) (NUM 22) (PUNC .))
   (ID CONWAY,538.4101))
-

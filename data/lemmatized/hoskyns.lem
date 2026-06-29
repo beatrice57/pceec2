@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_hoskyns>))
 
 ( (CODE <B_HOSKYNS>))
@@ -3301,10 +3302,10 @@
 	    (LETTER HOSKYNS_006:E2:1615:AUTOGRAPH:FAMILY_NUCLEAR))
   (PP (P To#to_prep)
       (NP (PRO$ my#my_adj)
-	  (FP only#only_adj)
+	  (ADJ only#only_adj)
 	  (N comfort#comfort_n)
 	  (CONJP (CONJ &#and_conj1)
-		 (NX (FP only#only_adj) (ADJ earthly#earthly_adj) (N joy#joy_n)))
+		 (NX (ADJ only#only_adj) (ADJ earthly#earthly_adj) (N joy#joy_n)))
 	  (NP-PRN (PRO$ my#my_adj)
 		  (NPR Ben#NA)
 		  (PUNC :)
@@ -13736,7 +13737,7 @@
 	    (RECIPIENT ELIZABETH_BOURNE:FEMALE:STEPDAUGHTER:1601?:27?)
 	    (LETTER HOSKYNS_024:E2:1628?:AUTOGRAPH:FAMILY_NUCLEAR))
   (IP-MAT (IP-MAT-1 (CONJ &#and_conj1)
-		    (NP-SBJ (FP only#only_adj) (ADV phaps#perhaps_adv) (NPR Tomson#NA))
+		    (NP-SBJ (ZZZ-FP only#only_adj) (ADV phaps#perhaps_adv) (NPR Tomson#NA))
 		    (MD may#may_v1)
 		    (BE be#be_v)
 		    (VAN hiered#hire_v)

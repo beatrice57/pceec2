@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_elyot>))
 
 ( (CODE <B_ELYOT>))
@@ -8711,9 +8712,9 @@
 	  (ADVP-LOC (CP-FRL (WADVP-1 (WADV where))
 			    (C 0)
 			    (IP-SUB (IP-SUB (ADVP-LOC *T*-1)
-					    (NP-SBJ (NP (PRO$ my) (ADJ speciall) (N trust))
+					    (NP-SBJ (PRO$ my) (ADJ speciall) (N trust)
 						    (CONJP (CONJ and)
-							   (NP (FP onely) (N expectacion))))
+							   (NX (ADJ onely) (N expectacion))))
 					    (BEP is)
 					    (IP-INF (TO to)
 						    (BE be)
@@ -9002,4 +9003,3 @@
 	    (NPR Elyot)
 	    (NP-PRN (N kt))))
   (ID ELYOT,32.396))
-

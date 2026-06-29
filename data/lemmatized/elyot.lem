@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_elyot>))
 
 ( (CODE <B_ELYOT>))
@@ -8711,9 +8712,9 @@
 	  (ADVP-LOC (CP-FRL (WADVP-1 (WADV where#where_adv))
 			    (C 0)
 			    (IP-SUB (IP-SUB (ADVP-LOC *T*-1)
-					    (NP-SBJ (NP (PRO$ my#my_adj) (ADJ speciall#special_adj) (N trust#trust_n))
+					    (NP-SBJ (PRO$ my#my_adj) (ADJ speciall#special_adj) (N trust#trust_n)
 						    (CONJP (CONJ and#and_conj1)
-							   (NP (FP onely#only_adj) (N expectacion#expectation_n))))
+							   (NX (ADJ onely#only_adj) (N expectacion#expectation_n))))
 					    (BEP is#be_v)
 					    (IP-INF (TO to#to_prep)
 						    (BE be#be_v)

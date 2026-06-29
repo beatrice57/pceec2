@@ -1,3 +1,4 @@
+
 ( (CODE <BEGIN_charles>))
 
 ( (CODE <B_CHARLES>))
@@ -1829,7 +1830,7 @@
 ( (METADATA (AUTHOR CHARLES_STUART_I:MALE:BROTHER:1600:34)
 	    (RECIPIENT ELIZABETH_STUART:FEMALE:SISTER:1596:38)
 	    (LETTER CHARLES_006:E2:1634:AUTOGRAPH:FAMILY_NUCLEAR))
-  (IP-MAT (NP-VOC (PRO$ My#my_adj) (FP onlie#only_adj) (ADJ deare#dear_adj1) (N Sister#sister_n))
+  (IP-MAT (NP-VOC (PRO$ My#my_adj) (ADJ onlie#only_adj) (ADJ deare#dear_adj1) (N Sister#sister_n))
 	  (PUNC ,)
 	  (NP-SBJ (PRO I#i_pron))
 	  (VBP hope#hope_v)
