@@ -11969,7 +11969,7 @@
   (IP-MAT (NP-OB1 (PRO$ His) (N will))
 	  (NP-SBJ (PRO He))
 	  (VBD made)
-	  (PP (RP but)
+	  (PP (FP but)
 	      (P Vppon)
 	      (NP (NPR munday)
 		  (PP (P before)

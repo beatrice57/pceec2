@@ -11969,7 +11969,7 @@
   (IP-MAT (NP-OB1 (PRO$ His#his_adj) (N will#will_n1))
 	  (NP-SBJ (PRO He#he_pron))
 	  (VBD made#make_v1)
-	  (PP (RP but#but_prep)
+	  (PP (FP but#but_prep)
 	      (P Vppon#upon_prep)
 	      (NP (NPR munday#NA)
 		  (PP (P before#before_adv)
