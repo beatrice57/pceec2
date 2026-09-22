@@ -33424,7 +33424,7 @@
 	  (ADJP-PRD (ADJ like)
 		    (IP-INF (TO to)
 			    (BE be)
-			    (NP-PRD (NP (D the) (ADJS best) (N commodity))
+			    (NP-PRD (D the) (ADJS best) (N commodity)
 				    (CONJP (CONJ &)
 					   (NX (ADJS saf'est)
 					       (IP-INF (TO to) (BE be) (VAN injoy'd)))))))

@@ -12005,7 +12005,7 @@
 								      (ADJP-PRD (ADVR so#so_adv)
 										(ADJ sorowfull#sorrowful_adj)
 										(CONJP (CONJ and#and_conj1)
-										       (NX (ADJ pensif#pensive_adj)))
+										       (ADJX (ADJ pensif#pensive_adj)))
 										(PP (P for#for_prep)
 										    (NP (PRO$ his#his_adj) (N trespas#trespass_n)))))
 							      (CONJP (CONJ and#and_conj1)

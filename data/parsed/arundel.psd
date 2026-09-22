@@ -3412,7 +3412,7 @@
 		  (ADJP (QS most) (ADJ holy))
 		  (N grace)
 		  (CONJP (CONJ and)
-			 (NX (CODE {ED:?_keeping})))))
+			 (NX (N (CODE {ED:?_keeping}))))))
 	  (PUNC ,)
 	  (IP-PPL (ADVP-TMP (ADV ever))
 		  (VAG remayning)

@@ -11764,10 +11764,10 @@
 					      (MD can#can_v1)
 					      (VB *))))
 		      (PP (P for#for_prep)
-			  (NP (D the#the_adj)
-			      (N house#house_n1)
+			  (NP (NP (D the#the_adj)
+				  (N house#house_n1))
 			      (CONJP (CONJ &#and_conj1)
-				     (NX (PRO me#me_pron1)))))))
+				     (NP (PRO me#me_pron1)))))))
 	  (PUNC .))
   (ID HOSKYNS,87.862))
 

@@ -7315,7 +7315,7 @@
 		  (ADJP (QS most#most_adj)
 			(ADJ reverent#reverent_adj)
 			(CONJP (CONJ and#and_conj1)
-			       (NX (ADJ worshippfull#worshipful_adj))))
+			       (ADJX (ADJ worshippfull#worshipful_adj))))
 		  (N maister#master_n1)
 		  (NP-PRN (NPR Sir#NA)
 			  (NPR William#NA)

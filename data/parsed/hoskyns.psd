@@ -11764,10 +11764,10 @@
 					      (MD can)
 					      (VB *))))
 		      (PP (P for)
-			  (NP (D the)
-			      (N house)
+			  (NP (NP (D the)
+				  (N house))
 			      (CONJP (CONJ &)
-				     (NX (PRO me)))))))
+				     (NP (PRO me)))))))
 	  (PUNC .))
   (ID HOSKYNS,87.862))
 

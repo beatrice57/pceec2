@@ -33424,7 +33424,7 @@
 	  (ADJP-PRD (ADJ like#like_adj)
 		    (IP-INF (TO to#to_prep)
 			    (BE be#be_v)
-			    (NP-PRD (NP (D the#the_adj) (ADJS best#best_adj) (N commodity#commodity_n))
+			    (NP-PRD (D the#the_adj) (ADJS best#best_adj) (N commodity#commodity_n)
 				    (CONJP (CONJ &#and_conj1)
 					   (NX (ADJS saf'est#safe_adj)
 					       (IP-INF (TO to#to_prep) (BE be#be_v) (VAN injoy'd#enjoy_v)))))))

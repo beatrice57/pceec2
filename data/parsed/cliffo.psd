@@ -12005,7 +12005,7 @@
 								      (ADJP-PRD (ADVR so)
 										(ADJ sorowfull)
 										(CONJP (CONJ and)
-										       (NX (ADJ pensif)))
+										       (ADJX (ADJ pensif)))
 										(PP (P for)
 										    (NP (PRO$ his) (N trespas)))))
 							      (CONJP (CONJ and)
