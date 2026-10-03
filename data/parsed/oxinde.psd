@@ -65608,7 +65608,8 @@
 									 (VBP goe)
 									 (PP (P to)
 									     (NP (NPR London))))))
-						     (PP (NP-MSR (NUMP (ADV about) (NUM 7)
+						     (PP (NP-MSR (NUMP (ADV about)
+								       (NUM 7)
 								       (CONJP (CONJ or)
 									      (NUMX (NUM 8))))
 								 (NS dayes))
@@ -88321,4 +88322,3 @@
 	      (NP (NPR London)))
 	  (PUNC .))
   (ID OXINDE,I,312.5442))
-
